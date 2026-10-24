@@ -1,0 +1,14 @@
+{
+  "name": "DJ Roggy",
+  "short_name": "DJ Roggy",
+  "description": "Allround DJ uit Rotterdam voor bruiloften, verjaardagen en bedrijfsfeesten.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0E0E11",
+  "theme_color": "#0E0E11",
+  "lang": "nl",
+  "icons": [
+    { "src": "assets/logo/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/logo/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
