@@ -88,13 +88,13 @@ bruiloft.html, verjaardag.html, bedrijfsfeest.html   landingspagina's per feestt
 werkwijze.html, reviews.html, foto-video.html, prijzen.html, over.html
 privacy.html, voorwaarden.html, 404.html
 sitemap.xml, robots.txt
-beheer.html             het beheer (sprint 2; nu een tussenpagina)
+beheer.html             het beheer (zes tabs, concept/publiceren, media-Gist, demo)
 data/site.json          standaarddata en terugval (alles wat in beheer te wijzigen is)
 assets/js/config.js     Gist-id, Gist-eigenaar, Formspree-id
 assets/js/gist.js       de enige plek die met de GitHub-API praat
 assets/js/store.js      laden, cache, demo en het datamodel (normalize)
 assets/js/site.js       de website opbouwen
-assets/js/admin.js      het beheer (sprint 2)
+assets/js/admin.js      het beheer
 assets/js/media.js      foto's verkleinen (max 1600 px, JPEG), uploaden en laden
 assets/js/dom.js        kleine DOM-hulpjes (alles via textContent)
 assets/css/             base.css (tokens, gedeeld), site.css, admin.css
@@ -103,7 +103,7 @@ assets/img/hi/          11 foto's op 1080–1440 px
 assets/img/instagram/   43 galerijfoto's op 640 px + captions.tsv
 assets/video/           zelf gehoste MP4's (niet in de Gist)
 qr/                     QR-code naar de site
-docs/handleiding.pdf    handleiding beheer (sprint 2)
+docs/handleiding.html   handleiding beheer (ook als handleiding.pdf)
 reviews-dj-roggy.json   bron van de 77 reviews (eenmalig geïmporteerd)
 ```
 

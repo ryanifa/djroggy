@@ -3,36 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Beheer – DJ Roggy</title>
-  <meta name="description" content="Beheer van de website van DJ Roggy.">
-  <meta name="theme-color" content="#0E0E11">
-  <meta name="version" content="2026.10.24-12">
+  <title>Beheer · DJ Roggy</title>
   <meta name="robots" content="noindex, nofollow">
-  <link rel="canonical" href="https://djroggy.nl/beheer.html">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="nl_NL">
-  <meta property="og:title" content="Beheer – DJ Roggy">
-  <meta property="og:description" content="Beheer van de website van DJ Roggy.">
-  <meta property="og:image" content="https://djroggy.nl/assets/img/hi/djroggy-DK6YMV6CYPh-hi.jpg">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0E0E11">
+  <meta name="version" content="2026.10.24-13">
   <link rel="icon" href="assets/logo/favicon.ico" sizes="any">
   <link rel="icon" href="assets/logo/logo-mark.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/logo/icon-180.png">
-  <link rel="manifest" href="manifest.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
-  <link rel="stylesheet" href="assets/css/base.css?v=2026.10.24-12">
-  <link rel="stylesheet" href="assets/css/site.css?v=2026.10.24-12">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/base.css?v=2026.10.24-13">
+  <link rel="stylesheet" href="assets/css/admin.css?v=2026.10.24-13">
 </head>
-<body data-page="beheer">
-  <main id="inhoud" class="wrap" style="padding:80px 0;max-width:560px">
-    <img src="assets/logo/logo-horizontal.svg" alt="DJ Roggy" width="180" height="48" style="margin-bottom:24px">
-    <h1>Beheer</h1>
-    <p>Hier komt het beheer van de website: reviews, foto's &amp; video, pakketten, agenda, info en instellingen. Inloggen gaat straks met een GitHub-sleutel (alleen Gists) of met <em>Demo zonder sleutel</em>.</p>
-    <p class="muted">Dit onderdeel wordt in sprint 2 gebouwd. Tot die tijd staan alle gegevens in <code>data/site.json</code> in de repository.</p>
-    <p><a class="btn btn-ghost" href="./">← Terug naar de website</a></p>
-  </main>
+<body>
+  <div id="app" class="app">
+    <p class="loading">Laden…</p>
+  </div>
+
+  <dialog id="modal" class="modal">
+    <form method="dialog" id="modal-form" class="modal-form" novalidate></form>
+  </dialog>
+
+  <script type="module" src="assets/js/admin.js?v=2026.10.24-13"></script>
 </body>
 </html>

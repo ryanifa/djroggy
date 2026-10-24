@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Handleiding beheer · DJ Roggy</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root { color-scheme: light; }
+    body { margin: 0; font: 16px/1.6 'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif; color: #1a1a1f; background: #fff; }
+    main { max-width: 760px; margin: 0 auto; padding: 32px 24px 64px; }
+    h1 { font: 700 2rem/1.15 Poppins, 'Segoe UI', system-ui, sans-serif; margin: 0 0 4px; }
+    h2 { font: 700 1.35rem/1.2 Poppins, 'Segoe UI', system-ui, sans-serif; margin: 36px 0 10px; padding-top: 12px; border-top: 2px solid #F5B82E; }
+    h3 { font: 700 1.05rem/1.3 Poppins, 'Segoe UI', system-ui, sans-serif; margin: 20px 0 6px; }
+    p, li { color: #2c2c33; }
+    .lead { color: #555; font-size: 1.05rem; }
+    .box { background: #fff7e1; border: 1px solid #F5B82E; border-radius: 10px; padding: 12px 16px; margin: 14px 0; }
+    .warn { background: #fdeaea; border-color: #e06666; }
+    .step { display: grid; grid-template-columns: 34px 1fr; gap: 12px; margin: 10px 0; align-items: start; }
+    .num { width: 30px; height: 30px; border-radius: 50%; background: #B13BFF; color: #fff; font: 700 1rem Poppins, sans-serif; display: grid; place-items: center; }
+    code { background: #f1efe9; padding: 1px 6px; border-radius: 4px; font-size: 0.92em; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
+    th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #e5e2da; vertical-align: top; }
+    th { background: #f7f5f0; }
+    .small { font-size: 0.9rem; color: #666; }
+    @media print { main { padding: 0; } h2 { break-after: avoid; } .box, table, .step { break-inside: avoid; } a { color: inherit; text-decoration: none; } }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Handleiding beheer</h1>
+  <p class="lead">Website van DJ Roggy · <code>beheer.html</code> · versie oktober 2026</p>
+  <p>Met het beheer pas je de website zelf aan, ook vanaf je telefoon: reviews, foto's, pakketten en prijzen, geblokkeerde data, contactgegevens en teksten. Je hoeft niets te installeren.</p>
+
+  <h2>1. Inloggen</h2>
+  <div class="step"><div class="num">1</div><div>Open <strong>djroggy.nl/beheer.html</strong> (of de link onderaan de website bij "Beheer").</div></div>
+  <div class="step"><div class="num">2</div><div>Plak je <strong>sleutel</strong> en tik op <em>Inloggen</em>. Heb je op je telefoon de <em>beheerlink</em> geopend (zie hoofdstuk 8), dan ben je al ingelogd.</div></div>
+  <div class="step"><div class="num">3</div><div>Eerst rondkijken zonder sleutel? Kies <em>Demo zonder sleutel</em>. Alles werkt, maar je wijzigingen blijven in je eigen browser en komen niet op de echte website.</div></div>
+  <h3>Een sleutel maken (eenmalig)</h3>
+  <ol>
+    <li>Ga naar <a href="https://github.com/settings/personal-access-tokens/new">github.com/settings/personal-access-tokens/new</a>.</li>
+    <li>Zet bij <strong>Account permissions → Gists</strong> de waarde op <strong>Read and write</strong>. Verder niets aanzetten.</li>
+    <li>Kies een vervaldatum (bijvoorbeeld een jaar), maak de sleutel en plak hem in het beheer.</li>
+  </ol>
+  <div class="box">De sleutel blijft alleen in de browser van het apparaat waarop je inlogt en gaat rechtstreeks naar GitHub. Wie de sleutel heeft, kan de site aanpassen: deel hem dus niet. Kwijt of gelekt? Trek hem in bij GitHub en maak een nieuwe.</div>
+
+  <h2>2. Zo werkt wijzigen en publiceren</h2>
+  <p>Alles wat je aanpast staat eerst als <strong>concept</strong> klaar. Bovenaan zie je dan <em>Niet gepubliceerd</em> en onderaan verschijnt een balk. Het concept blijft bewaard, ook als je de pagina sluit.</p>
+  <ul>
+    <li><strong>Publiceren</strong>: zet alles op de website. Binnen een minuut zien bezoekers het.</li>
+    <li><strong>Ongedaan maken</strong>: gooit alle wijzigingen sinds de laatste keer publiceren weg.</li>
+  </ul>
+  <p>Heb je op een ander apparaat intussen ook gepubliceerd, dan vraagt het beheer eerst of je dat wilt overschrijven.</p>
+
+  <h2>3. Reviews</h2>
+  <p>Bovenaan zie je het gemiddelde en het aantal reviews <em>zoals de website ze nu toont</em>. Daaronder de lijst, nieuwste eerst. Filter op type feest en op herkomst.</p>
+  <ul>
+    <li><strong>Review toevoegen</strong>: na elk direct geboekt feest. Vul voornaam, datum, cijfer (1 tot 10, één decimaal), titel en tekst in. Bron is "Direct", herkomst "Eigen".</li>
+    <li><strong>Uitgelicht</strong>: staat in de carrousel op de homepage (de nieuwste 8).</li>
+    <li><strong>Verbergen</strong>: blijft bewaard, maar staat niet op de site.</li>
+    <li>Tik op een review om hem te bewerken of te verwijderen.</li>
+  </ul>
+  <div class="box warn"><strong>Reviews van het bureau.</strong> De 77 geïmporteerde reviews hebben herkomst "Bureau". Ze zijn verborgen zolang de schakelaar in <em>Info</em> uit staat (gele balk: "Bureau-reviews staan uit"). Hun tekst mag je niet herschrijven; ze worden altijd ongewijzigd getoond, met de bronregel "via The DJ Company".</div>
+
+  <h2>4. Foto's &amp; video</h2>
+  <ul>
+    <li><strong>Foto uploaden</strong>: kies een foto van je telefoon. Hij wordt verkleind (max. 1600 px) en in een aparte opslag (media-Gist) gezet; die wordt bij de eerste upload vanzelf aangemaakt. Vul daarna bijschrift en categorie in.</li>
+    <li><strong>Categorie</strong>: Bruiloft, Verjaardag, Zakelijk, Feest of Setup &amp; lichtshow. Bezoekers filteren hierop in de galerij.</li>
+    <li><strong>Home</strong>-schakelaar: de foto komt in de fotostrip op de homepage (de eerste 6).</li>
+    <li><strong>Volgorde</strong>: met de pijlen. Bovenaan = eerst in de galerij.</li>
+    <li><strong>Hero en portret</strong>: open een foto en zet <em>Gebruik als hero</em> (grote foto op de homepage) of <em>Gebruik als portret</em> (Over Roggy) aan. Alleen eigen foto's.</li>
+    <li><strong>Herkomst</strong>: gemaakt op een feest via het bureau? Zet dan "Bureau": de foto valt onder de schakelaar in Info. Eigen feesten, Bijenkorf, familie, je eigen set: "Eigen".</li>
+    <li><strong>Video's</strong>: alleen een lijst met bestandsnaam en poster. Het MP4-bestand zelf (max. ±3 MB) komt in de map <code>assets/video/</code> van de website; vraag daarvoor hulp.</li>
+  </ul>
+
+  <h2>5. Pakketten</h2>
+  <p>De pakketten en de optietabel van de prijzenpagina. Tik op een pakket om naam, prijs, inhoud (één regel per onderdeel) en <em>Meest gekozen</em> aan te passen. <em>Vanaf-prijs</em> gebruik je voor maatwerk (Zakelijk). Opties zonder vast bedrag krijgen een tekst, bijvoorbeeld "+ 10%". De laagste zichtbare pakketprijs is de "vanaf"-prijs op de homepage. Onderaan staan de drie zekerheden.</p>
+
+  <h2>6. Agenda</h2>
+  <p>Zet hier data die bezet of geblokkeerd zijn. Bij de datumcheck op de site ziet een bezoeker dan meteen "helaas bezet" en kan hij een andere datum kiezen. Voorbije data kun je in één keer opruimen.</p>
+
+  <h2>7. Info</h2>
+  <table>
+    <tr><th>Onderdeel</th><th>Wat het doet</th></tr>
+    <tr><td>Materiaal van het bureau</td><td>De schakelaar voor alles met herkomst "Bureau" (zie hieronder) en de Google-reviewlink.</td></tr>
+    <tr><td>Algemeen</td><td>Naam, tagline, intro op de homepage en een tijdelijke mededeling bovenaan elke pagina (bijvoorbeeld "December bijna vol").</td></tr>
+    <tr><td>Contact &amp; zakelijk</td><td>Telefoon, WhatsApp, e-mail, KvK, btw, adres en socials. Zolang hier placeholders staan (06-xxxxxxxx), linken de knoppen naar het formulier.</td></tr>
+    <tr><td>Werkgebied</td><td>Regio en het aantal kilometers waarbinnen reizen gratis is.</td></tr>
+    <tr><td>Apparatuur &amp; verzekering</td><td>De lijst op "Over Roggy" en de verzekeringstekst op de bedrijfsfeestpagina.</td></tr>
+    <tr><td>Over Roggy, Werkwijze, FAQ</td><td>De teksten en stappen op de pagina's. FAQ per feesttype; "Algemeen" staat overal.</td></tr>
+    <tr><td>Kengetallen</td><td>Feesten, gasten, uren en locaties: staan altijd op de site als eigen ervaring.</td></tr>
+    <tr><td>Locaties</td><td>"Locaties waar ik draaide". Locaties met herkomst "Bureau" vallen onder de schakelaar.</td></tr>
+  </table>
+  <div class="box warn">
+    <strong>De schakelaar "Materiaal uit DJ Company-opdrachten tonen".</strong> Standaard uit. Reviews, foto's en locatienamen uit opdrachten via The DJ Company blijven dan verborgen, overal op de site. Zet hem alleen aan na opzegging van de samenwerkingsovereenkomst én schriftelijke toestemming of juridisch advies (artikel 5.1, 7.1 en 7.2; boete artikel 9.1: € 10.000 per overtreding). Het beheer vraagt om een bevestiging.
+  </div>
+  <p><strong>Google-reviewlink.</strong> Vul de "Schrijf een review"-link van je Google Business Profile in. Dan verschijnen op de site de knoppen "Lees onze Google-reviews" en "Schrijf een review". Stuur die link na elk feest naar de klant.</p>
+
+  <h2>8. Instellingen</h2>
+  <ul>
+    <li><strong>Beheerlink voor je telefoon</strong>: een link met je sleutel erin. Eén keer openen op je telefoon en je bent ingelogd. Deel hem met niemand.</li>
+    <li><strong>Back-up downloaden</strong>: alle gegevens als bestand. Doe dit af en toe, en in elk geval voor grote wijzigingen.</li>
+    <li><strong>Back-up terugzetten</strong>: laadt zo'n bestand als concept; daarna publiceren.</li>
+    <li><strong>Standaardgegevens</strong>: zet alles terug naar de gegevens uit de website-code.</li>
+    <li><strong>Uitloggen</strong>: verwijdert de sleutel van dit apparaat.</li>
+  </ul>
+  <h3>Eenmalig: de Gist koppelen</h3>
+  <p>De eerste keer vraagt het beheer om een <em>Gist</em> aan te maken: de opslag van de gegevens. Daarna staat in <em>Instellingen</em> een geel blok met twee regels die in <code>assets/js/config.js</code> van de website moeten. Tot dat gebeurd is, zie je de wijzigingen alleen op je eigen apparaat. Vraag daarvoor hulp van Ryan.</p>
+
+  <h2>9. Vragen en problemen</h2>
+  <table>
+    <tr><th>Probleem</th><th>Oplossing</th></tr>
+    <tr><td>"De sleutel klopt niet of is verlopen"</td><td>Maak een nieuwe sleutel (hoofdstuk 1) en log opnieuw in.</td></tr>
+    <tr><td>"De sleutel heeft geen rechten voor Gists"</td><td>Bij het aanmaken staat Gists niet op Read and write. Maak een nieuwe sleutel.</td></tr>
+    <tr><td>Ik zie mijn wijziging niet op de site</td><td>Heb je gepubliceerd? Ververs daarna de site. De site haalt na een minuut vanzelf de nieuwe gegevens op.</td></tr>
+    <tr><td>Een foto wordt niet getoond</td><td>Net geüpload? Dat kan een paar minuten duren. Staat de foto op "Bureau" terwijl de schakelaar uit staat, dan is hij verborgen.</td></tr>
+    <tr><td>"Te veel verzoeken naar GitHub"</td><td>Even wachten en opnieuw proberen.</td></tr>
+  </table>
+  <p class="small">Deze handleiding staat ook online: <code>djroggy.nl/docs/handleiding.html</code> (en als PDF in dezelfde map).</p>
+</main>
+</body>
+</html>

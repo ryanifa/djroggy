@@ -311,7 +311,7 @@ export function featuredReviews(doc, max = 8) {
 }
 
 /** Zichtbare galerijfoto's in volgorde. */
-export function visibleMedia(doc) { return doc.media.filter((m) => m.pad && !m.hidden); }
+export function visibleMedia(doc) { return doc.media.filter((m) => (m.pad || m.bron === 'gist') && !m.hidden); }
 
 /** Zichtbare locaties ("Locaties waar ik draaide"). */
 export function visibleLocaties(doc) { return doc.locaties; }
