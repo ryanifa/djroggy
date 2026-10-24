@@ -81,9 +81,11 @@ nieuwe maken, opnieuw inloggen. De Gist blijft gewoon bestaan.
 ```
 index.html              de homepage
 contact.html            aanvraag / beschikbaarheid (formulier, WhatsApp, bellen)
-bruiloft.html, verjaardag.html, bedrijfsfeest.html, werkwijze.html,
-reviews.html, prijzen.html, over.html, foto-video.html   (sprint 3)
-beheer.html             het beheer (sprint 2)
+bruiloft.html, verjaardag.html, bedrijfsfeest.html   landingspagina's per feesttype
+werkwijze.html, reviews.html, foto-video.html, prijzen.html, over.html
+privacy.html, voorwaarden.html, 404.html
+sitemap.xml, robots.txt
+beheer.html             het beheer (sprint 2; nu een tussenpagina)
 data/site.json          standaarddata en terugval (alles wat in beheer te wijzigen is)
 assets/js/config.js     Gist-id, Gist-eigenaar, Formspree-id
 assets/js/gist.js       de enige plek die met de GitHub-API praat
@@ -104,6 +106,13 @@ reviews-dj-roggy.json   bron van de 77 reviews (eenmalig geïmporteerd)
 
 Lokaal bekijken: `python3 -m http.server` in de repo en open
 `http://localhost:8000`.
+
+Elke pagina bevat de standaardinhoud al in de HTML (uit `data/site.json`),
+zodat de site ook zonder JavaScript en zonder GitHub werkt; `site.js` vervangt
+die inhoud zodra de actuele gegevens binnen zijn. De pagina's zijn eenmalig
+gegenereerd uit `data/site.json`; verander je daar vaste teksten (FAQ,
+werkwijze, pakketten), dan laat het beheer/Gist ze live zien en kun je de HTML
+bij gelegenheid bijwerken.
 
 ## Foto's uit het beheer
 
