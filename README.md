@@ -145,6 +145,16 @@ bureau-locatienaam; er mag niets gevonden worden. Zet daarna in demo-modus
 `bureauMateriaal` op `true` en controleer dat laag 2 op `reviews.html`
 verschijnt (77 reviews, histogram, filters, bronvermelding, JSON-LD).
 
+## Versie en verversen
+
+`VERSION` bevat het versienummer (datum + volgnummer). Het staat in de footer
+van elke pagina en achter de CSS/JS-links. Elke pagina controleert bij het
+openen, en bij terugkeren naar het tabblad of de app, of de server een nieuwere
+versie heeft; zo ja, dan ververst de pagina één keer automatisch (op de
+contactpagina verschijnt een balk met een knop, zodat een ingevuld formulier
+niet verloren gaat). Bij elke push: nummer ophogen en de pagina's opnieuw
+genereren.
+
 ## Foto's uit het beheer
 
 Een geüploade foto wordt in de browser verkleind (max. 1600 px, JPEG) en als

@@ -512,6 +512,41 @@ function setupContactForm() {
   });
 }
 
+/* --------------------------------------------------------- versiecheck */
+
+/**
+ * Vergelijkt de versie in de pagina (meta name=version) met VERSION op de server,
+ * zonder cache. Nieuwer? Dan één keer automatisch verversen; op de contactpagina
+ * (formulier) alleen een balk met een knop, zodat niets verloren gaat.
+ */
+function checkVersion() {
+  const current = document.querySelector('meta[name="version"]')?.content;
+  if (!current) return;
+  fetch(new URL('../../VERSION', import.meta.url), { cache: 'no-store' })
+    .then((r) => (r.ok ? r.text() : ''))
+    .then((v) => {
+      v = v.trim();
+      if (!v || v === current || $('#update-bar')) return;
+      const key = `djr.reloaded.${v}`;
+      let already = false;
+      try { already = sessionStorage.getItem(key) === '1'; } catch { /* privémodus */ }
+      if (page !== 'contact' && !already) {
+        try { sessionStorage.setItem(key, '1'); } catch { /* privémodus */ }
+        location.reload();
+        return;
+      }
+      const bar = el('div', { id: 'update-bar', class: 'update-bar', role: 'status' }, [
+        `Er is een nieuwe versie van de site (v${v}). `,
+        el('button', { type: 'button', class: 'btn btn-amber btn-sm', text: 'Vernieuwen', onclick: () => location.reload() }),
+      ]);
+      document.body.prepend(bar);
+    })
+    .catch(() => { /* offline: niets doen */ });
+}
+checkVersion();
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') checkVersion(); });
+window.addEventListener('pageshow', (ev) => { if (ev.persisted) checkVersion(); });
+
 /* ------------------------------------------------------------- opstart */
 
 setupCarousel();
