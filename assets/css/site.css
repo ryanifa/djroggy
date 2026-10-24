@@ -296,3 +296,4 @@ table.opties { width: 100%; border-collapse: collapse; max-width: 820px; }
   .hero-photo { order: 2; width: 100%; }
   .hero-split .hero-inner { order: 1; }
 }
+.footer .versie { color: var(--muted); opacity: 0.8; font-variant-numeric: tabular-nums; }
