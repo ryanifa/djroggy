@@ -58,7 +58,7 @@ function render(doc, meta) {
   renderContactLinks(doc);
   renderSocial(doc);
   setupDateCheck(doc);
-  if (page === 'home') renderHome(doc);
+  if (page === 'home') renderHome(doc, meta);
   if (['bruiloft', 'verjaardag', 'bedrijfsfeest'].includes(page)) renderLanding(doc);
   if (page === 'werkwijze') renderWerkwijze(doc);
   if (page === 'reviews') renderReviews(doc);
@@ -130,7 +130,7 @@ function setupReadMore() {
 }
 
 function reviewCard(r) {
-  const where = [r.locatie, r.plaats].filter((x) => x && x !== '—').join(', ');
+  const where = r.plaats && r.plaats !== '—' ? r.plaats : '';
   const text = el('p', { text: r.tekst });
   const toggle = r.tekst ? el('button', { type: 'button', class: 'toggle', text: 'Lees meer', hidden: true }) : null;
   return el('article', { class: 'card review', dataset: { type: r.type, datum: r.datum, cijfer: String(r.cijfer) } }, [
@@ -160,14 +160,15 @@ function renderFaq(doc) {
 
 /* ----------------------------------------------------------------- home */
 
-function renderHome(doc) {
+function renderHome(doc, meta) {
   const info = doc.info;
   if (info.intro) $('#hero-intro').textContent = info.intro;
 
   const heroImg = $('#hero-media img');
   if (heroImg && doc.hero && !heroImg.getAttribute('src').endsWith(doc.hero)) {
     for (const source of $$('#hero-media source')) source.remove(); // de WebP-varianten horen bij de standaardfoto
-    heroImg.src = doc.hero;
+    const item = doc.media.find((m) => m.pad === doc.hero || m.id === doc.hero);
+    mediaUrl(item || { bron: 'repo', pad: doc.hero }, doc, { demo: meta.source === 'demo' }).then((url) => { if (url) heroImg.src = url; });
     heroImg.removeAttribute('width'); heroImg.removeAttribute('height');
   }
 
@@ -187,7 +188,7 @@ function renderHome(doc) {
   if (info.werkwijze.length) {
     clear($('#steps')).append(...info.werkwijze.slice(0, 4).map((s) => el('li', { class: 'step' }, [el('h3', { text: s.titel }), el('p', { text: s.tekst })])));
   }
-  if (info.locaties.length) clear($('#locaties')).append(...info.locaties.map((l) => el('li', { text: l })));
+  if (info.plaatsen.length && $('#plaatsen')) clear($('#plaatsen')).append(...info.plaatsen.map((l) => el('li', { text: l })));
 
   const vanaf = vanafPrijs(doc);
   if (vanaf !== null) $('#vanaf').textContent = euro(vanaf);

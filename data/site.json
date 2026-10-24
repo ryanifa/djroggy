@@ -27,7 +27,7 @@
    "DJ-controller met laptop/iPad en back-up",
    "Draadloze microfoon voor speeches"
   ],
-  "overTekst": "Ik ben Roggy Douglas, Rotterdammer en DJ in hart en nieren. In 1981 begon het op mijn slaapkamer: platen draaien voor vrienden tot diep in de nacht. Die passie heb ik nooit losgelaten.\n\nVijfentwintig jaar werkte ik in de herenmode bij de Bijenkorf. Daar leerde ik wat ik nu elke avond gebruik: mensen aanvoelen, luisteren en zorgen dat iedereen zich welkom voelt. Sinds 2021 draai ik professioneel, eerst via een boekingsbureau en nu zelfstandig als DJ Roggy. Inmiddels staan er ruim 70 feesten op de teller, van bruiloften in Lommerrijk en op Landgoed te Werve tot personeelsfeesten bij het WTC Rotterdam, Keti Koti, Sail 2025 en de reünie van Hotel New York.\n\nEen DJ zorgt niet alleen voor de muziek, maar ook voor een beleving: met DMX-lichteffecten, rookmachine en laser maak ik van jullie zaal een feest. Ik draai van house tot Nederlandstalig, van salsa tot 80's, voor gasten van 18 tot 80. En ik kom altijd vooraf even met jullie praten, zodat het echt jullie feest wordt.",
+  "overTekst": "Ik ben Roggy Douglas, Rotterdammer en DJ in hart en nieren. In 1981 begon het op mijn slaapkamer: platen draaien voor vrienden tot diep in de nacht. Die passie heb ik nooit losgelaten.\n\nVijfentwintig jaar werkte ik in de herenmode bij de Bijenkorf. Daar leerde ik wat ik nu elke avond gebruik: mensen aanvoelen, luisteren en zorgen dat iedereen zich welkom voelt. Sinds 2021 draai ik professioneel, eerst via een boekingsbureau en nu zelfstandig als DJ Roggy. Inmiddels staan er ruim 70 feesten op de teller: bruiloften, verjaardagen, jubilea en personeelsfeesten, van Rotterdam tot ver daarbuiten.\n\nEen DJ zorgt niet alleen voor de muziek, maar ook voor een beleving: met DMX-lichteffecten, rookmachine en laser maak ik van jullie zaal een feest. Ik draai van house tot Nederlandstalig, van salsa tot 80's, voor gasten van 18 tot 80. En ik kom altijd vooraf even met jullie praten, zodat het echt jullie feest wordt.",
   "werkwijze": [
    {
     "titel": "Aanvraag",
@@ -139,28 +139,22 @@
    "uren": 320,
    "locaties": 45
   },
-  "locaties": [
-   "Lommerrijk, Rotterdam",
-   "Het Wapen van Zoetermeer",
-   "Familierestaurant Bergsche Plas",
-   "Landgoed te Werve, Rijswijk",
-   "De Tuin van de Vier Windstreken, Rotterdam",
-   "Eten bij LOO",
-   "Het Rieten Dak, Delft",
-   "Veur Theater, Leidschendam",
-   "Inntel Hotels Rotterdam Centre",
-   "WTC Rotterdam",
-   "Van der Valk Leiden",
-   "Van der Valk Zwijndrecht",
-   "Kasteel Duivenvoorde",
-   "Landgoed Heerlijkheid Mariënwaerdt",
-   "Stadsbrouwerij De Pelgrim",
-   "Het Koetshuis",
-   "Záálig, Schiedam",
-   "NON Burgersdijk, De Lier",
-   "Moments Beach",
-   "Boomerang Beach",
-   "Fletcher Landgoed Hotel Renesse"
+  "locaties": [],
+  "plaatsen": [
+   "Rotterdam",
+   "Schiedam",
+   "Vlaardingen",
+   "Zoetermeer",
+   "Den Haag",
+   "Delft",
+   "Leiden",
+   "Rijswijk",
+   "Dordrecht",
+   "Bergschenhoek",
+   "Berkel en Rodenrijs",
+   "Gouda",
+   "Breda",
+   "Utrecht"
   ],
   "media": {
    "gistId": "",
@@ -294,7 +288,7 @@
   "Niet tevreden? We bellen het binnen 48 uur uit en zoeken een oplossing"
  ],
  "agenda": [],
- "hero": "assets/img/hi/djroggy-DK6YMV6CYPh-hi.jpg",
+ "hero": "assets/img/hi/djroggy-DOSqUVECAc4-hi.jpg",
  "portret": "assets/img/hi/djroggy-DOSqUVECAc4-hi.jpg",
  "media": [
   {
@@ -307,7 +301,7 @@
    "bijschrift": "Verjaardagsfeest: Chynthia 60 en Tyrees 25 jaar",
    "categorie": "Verjaardag",
    "home": false,
-   "hidden": false
+   "hidden": true
   },
   {
    "id": "m-DbbjUANOXVM",
@@ -331,7 +325,7 @@
    "bijschrift": "Trouwfeest op Landgoed te Werve, Rijswijk",
    "categorie": "Bruiloft",
    "home": false,
-   "hidden": false
+   "hidden": true
   },
   {
    "id": "m-DWva5raiK2-",
@@ -343,7 +337,7 @@
    "bijschrift": "Studentenparty in Het Koetshuis, Rotterdam",
    "categorie": "Feest",
    "home": false,
-   "hidden": false
+   "hidden": true
   },
   {
    "id": "m-DVjevYijs2U",
@@ -367,7 +361,7 @@
    "bijschrift": "70's & 80's-party in Reeuwijk",
    "categorie": "Verjaardag",
    "home": false,
-   "hidden": false
+   "hidden": true
   },
   {
    "id": "m-DTpL6KTCOCt",
@@ -391,7 +385,7 @@
    "bijschrift": "Bedrijfsfeest in Den Haag: van kerstliedjes tot techno en dancehall",
    "categorie": "Zakelijk",
    "home": false,
-   "hidden": false
+   "hidden": true
   },
   {
    "id": "m-DR6zv0diNZb",
@@ -403,7 +397,7 @@
    "bijschrift": "Mijn 25-jarig jubileum bij de Bijenkorf",
    "categorie": "Feest",
    "home": false,
-   "hidden": false
+   "hidden": true
   },
   {
    "id": "m-DR0SE_zDNZH",
@@ -426,7 +420,7 @@
    "soort": "reel",
    "bijschrift": "Lichtcheck: de DMX-set getest",
    "categorie": "Setup",
-   "home": false,
+   "home": true,
    "hidden": false
   },
   {
@@ -450,8 +444,8 @@
    "soort": "reel",
    "bijschrift": "Verjaardagsfeestje: DJ Roggy in the house",
    "categorie": "Verjaardag",
-   "home": true,
-   "hidden": false
+   "home": false,
+   "hidden": true
   },
   {
    "id": "m-DQiQ-xfiMIP",
@@ -463,7 +457,7 @@
    "bijschrift": "Lekker gevarieerd gedraaid: house, pop, dancehall, Nederlandstalig en reggaeton",
    "categorie": "Feest",
    "home": false,
-   "hidden": false
+   "hidden": true
   },
   {
    "id": "m-DPFGCJFCNQN",
@@ -475,7 +469,7 @@
    "bijschrift": "Gezellige sfeer tijdens het draaien bij Natuurtalent",
    "categorie": "Zakelijk",
    "home": false,
-   "hidden": false
+   "hidden": true
   },
   {
    "id": "m-DOSqUVECAc4",
@@ -484,9 +478,9 @@
    "thumb": "assets/img/instagram/djroggy-DOSqUVECAc4.jpg",
    "shortcode": "DOSqUVECAc4",
    "soort": "post",
-   "bijschrift": "Ready for een trouwfeest in Lommerrijk",
-   "categorie": "Bruiloft",
-   "home": false,
+   "bijschrift": "Ready for een trouwfeest",
+   "categorie": "Setup",
+   "home": true,
    "hidden": false
   },
   {
@@ -499,7 +493,7 @@
    "bijschrift": "Trouwfeest in Bergschenhoek",
    "categorie": "Bruiloft",
    "home": false,
-   "hidden": false
+   "hidden": true
   },
   {
    "id": "m-DNmxJqRCzhm",
@@ -511,7 +505,7 @@
    "bijschrift": "Sail 2025, Amsterdam",
    "categorie": "Feest",
    "home": false,
-   "hidden": false
+   "hidden": true
   },
   {
    "id": "m-DNmwSeMCGD4",
@@ -523,7 +517,7 @@
    "bijschrift": "Sail 2025 Amsterdam: lekker allround gedraaid!",
    "categorie": "Feest",
    "home": false,
-   "hidden": false
+   "hidden": true
   },
   {
    "id": "m-DNb6KFciPSE",
@@ -534,8 +528,8 @@
    "soort": "reel",
    "bijschrift": "Rooftop wedding party in Rotterdam",
    "categorie": "Bruiloft",
-   "home": true,
-   "hidden": false
+   "home": false,
+   "hidden": true
   },
   {
    "id": "m-DLbJD4GiEEU",
@@ -546,8 +540,8 @@
    "soort": "reel",
    "bijschrift": "Keti Koti met DJ Roggy bij de Bijenkorf",
    "categorie": "Zakelijk",
-   "home": true,
-   "hidden": false
+   "home": false,
+   "hidden": true
   },
   {
    "id": "m-DK6YMV6CYPh",
@@ -559,7 +553,7 @@
    "bijschrift": "Lekker gedraaid bij De Tuin van de Vier Windstreken, Rotterdam",
    "categorie": "Setup",
    "home": false,
-   "hidden": false
+   "hidden": true
   },
   {
    "id": "m-DKaL0-AiM5X",
@@ -570,7 +564,7 @@
    "soort": "reel",
    "bijschrift": "Soundcheck, lasercheck, ready for party",
    "categorie": "Setup",
-   "home": false,
+   "home": true,
    "hidden": false
   },
   {
@@ -583,7 +577,7 @@
    "bijschrift": "Trouwparty",
    "categorie": "Bruiloft",
    "home": false,
-   "hidden": false
+   "hidden": true
   },
   {
    "id": "m-DFiEuoPCcn4",
@@ -595,7 +589,7 @@
    "bijschrift": "Draaien met Laura",
    "categorie": "Feest",
    "home": false,
-   "hidden": false
+   "hidden": true
   },
   {
    "id": "m-DDjzgvtikJA",
@@ -607,7 +601,7 @@
    "bijschrift": "Bedrijfsfeest in Breda",
    "categorie": "Zakelijk",
    "home": false,
-   "hidden": false
+   "hidden": true
   },
   {
    "id": "m-DAcRMfnCM2o",
@@ -619,7 +613,7 @@
    "bijschrift": "Gezellige sfeer op een trouwparty in Biddinghuizen",
    "categorie": "Bruiloft",
    "home": false,
-   "hidden": false
+   "hidden": true
   },
   {
    "id": "m-C_FVYAviNCG",
@@ -631,7 +625,7 @@
    "bijschrift": "DJ-gig in Rijswijk",
    "categorie": "Feest",
    "home": false,
-   "hidden": false
+   "hidden": true
   },
   {
    "id": "m-C-hsh3Zin9v",
@@ -643,7 +637,7 @@
    "bijschrift": "Spontaan rappen tijdens het optreden van Jeffrey op een verjaardagsfeest",
    "categorie": "Verjaardag",
    "home": false,
-   "hidden": false
+   "hidden": true
   },
   {
    "id": "m-C9FzAlvitC5",
@@ -667,7 +661,7 @@
    "bijschrift": "DJ-gig op het strand van Kijkduin",
    "categorie": "Feest",
    "home": false,
-   "hidden": false
+   "hidden": true
   },
   {
    "id": "m-C1_u-7zCpba",
@@ -678,8 +672,8 @@
    "soort": "post",
    "bijschrift": "Personeelsfeest van de Bijenkorf",
    "categorie": "Zakelijk",
-   "home": true,
-   "hidden": false
+   "home": false,
+   "hidden": true
   },
   {
    "id": "m-C06WxzpiOHL",
@@ -691,7 +685,7 @@
    "bijschrift": "Salsability salsa-party, december 2023",
    "categorie": "Feest",
    "home": false,
-   "hidden": false
+   "hidden": true
   },
   {
    "id": "m-C0GmyJxidIM",
@@ -703,7 +697,7 @@
    "bijschrift": "Themafeest Pirates of the Caribbean",
    "categorie": "Feest",
    "home": false,
-   "hidden": false
+   "hidden": true
   },
   {
    "id": "m-CyQbCtjt3Dx",
@@ -714,7 +708,7 @@
    "soort": "reel",
    "bijschrift": "Halloween-verlichting op het balkon",
    "categorie": "Setup",
-   "home": false,
+   "home": true,
    "hidden": false
   },
   {
@@ -727,7 +721,7 @@
    "bijschrift": "Party last night",
    "categorie": "Feest",
    "home": false,
-   "hidden": false
+   "hidden": true
   },
   {
    "id": "m-CwpFgc4ry4W",
@@ -738,8 +732,8 @@
    "soort": "reel",
    "bijschrift": "Trouwfeest op Kasteel Duivenvoorde",
    "categorie": "Bruiloft",
-   "home": true,
-   "hidden": false
+   "home": false,
+   "hidden": true
   },
   {
    "id": "m-Cv2ZCnaNotI",
@@ -750,7 +744,7 @@
    "soort": "reel",
    "bijschrift": "DJ-booth en lichtset buiten",
    "categorie": "Setup",
-   "home": false,
+   "home": true,
    "hidden": false
   },
   {
@@ -763,7 +757,7 @@
    "bijschrift": "Trouwfeest in Zoetermeer",
    "categorie": "Bruiloft",
    "home": false,
-   "hidden": false
+   "hidden": true
   },
   {
    "id": "m-CuH1tBUtBii",
@@ -775,7 +769,7 @@
    "bijschrift": "Keti Koti bij de Bijenkorf",
    "categorie": "Zakelijk",
    "home": false,
-   "hidden": false
+   "hidden": true
   },
   {
    "id": "m-CsfwjovgMIP",
@@ -787,7 +781,7 @@
    "bijschrift": "Verjaardagsfeest van een 60-jarige in Rotterdam",
    "categorie": "Verjaardag",
    "home": false,
-   "hidden": false
+   "hidden": true
   },
   {
    "id": "m-CrE2lsxMSJz",
@@ -799,7 +793,7 @@
    "bijschrift": "60-plus party",
    "categorie": "Verjaardag",
    "home": false,
-   "hidden": false
+   "hidden": true
   },
   {
    "id": "m-CqhmHiGjySE",
@@ -811,7 +805,7 @@
    "bijschrift": "10-jarig jubileum Sporting Club De Uitweg",
    "categorie": "Zakelijk",
    "home": false,
-   "hidden": false
+   "hidden": true
   }
  ],
  "videos": [],
