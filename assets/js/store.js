@@ -111,6 +111,10 @@ const arr = (v) => (Array.isArray(v) ? v : []);
 const strList = (v) => arr(v).map((x) => str(x)).filter(Boolean);
 const isoDate = (v) => (/^\d{4}-\d{2}-\d{2}$/.test(str(v)) ? str(v) : '');
 const oneOf = (v, list, d) => (list.includes(v) ? v : d);
+export const HERKOMST = ['eigen', 'bureau'];
+export const BUREAU_BRON = 'The DJ Company';
+/** Herkomst-veld (§1a): expliciet, anders "bureau" bij bron The DJ Company, anders "eigen". */
+const herkomst = (v, bron) => (HERKOMST.includes(v) ? v : bron === BUREAU_BRON ? 'bureau' : 'eigen');
 let counter = 0;
 const ensureId = (v, prefix) => (v === 0 || v ? String(v) : `${prefix}-${Date.now().toString(36)}${(counter++).toString(36)}`);
 
@@ -146,6 +150,9 @@ export function normalize(input) {
       straalKm: int(info.straalKm, 40),
       verzekerd: !!info.verzekerd,
       verzekerdTekst: str(info.verzekerdTekst),
+      // Schakelaar uit §1a: materiaal uit opdrachten via The DJ Company tonen (standaard uit).
+      bureauMateriaal: !!info.bureauMateriaal,
+      googleReviewUrl: str(info.googleReviewUrl),
       apparatuur: strList(info.apparatuur),
       overTekst: str(info.overTekst),
       werkwijze: arr(info.werkwijze).map((s) => ({ titel: str(s?.titel), tekst: str(s?.tekst) })),
@@ -161,7 +168,6 @@ export function normalize(input) {
         uren: int(kg.uren, 0),
         locaties: int(kg.locaties, 0),
       },
-      locaties: strList(info.locaties),
       media: { gistId: str(info.media?.gistId), owner: str(info.media?.owner) },
     },
     pakketten: arr(doc.pakketten).map((p) => ({
@@ -195,9 +201,15 @@ export function normalize(input) {
       soort: m?.soort === 'reel' ? 'reel' : 'post',
       bijschrift: str(m?.bijschrift),
       categorie: oneOf(str(m?.categorie), MEDIA_CATEGORIES, 'Feest'),
+      herkomst: herkomst(m?.herkomst, ''),
       home: !!m?.home,
       hidden: !!m?.hidden,
     })),
+    locaties: arr(doc.locaties).map((l) => ({
+      naam: str(typeof l === 'string' ? l : l?.naam),
+      plaats: str(l?.plaats),
+      herkomst: herkomst(l?.herkomst, ''),
+    })).filter((l) => l.naam),
     hero: str(doc.hero),
     portret: str(doc.portret),
     videos: arr(doc.videos).map((v) => ({
@@ -218,6 +230,7 @@ export function normalize(input) {
       locatie: str(r?.locatie),
       type: oneOf(str(r?.type), REVIEW_TYPES, 'Feest'),
       bron: str(r?.bron, 'Direct') || 'Direct',
+      herkomst: herkomst(r?.herkomst, str(r?.bron)),
       uitgelicht: !!r?.uitgelicht,
       hidden: !!r?.hidden,
     })),
@@ -225,6 +238,34 @@ export function normalize(input) {
 }
 
 /* ---------------------------------------------------------- afgeleiden */
+
+/**
+ * De enige plek die bepaalt wat de site te zien krijgt (§1a, §4.6): alles met
+ * herkomst "bureau" valt weg zolang info.bureauMateriaal uit staat. Hero en
+ * portret die naar weggefilterd materiaal wijzen worden leeg, zodat de
+ * renderers op de (eigen) standaard terugvallen. Alle renderers werken op het
+ * resultaat van deze functie, nooit op het ruwe document.
+ */
+export function filter(doc) {
+  const toon = (x) => x.herkomst === 'eigen' || doc.info.bureauMateriaal;
+  const media = doc.media.filter(toon);
+  const ok = (pad) => !pad || media.some((m) => m.pad === pad || m.id === pad) || !doc.media.some((m) => m.pad === pad || m.id === pad);
+  return {
+    ...doc,
+    reviews: doc.reviews.filter(toon),
+    media,
+    locaties: doc.locaties.filter(toon),
+    hero: ok(doc.hero) ? doc.hero : '',
+    portret: ok(doc.portret) ? doc.portret : '',
+  };
+}
+
+/** Hoeveel bureau-items er verborgen zijn (voor de gele balk in beheer). */
+export function verborgenBureau(doc) {
+  if (doc.info.bureauMateriaal) return { reviews: 0, media: 0, locaties: 0 };
+  const n = (list) => list.filter((x) => x.herkomst === 'bureau').length;
+  return { reviews: n(doc.reviews), media: n(doc.media), locaties: n(doc.locaties) };
+}
 
 /** Zichtbare reviews, nieuwste eerst. */
 export function visibleReviews(doc) {
@@ -271,6 +312,9 @@ export function featuredReviews(doc, max = 8) {
 
 /** Zichtbare galerijfoto's in volgorde. */
 export function visibleMedia(doc) { return doc.media.filter((m) => m.pad && !m.hidden); }
+
+/** Zichtbare locaties ("Locaties waar ik draaide"). */
+export function visibleLocaties(doc) { return doc.locaties; }
 
 /** Laagste zichtbare pakketprijs ("Vanaf € …"). */
 export function vanafPrijs(doc) {

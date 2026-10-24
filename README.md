@@ -52,14 +52,17 @@ met een gele balk erboven.
 
 ## Beheren (tabs in `beheer.html`)
 
-- **Reviews** — alle reviews (77 geïmporteerd), toevoegen,
-  bewerken, *uitgelicht* (homepage) en *verbergen*.
+- **Reviews** — alle reviews (77 geïmporteerd, herkomst bureau), toevoegen,
+  bewerken, filter op type en herkomst, *uitgelicht* (homepage) en *verbergen*;
+  gele balk "Bureau-reviews staan uit — 77 verborgen" zolang de schakelaar uit staat.
 - **Foto's & video** — galerij: uploaden (verkleind in de browser naar de
   media-Gist), bijschrift, categorie, *op homepage*, volgorde, verbergen.
   Hero- en portretfoto kiezen.
 - **Pakketten** — pakketten, opties en zekerheden (prijzen).
 - **Agenda** — geboekte/geblokkeerde data voor de datumcheck.
-- **Info** — tagline, intro, mededeling, telefoon, WhatsApp, e-mail, KvK, btw,
+- **Info** — bovenaan de schakelaar "Materiaal uit DJ Company-opdrachten tonen"
+  (met waarschuwing en bevestiging) en de Google-reviewlink; verder tagline, intro,
+  mededeling, telefoon, WhatsApp, e-mail, KvK, btw,
   adres, socials, werkgebied, apparatuur, verzekering, FAQ, werkwijze,
   "Over Roggy", kengetallen.
 - **Instellingen** — Gist-gegevens, back-up downloaden/terugzetten, terug naar
@@ -113,6 +116,34 @@ die inhoud zodra de actuele gegevens binnen zijn. De pagina's zijn eenmalig
 gegenereerd uit `data/site.json`; verander je daar vaste teksten (FAQ,
 werkwijze, pakketten), dan laat het beheer/Gist ze live zien en kun je de HTML
 bij gelegenheid bijwerken.
+
+## Schakelaar bureau-materiaal (§1a van de spec)
+
+De samenwerkingsovereenkomst met The DJ Company (art. 5.1, 7.1, 7.2, boete
+art. 9.1) bepaalt dat de site live gaat in een *schone opstartversie*:
+
+- Elke review, foto en locatie heeft `herkomst: "bureau" | "eigen"`. De 77
+  geïmporteerde reviews, de foto's van DJ Company-opdrachten en de locaties uit
+  die reviews zijn `bureau`; Bijenkorf, Keti Koti, Sail 2025, familiefeesten,
+  Sporting Club de Uitweg en eigen booth/lichtshow-checks zijn `eigen`.
+- `info.bureauMateriaal` (standaard `false`) is de enige schakelaar. Eén functie
+  `filter(doc)` in `assets/js/store.js` bepaalt wat de site ziet; alle renderers
+  werken op het resultaat van die functie. De HTML-bestanden bevatten alleen de
+  opstartversie, zodat ook zonder JavaScript (en voor Google) geen bureau-
+  materiaal zichtbaar is.
+- Reviews worden nooit herschreven: de teksten in `data/site.json` zijn
+  byte-voor-byte gelijk aan `reviews-dj-roggy.json`, met bronregel
+  "via The DJ Company" zodra ze getoond worden.
+- Kengetallen (71 feesten, 5.600+ gasten, 320 uur, 45 locaties, sinds 2021)
+  zijn eigen ervaring en staan altijd op de site.
+- `info.googleReviewUrl` (Google Business Profile) zet de knoppen "Lees onze
+  Google-reviews" en "Schrijf een review" aan.
+
+Controle (acceptatiecriterium 9 en 10): render alle pagina's met de schakelaar
+uit en grep de DOM op elke reviewnaam, reviewtekst-fragment, bureau-foto en
+bureau-locatienaam; er mag niets gevonden worden. Zet daarna in demo-modus
+`bureauMateriaal` op `true` en controleer dat laag 2 op `reviews.html`
+verschijnt (77 reviews, histogram, filters, bronvermelding, JSON-LD).
 
 ## Foto's uit het beheer
 

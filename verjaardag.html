@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>DJ voor verjaardag &amp; jubileum – 50, 60, 70 jaar | DJ Roggy – Allround DJ Rotterdam &amp; Zuid-Holland</title>
-  <meta name="description" content="DJ voor je verjaardag of jubileum in Rotterdam en Zuid-Holland. Van 70s/80s tot Nederlandstalig en salsa, voor gasten van 18 tot 80. 17 reviews, gemiddeld 9,3. Ook thuis of in de tuin.">
+  <meta name="description" content="DJ voor je verjaardag of jubileum in Rotterdam en Zuid-Holland. Van 70s/80s tot Nederlandstalig en salsa, voor gasten van 18 tot 80. Ook thuis of in de tuin.">
   <meta name="theme-color" content="#0E0E11">
   
   <link rel="canonical" href="https://djroggy.nl/verjaardag.html">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="nl_NL">
   <meta property="og:title" content="DJ voor verjaardag &amp; jubileum – 50, 60, 70 jaar">
-  <meta property="og:description" content="DJ voor je verjaardag of jubileum in Rotterdam en Zuid-Holland. Van 70s/80s tot Nederlandstalig en salsa, voor gasten van 18 tot 80. 17 reviews, gemiddeld 9,3. Ook thuis of in de tuin.">
+  <meta property="og:description" content="DJ voor je verjaardag of jubileum in Rotterdam en Zuid-Holland. Van 70s/80s tot Nederlandstalig en salsa, voor gasten van 18 tot 80. Ook thuis of in de tuin.">
   <meta property="og:image" content="https://djroggy.nl/assets/img/hi/djroggy-DFiEuoPCcn4-hi.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="assets/logo/favicon.ico" sizes="any">
@@ -66,7 +66,7 @@
 
   <main id="inhoud">
     <section class="hero hero-page" aria-labelledby="hero-title">
-      <div class="hero-media">
+      <div class="hero-media" id="hero-media">
         <picture>
           <source type="image/webp" srcset="assets/img/opt/DFiEuoPCcn4-720.webp 720w, assets/img/opt/DFiEuoPCcn4-1440.webp 1440w" sizes="100vw">
           <img src="assets/img/hi/djroggy-DFiEuoPCcn4-hi.jpg" alt="DJ Roggy achter de controller" width="1440" height="754" fetchpriority="high" decoding="async" style="object-position:50% 50%">
@@ -75,7 +75,7 @@
       <div class="wrap hero-inner">
         <div class="kicker">Verjaardag &amp; jubileum</div>
         <h1 id="hero-title">DJ voor je <em>verjaardag</em> of jubileum</h1>
-        <p class="lede">50, 60 of 70 jaar? Een jubileum? Ik draai wat jouw gasten kennen en waar ze op dansen: 70s, 80s, 90s, Nederlandstalig, salsa en wat er verder op je lijstje staat.</p>
+        <p class="lede" id="hero-intro">50, 60 of 70 jaar? Een jubileum? Ik draai wat jouw gasten kennen en waar ze op dansen: 70s, 80s, 90s, Nederlandstalig, salsa en wat er verder op je lijstje staat.</p>
         <div class="hero-cta">
           <a class="btn btn-amber btn-lg" href="contact.html#aanvraag">Check beschikbaarheid</a>
           <a class="btn btn-ghost btn-lg" href="#reviews">Bekijk reviews</a>
@@ -84,11 +84,10 @@
     </section>
     <section class="section" aria-labelledby="v-title">
       <div class="wrap">
-        <ul class="trustbar trustbar-inline" aria-label="Kengetallen verjaardagen">
-          <li class="stat"><span class="num">17</span><span class="lbl">verjaardagen & jubilea</span></li>
-          <li class="stat"><span class="num">17</span><span class="lbl">reviews</span></li>
-          <li class="stat"><span class="num">9,3<span class="stars" aria-hidden="true">★</span></span><span class="lbl">gemiddeld cijfer</span></li>
-          <li class="stat"><span class="num">5×</span><span class="lbl">thuis of op privélocatie</span></li>
+        <ul class="trustbar trustbar-inline" aria-label="Ervaring">
+          <li class="stat" data-stat-item="cijfer" hidden><span class="num"><span data-stat="avg">–</span><span class="stars" aria-hidden="true">★</span></span><span class="lbl">gemiddeld cijfer</span></li>
+          <li class="stat" data-stat-item="reviews" hidden><span class="num" data-stat="n">0</span><span class="lbl">reviews</span></li>
+          <li class="stat"><span class="num">17+</span><span class="lbl">verjaardagen &amp; jubilea</span></li><li class="stat"><span class="num">18–80</span><span class="lbl">jaar, allemaal op de vloer</span></li><li class="stat"><span class="num">5×</span><span class="lbl">thuis of op privélocatie</span></li>
         </ul>
         <div class="section-head" style="margin-top:40px">
           <div class="kicker">Herkenbaar en gezellig</div>
@@ -111,51 +110,34 @@
           <div>
             <div class="kicker">Reviews</div>
             <h2 id="reviews-title">Wat jarigen en jubilarissen zeggen</h2>
-            <div class="avg"><span class="big" data-stat="avg">9,3</span><div><div class="stars" aria-hidden="true">★★★★★</div><div class="muted small"><span data-stat="n">17</span> reviews van het type Verjaardag</div></div></div>
+            <div class="avg" id="review-stats" hidden><span class="big" data-stat="avg">0</span><div><div class="stars" aria-hidden="true">★★★★★</div><div class="muted small"><span data-stat="n">0</span> reviews</div></div></div>
           </div>
         </div>
-        <div class="grid grid-3 review-grid" id="review-list" data-type="Verjaardag" data-max="6">
-          <article class="card review" data-type="Verjaardag" data-datum="2026-04-11" data-cijfer="9.0">
-            <div class="review-top"><div class="avatar" aria-hidden="true">B</div><div class="review-who"><strong>Bert</strong><span>Verjaardag · Eten bij LOO, Rotterdam · april 2026</span></div><div class="review-score"><span class="score">9</span><span class="stars" aria-hidden="true">★★★★</span></div></div>
-            <h3>Geweldig!!</h3>
-            <p>DJ Roggy heeft het op de avond fantastisch gedaan. Voelde de sfeer goed aan en ging daar goed op in. Diverse aanwezigen hebben om zijn kaartje gevraagd. Communicatie met het bureau was van het begin tot het eind goed verzorgd. Kortom, zeker voor herhaling vatbaar.</p>
-          </article>
-          <article class="card review" data-type="Verjaardag" data-datum="2025-07-05" data-cijfer="10.0">
-            <div class="review-top"><div class="avatar" aria-hidden="true">S</div><div class="review-who"><strong>Suzan</strong><span>Verjaardag · Privé locatie, Zoetermeer · juli 2025</span></div><div class="review-score"><span class="score">10</span><span class="stars" aria-hidden="true">★★★★★</span></div></div>
-            <h3>Waanzinnig lekker dans feest!!</h3>
-            <p>Roggy voelde super goed aan wat het feest nodig had. Hij was relaxt en wist de summer vibes erin te krijgen, zelfs toen het regende. En dat is knap!!! Door hem werd het één groot dans feest en ging iedereen los. Mooie laser show, hij regelde alles. We hebben nergens omkijken naar gehad en het geluid was echt top! Onze groep was van 18 tot 80 en hij heeft voor iedereen leuke muziek gedraaid. Super veel reacties gehad, iedereen vond het top.</p><button type="button" class="toggle" hidden>Lees meer</button>
-          </article>
-          <article class="card review" data-type="Verjaardag" data-datum="2025-05-10" data-cijfer="9.3">
-            <div class="review-top"><div class="avatar" aria-hidden="true">W</div><div class="review-who"><strong>Wesley</strong><span>Verjaardag · Veur theater, Leidschendam · mei 2025</span></div><div class="review-score"><span class="score">9,3</span><span class="stars" aria-hidden="true">★★★★★</span></div></div>
-            <h3>Duidelijk, transparant, professioneel</h3>
-            <p>Dj Roggy is een ware professional. Hij is onwijs correct en vriendelijk. Een goedlachse man met passie voor zijn vak maar vooral passie voor muziek. Hij wist goed in te spelen op het publiek. En dit was lastig, want uiteindelijk waren er minder mensen dan ingepland. In het laatste uur hadden we helaas een medische noodsituatie met één van de gasten. Hierdoor moest het feest worden stilgelegd. Desalniettemin ik zou hem zo weer boeken.</p><button type="button" class="toggle" hidden>Lees meer</button>
-          </article>
-          <article class="card review" data-type="Verjaardag" data-datum="2026-10-10" data-cijfer="9.3">
-            <div class="review-top"><div class="avatar" aria-hidden="true">P</div><div class="review-who"><strong>Patricia</strong><span>Verjaardag · Záálig Eten &amp; Drinken | Záálig Zaaltje, Schiedam · oktober 2026</span></div><div class="review-score"><span class="score">9,3</span><span class="stars" aria-hidden="true">★★★★★</span></div></div>
-            <h3>Geweldige DJ voelde sfeer goed aan</h3>
-            <p>Geweldige avond waarbij de DJ de sfeer goed aanvoelde en goed inhaakte op de wensen. Ook de gasten vonden het een leuke DJ. Hij speelde muziek voor ieder wat wils en ook aan verzoeknummers werd snel voldaan</p>
-          </article>
-          <article class="card review" data-type="Verjaardag" data-datum="2026-06-27" data-cijfer="10.0">
-            <div class="review-top"><div class="avatar" aria-hidden="true">M</div><div class="review-who"><strong>Marieke</strong><span>Verjaardag · Wantijpaviljoen, Dordrecht · juni 2026</span></div><div class="review-score"><span class="score">10</span><span class="stars" aria-hidden="true">★★★★★</span></div></div>
-            <h3>Precies wat we hoopten!</h3>
-            <p>We hebben een ontzettend leuk feest gehad dankzij DJ Roggy. Hij heeft perfect geluisterd naar onze wensen en heeft zeer goed ingespeeld op de behoeften van de gasten en die van ons. Daarnaast was hij heel vriendelijk en gezellig. Wij zijn superblij!</p>
-          </article>
-          <article class="card review" data-type="Verjaardag" data-datum="2026-04-17" data-cijfer="8.7">
-            <div class="review-top"><div class="avatar" aria-hidden="true">C</div><div class="review-who"><strong>Carolien</strong><span>Verjaardag · Mooie Boules Rotterdam, Rotterdam · april 2026</span></div><div class="review-score"><span class="score">8,7</span><span class="stars" aria-hidden="true">★★★★</span></div></div>
-            <h3>Ik wilde een dansfeest en…</h3>
-            <p>Dat is gelukt :-) Voor mijn verjaardag had ik de gasten vooraf hun ‘guilty pleasures’ laten insturen en daar een playlist van gemaakt. DJ Roggy heeft vooraf goed afgestemd wat ik wel en niet wil en was daar heel flexibel in. Hoewel er veel mensen aan het ‘bijkletsen’ waren werd er ook gedanst op de bekende nummers. En het was mijn feest dus zelfs Måneskin als afsluiter werd geregeld 🤘🏻 Vooraf was Roggy al langs de locatie gegaan om licht geluid en apparatuur te checken. We hadden namelijk ook heel kort de tijd om op te tuigen dus dat was toen ook zo geregeld. Heel fijn dat je daar dan niet last minute nog verrassingen in had. Als persoon heb ik Roggy als open, benaderbaar, enthousiast en flexibel ervaren. Heel fijn! Even sparen voor een volgend feest, maar wat fijn als de muziek goed geregeld is.</p><button type="button" class="toggle" hidden>Lees meer</button>
-          </article>
+        <ul class="trustbar trustbar-inline" id="ervaring" aria-label="Ervaring">
+          <li class="stat"><span class="num"><span data-k="feesten">71</span>+</span><span class="lbl">feesten gedraaid</span></li>
+          <li class="stat"><span class="num"><span data-k="gasten">5.600</span>+</span><span class="lbl">gasten op de vloer</span></li>
+          <li class="stat"><span class="num"><span data-k="uren">320</span>+</span><span class="lbl">uur muziek</span></li>
+          <li class="stat"><span class="num" data-k="locaties">45</span><span class="lbl">locaties</span></li>
+          <li class="stat"><span class="num">2021</span><span class="lbl">professioneel sinds</span></li>
+        </ul>
+        <div class="google-reviews" id="google-reviews" hidden>
+          <a class="btn btn-ghost" id="google-lees" href="#" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.9h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.8 3-4.3 3-7.4z"/><path fill="currentColor" opacity=".8" d="M12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22z"/><path fill="currentColor" opacity=".6" d="M6.4 14a6 6 0 0 1 0-3.9V7.5H3.1a10 10 0 0 0 0 9z"/><path fill="currentColor" opacity=".9" d="M12 6c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 3.1 7.5l3.3 2.6C7.2 7.8 9.4 6 12 6z"/></svg><span>Lees onze Google-reviews</span></a>
+          <a class="btn btn-amber" id="google-schrijf" href="#" rel="noopener" target="_blank">Schrijf een review</a>
         </div>
-        <p class="source">Reviews van klanten, 2021–2026, verzameld bij eerdere boekingen. <a href="reviews.html?type=Verjaardag">Alle reviews van dit type →</a></p>
+        <div class="grid grid-3 review-grid" id="review-list" data-type="Verjaardag" data-max="6" hidden>
+          
+        </div>
+        <div class="card empty" id="reviews-leeg"><p>De eerste reviews van direct geboekte verjaardagen verschijnen hier binnenkort. Tot die tijd: bel gerust een referentie.</p><a class="btn btn-ghost btn-sm" href="contact.html">Neem contact op</a></div>
       </div>
     </section>
     <section class="section section-alt" aria-labelledby="loc-title">
       <div class="wrap">
         <div class="section-head">
-          <div class="kicker">Locaties</div>
-          <h2 id="loc-title">Locaties waar ik verjaardagen draaide</h2>
+          <div class="kicker">Rotterdam & Zuid-Holland</div>
+          <h2 id="loc-title">Locaties waar ik draaide</h2>
+          <p id="loc-tekst"><span data-k="locaties">45</span> locaties in Zuid-Holland en daarbuiten, van landgoed tot strandtent. Reiskosten gratis binnen <span data-k="straalKm">40</span> km van Rotterdam.</p>
         </div>
-        <ul class="cloud"><li>Veur theater · Leidschendam</li><li>Záálig Eten &amp; Drinken | Záálig Zaaltje · Schiedam</li><li>Wantijpaviljoen · Dordrecht</li><li>Mooie Boules Rotterdam</li><li>Eten bij LOO · Rotterdam</li><li>KOKS · Gemert</li><li>De Machinist · Rotterdam</li><li>Lu Gia Jen · Den Haag</li><li>Lommerrijk · Rotterdam</li><li>De Vreemde Vogel · Vlaardingen</li><li>Paviljoen Loef · Haarlem</li><li>Boerke Verschuren · Breda</li><li>Eetcafe &#x27;t Keerpunt - Rotterdam</li><li>Puurr aan de Vliet · Leidschendam</li></ul>
+        <ul class="cloud" id="locaties"><li>de Bijenkorf · Rotterdam</li><li>Sail 2025 · Amsterdam</li><li>Sporting Club de Uitweg</li></ul>
       </div>
     </section>
     <section class="section" aria-labelledby="faq-title">

@@ -1,22 +1,22 @@
-/* De website opbouwen uit het databestand. Elke pagina bevat al de standaard-
-   inhoud (zodat de site zonder JavaScript werkt); dit script vervangt die zodra
-   de data uit de cache, de Gist of data/site.json binnen is. Alles via textContent. */
+/* De website opbouwen uit het databestand. Elke pagina bevat al de opstartversie
+   (zonder bureau-materiaal, §1a); dit script vervangt die zodra de data uit de
+   cache, de Gist of data/site.json binnen is. Alle renderers werken op
+   filter(doc) uit store.js, nooit op het ruwe document. Alles via textContent. */
 
 import { CONFIG } from './config.js';
 import { el, $, $$, clear, formatPrice, telLink, whatsappLink } from './dom.js';
 import {
-  loadForVisitors, kengetallen, reviewStats, featuredReviews, visibleReviews, visibleMedia, vanafPrijs,
-  agendaOp, formatDatum, formatCijfer, formatAantal, todayIso, FAQ_TYPES,
+  loadForVisitors, filter, kengetallen, reviewStats, featuredReviews, visibleReviews, visibleMedia, visibleLocaties,
+  vanafPrijs, agendaOp, formatDatum, formatCijfer, formatAantal, todayIso, BUREAU_BRON,
 } from './store.js';
 import { mediaUrl } from './media.js';
 
 const page = document.body.dataset.page || 'home';
 
-/** Een telefoonnummer is "echt" als er minstens 9 cijfers in staan en geen x-placeholders. */
 const isRealPhone = (p) => /\d{9,}/.test(String(p || '').replace(/\D/g, '')) && !/x/i.test(p);
 const isRealEmail = (e) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e || '') && !/voorbeeld\.nl$/i.test(e);
+const isUrl = (u) => /^https?:\/\//i.test(u || '');
 
-/** Nederlands mobiel nummer naar internationaal voor wa.me. */
 function waNumber(phone) {
   let d = String(phone || '').replace(/\D/g, '');
   if (d.startsWith('00')) d = d.slice(2);
@@ -30,14 +30,14 @@ const euro = (n) => formatPrice(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 
 /* --------------------------------------------------------------- render */
 
-function render(doc, meta) {
+function render(raw, meta) {
+  const doc = filter(raw); // de enige weg: alles hieronder ziet alleen wat getoond mag worden
   const info = doc.info;
   $('#demo-banner') && ($('#demo-banner').hidden = meta.source !== 'demo');
   const ann = $('#announcement');
   if (ann) { ann.textContent = info.announcement; ann.hidden = !info.announcement; }
   $('#jaar') && ($('#jaar').textContent = String(new Date().getFullYear()));
 
-  // Losse velden overal waar data-k staat.
   const kg = kengetallen(doc);
   const values = {
     phone: info.phone, whatsapp: info.whatsapp || info.phone, email: info.email, kvk: info.kvk, btw: info.btw,
@@ -49,16 +49,16 @@ function render(doc, meta) {
     const v = values[node.dataset.k];
     if (v !== undefined && v !== '') node.textContent = v;
   }
-  const all = reviewStats(doc);
-  for (const node of $$('#avg-cijfer')) node.textContent = formatCijfer(all.avg);
-  for (const node of $$('#avg-n')) node.textContent = String(all.n);
   const tagline = $('#footer-tagline');
   if (tagline && info.tagline) tagline.textContent = info.tagline;
 
+  renderTrustbar(doc);
+  renderGoogle(doc);
   renderContactLinks(doc);
   renderSocial(doc);
+  renderLocaties(doc);
   setupDateCheck(doc);
-  if (page === 'home') renderHome(doc);
+  if (page === 'home') renderHome(doc, meta);
   if (['bruiloft', 'verjaardag', 'bedrijfsfeest'].includes(page)) renderLanding(doc);
   if (page === 'werkwijze') renderWerkwijze(doc);
   if (page === 'reviews') renderReviews(doc);
@@ -68,6 +68,26 @@ function render(doc, meta) {
   if (page === 'contact') renderContact(doc);
   if (page !== 'reviews') renderFaq(doc);
   setupReadMore();
+}
+
+/** Trustbar: cijfer en aantal reviews alleen als er reviews door de filter komen; anders ervaring. */
+function renderTrustbar(doc) {
+  const { n } = reviewStats(doc);
+  for (const li of $$('[data-stat-item="cijfer"], [data-stat-item="reviews"]')) li.hidden = n === 0;
+  for (const li of $$('[data-stat-item="uren"], [data-stat-item="locaties"]')) li.hidden = n > 0 && li.closest('#trustbar') && page === 'home';
+}
+
+/** Google-reviewknoppen: alleen als er een URL is. */
+function renderGoogle(doc) {
+  const url = doc.info.googleReviewUrl;
+  for (const box of $$('#google-reviews')) {
+    box.hidden = !isUrl(url);
+    if (!isUrl(url)) continue;
+    const lees = $('#google-lees', box);
+    const schrijf = $('#google-schrijf', box);
+    if (lees) lees.href = url;
+    if (schrijf) schrijf.href = url;
+  }
 }
 
 function renderContactLinks(doc) {
@@ -100,7 +120,13 @@ function renderSocial(doc) {
   clear(box).append(...links.map(([name, href]) => el('li', {}, el('a', { href, rel: 'noopener', target: '_blank', text: name }))));
 }
 
-/** Datumcheck-formulier (onderaan elke pagina): meteen "nog vrij" of "bezet" tonen. */
+/** "Locaties waar ik draaide": uitsluitend wat door filter(doc) komt. */
+function renderLocaties(doc) {
+  const box = $('#locaties');
+  if (!box) return;
+  clear(box).append(...visibleLocaties(doc).map((l) => el('li', { text: l.plaats ? `${l.naam} · ${l.plaats}` : l.naam })));
+}
+
 function setupDateCheck(doc) {
   const input = $('#datum-home');
   const out = $('#availability');
@@ -116,7 +142,6 @@ function setupDateCheck(doc) {
   };
 }
 
-/** "Lees meer" alleen tonen als de tekst echt is afgekapt. */
 function setupReadMore() {
   for (const p of $$('.review p')) {
     const btn = p.nextElementSibling?.classList.contains('toggle') ? p.nextElementSibling : null;
@@ -129,11 +154,12 @@ function setupReadMore() {
   }
 }
 
+/** Reviewkaart (§4.6): originele tekst, plaats · locatie, en bij bureau-reviews de bronregel. */
 function reviewCard(r) {
-  const where = [r.locatie, r.plaats].filter((x) => x && x !== '—').join(', ');
+  const where = [r.plaats, r.locatie].filter((x) => x && x !== '—' && x !== 'Privé locatie').join(' · ');
   const text = el('p', { text: r.tekst });
   const toggle = r.tekst ? el('button', { type: 'button', class: 'toggle', text: 'Lees meer', hidden: true }) : null;
-  return el('article', { class: 'card review', dataset: { type: r.type, datum: r.datum, cijfer: String(r.cijfer) } }, [
+  return el('article', { class: `card review${r.tekst ? '' : ' compact'}`, dataset: { type: r.type, datum: r.datum, cijfer: String(r.cijfer) } }, [
     el('div', { class: 'review-top' }, [
       el('div', { class: 'avatar', 'aria-hidden': 'true', text: (r.naam[0] || '?').toUpperCase() }),
       el('div', { class: 'review-who' }, [el('strong', { text: r.naam }), el('span', { text: [r.type, where, maandJaar(r.datum)].filter(Boolean).join(' · ') })]),
@@ -142,7 +168,21 @@ function reviewCard(r) {
     r.titel ? el('h3', { text: r.titel }) : null,
     r.tekst ? text : null,
     toggle,
+    r.herkomst === 'bureau' ? el('div', { class: 'bron', text: `via ${r.bron}` }) : null,
   ]);
+}
+
+/** Vult een reviewblok (home/landingspagina's/laag 1): lijst, statistiek, lege staat. */
+function fillReviewBlock(list, { listBox, statsBox, emptyBox }) {
+  const n = list.length;
+  if (listBox) { clear(listBox).append(...list.map(reviewCard)); listBox.hidden = n === 0; }
+  if (emptyBox) emptyBox.hidden = n > 0;
+  if (statsBox) {
+    statsBox.hidden = n === 0;
+    const avg = n ? Math.round((list.reduce((s, r) => s + r.cijfer, 0) / n) * 10) / 10 : 0;
+    for (const node of $$('[data-stat="avg"]', statsBox)) node.textContent = formatCijfer(avg);
+    for (const node of $$('[data-stat="n"]', statsBox)) node.textContent = String(n);
+  }
 }
 
 function faqItem(f) {
@@ -160,26 +200,39 @@ function renderFaq(doc) {
 
 /* ----------------------------------------------------------------- home */
 
-function renderHome(doc) {
+function renderHome(doc, meta) {
   const info = doc.info;
   if (info.intro) $('#hero-intro').textContent = info.intro;
 
   const heroImg = $('#hero-media img');
   if (heroImg && doc.hero && !heroImg.getAttribute('src').endsWith(doc.hero)) {
-    for (const source of $$('#hero-media source')) source.remove(); // de WebP-varianten horen bij de standaardfoto
-    heroImg.src = doc.hero;
+    for (const source of $$('#hero-media source')) source.remove();
+    const item = doc.media.find((m) => m.pad === doc.hero || m.id === doc.hero);
+    mediaUrl(item || { bron: 'repo', pad: doc.hero }, doc, { demo: meta.source === 'demo' }).then((url) => { if (url) heroImg.src = url; });
     heroImg.removeAttribute('width'); heroImg.removeAttribute('height');
   }
 
+  // Carrousel alleen met reviews die door filter(doc) komen; anders ervaring + Google + lege staat.
   const list = featuredReviews(doc, 8);
-  if (list.length) clear($('#review-carousel')).append(...list.map(reviewCard));
+  const { n } = reviewStats(doc);
+  const track = $('#review-carousel');
+  clear(track).append(...list.map(reviewCard));
+  track.hidden = list.length === 0;
+  $('#carousel-nav').hidden = list.length === 0;
+  $('#ervaring').hidden = n > 0;
+  $('#reviews-leeg').hidden = n > 0;
+  fillReviewBlock(visibleReviews(doc), { statsBox: $('#review-stats') });
+  const src = $('#review-source');
+  const bureau = list.some((r) => r.herkomst === 'bureau');
+  src.hidden = !bureau;
+  if (bureau) clear(src).append(`Reviews uit 2021–2026 van feesten via ${BUREAU_BRON}, ongewijzigd overgenomen. `, el('a', { href: 'reviews.html', text: 'Lees alle reviews →' }));
 
   const media = visibleMedia(doc);
   const tiles = (media.filter((m) => m.home).length ? media.filter((m) => m.home) : media).slice(0, 6);
   if (tiles.length) {
     clear($('#strip')).append(...tiles.map((m) => {
       const img = el('img', { alt: '', loading: 'lazy', decoding: 'async' });
-      mediaUrl(m, doc).then((url) => { if (url) img.src = m.thumb && m.bron === 'repo' ? m.thumb : url; });
+      mediaUrl(m, doc, { demo: meta.source === 'demo' }).then((url) => { if (url) img.src = m.thumb && m.bron === 'repo' ? m.thumb : url; });
       return el('a', { href: 'foto-video.html' }, [img, m.bijschrift ? el('span', { class: 'cap', text: m.bijschrift }) : null]);
     }));
   }
@@ -187,8 +240,6 @@ function renderHome(doc) {
   if (info.werkwijze.length) {
     clear($('#steps')).append(...info.werkwijze.slice(0, 4).map((s) => el('li', { class: 'step' }, [el('h3', { text: s.titel }), el('p', { text: s.tekst })])));
   }
-  if (info.locaties.length) clear($('#locaties')).append(...info.locaties.map((l) => el('li', { text: l })));
-
   const vanaf = vanafPrijs(doc);
   if (vanaf !== null) $('#vanaf').textContent = euro(vanaf);
   if (doc.zekerheden.length) clear($('#zekerheden')).append(...doc.zekerheden.map((z) => el('li', { text: z })));
@@ -213,12 +264,17 @@ function renderLanding(doc) {
   if (!box) return;
   const type = box.dataset.type;
   const max = Number(box.dataset.max) || 6;
-  const { n, avg } = reviewStats(doc, type);
-  for (const node of $$('[data-stat="avg"]')) node.textContent = formatCijfer(avg);
-  for (const node of $$('[data-stat="n"]')) node.textContent = String(n);
-  const list = visibleReviews(doc).filter((r) => r.type === type && r.tekst.length >= 40)
+  const all = visibleReviews(doc).filter((r) => r.type === type);
+  const list = all.filter((r) => r.tekst.length >= 40 || all.length < max)
     .sort((a, b) => Number(b.uitgelicht) - Number(a.uitgelicht) || b.datum.localeCompare(a.datum)).slice(0, max);
-  if (list.length) clear(box).append(...list.map(reviewCard));
+  fillReviewBlock(list, { listBox: box, statsBox: $('#review-stats'), emptyBox: $('#reviews-leeg') });
+  $('#ervaring').hidden = all.length > 0;
+  // Statistiek per type in de trustbar bovenaan
+  const n = all.length;
+  const avg = n ? Math.round((all.reduce((s, r) => s + r.cijfer, 0) / n) * 10) / 10 : 0;
+  for (const node of $$('.trustbar [data-stat="avg"]')) node.textContent = formatCijfer(avg);
+  for (const node of $$('.trustbar [data-stat="n"]')) node.textContent = String(n);
+  for (const li of $$('.trustbar [data-stat-item]')) li.hidden = n === 0;
 }
 
 /* ------------------------------------------------------------- werkwijze */
@@ -237,18 +293,42 @@ function renderWerkwijze(doc) {
 
 let reviewState = { type: new URLSearchParams(location.search).get('type') || '', sort: 'nieuw' };
 function renderReviews(doc) {
-  const box = $('#review-list');
   const all = visibleReviews(doc);
-  const { verdeling, n } = reviewStats(doc);
-  const hist = $('#histogram');
-  if (hist && n) {
-    clear(hist).append(...[10, 9, 8, 7].map((k) => {
-      const count = k === 7 ? Object.entries(verdeling).filter(([c]) => Number(c) <= 7).reduce((s, [, v]) => s + v, 0) : (verdeling[String(k)] || 0);
-      return el('li', {}, [el('span', { class: 'h-lbl', text: String(k) }), el('span', { class: 'h-bar' }, el('span', { style: { width: `${Math.round((count / n) * 100)}%` } })), el('span', { class: 'h-n', text: String(count) })]);
-    }));
+  // Laag 1: eigen reviews (altijd)
+  const eigen = all.filter((r) => r.herkomst === 'eigen');
+  fillReviewBlock(eigen, { listBox: $('#eigen-list'), emptyBox: $('#reviews-leeg') });
+
+  // Laag 2: bureau-reviews, alleen aanwezig als de schakelaar aan staat (filter laat ze dan door)
+  const bureau = all.filter((r) => r.herkomst === 'bureau');
+  const laag2 = $('#laag2');
+  laag2.hidden = bureau.length === 0;
+  const kop = $('#reviews-kop');
+  const sub = $('#reviews-sub');
+  const oldLd = $('#reviews-jsonld');
+  if (oldLd) oldLd.remove();
+  if (!bureau.length) {
+    kop.textContent = 'Wat klanten zeggen';
+    return;
   }
+  const n = bureau.length;
+  const avg = Math.round((bureau.reduce((s, r) => s + r.cijfer, 0) / n) * 10) / 10;
+  kop.textContent = `${n} keer eerlijk beoordeeld`;
+  sub.textContent = `Alle reviews, ongefilterd, zoals klanten ze achterlieten. Gemiddeld een ${formatCijfer(avg)}.`;
+  $('#l2-n').textContent = String(n);
+  $('#avg-cijfer').textContent = formatCijfer(avg);
+  $('#avg-n').textContent = String(n);
+  $('#l2-bron').textContent = `Reviews uit 2021–2026 van feesten via ${BUREAU_BRON}, ongewijzigd overgenomen.`;
+  const verdeling = {};
+  for (const r of bureau) { const k = Math.max(7, Math.min(10, Math.floor(r.cijfer))); verdeling[k] = (verdeling[k] || 0) + 1; }
+  clear($('#histogram')).append(...[10, 9, 8, 7].map((k) => el('li', {}, [
+    el('span', { class: 'h-lbl', text: String(k) }),
+    el('span', { class: 'h-bar' }, el('span', { style: { width: `${Math.round(((verdeling[k] || 0) / n) * 100)}%` } })),
+    el('span', { class: 'h-n', text: String(verdeling[k] || 0) }),
+  ])));
+
+  const box = $('#review-list');
   const draw = () => {
-    let list = all.filter((r) => !reviewState.type || r.type === reviewState.type);
+    let list = bureau.filter((r) => !reviewState.type || r.type === reviewState.type);
     if (reviewState.sort === 'hoog') list.sort((a, b) => b.cijfer - a.cijfer || b.datum.localeCompare(a.datum));
     else if (reviewState.sort === 'oud') list.sort((a, b) => a.datum.localeCompare(b.datum));
     clear(box).append(...list.map(reviewCard));
@@ -257,9 +337,8 @@ function renderReviews(doc) {
     for (const chip of $$('#filterbar .chip')) {
       chip.classList.toggle('active', chip.dataset.type === reviewState.type);
       const t = chip.dataset.type;
-      const num = all.filter((r) => !t || r.type === t).length;
       const span = $('.muted', chip);
-      if (span) span.textContent = `(${num})`;
+      if (span) span.textContent = `(${bureau.filter((r) => !t || r.type === t).length})`;
     }
     setupReadMore();
   };
@@ -267,6 +346,19 @@ function renderReviews(doc) {
   const sort = $('#sort');
   if (sort) sort.onchange = () => { reviewState.sort = sort.value; draw(); };
   draw();
+
+  // AggregateRating + Review alleen in laag 2 (§4.6)
+  const ld = {
+    '@context': 'https://schema.org', '@type': 'LocalBusiness', '@id': `${location.origin}/#dj-roggy`, name: 'DJ Roggy', url: `${location.origin}/`,
+    aggregateRating: { '@type': 'AggregateRating', ratingValue: String(avg), bestRating: '10', worstRating: '1', ratingCount: n },
+    review: bureau.filter((r) => r.uitgelicht).map((r) => ({
+      '@type': 'Review', author: { '@type': 'Person', name: r.naam }, datePublished: r.datum,
+      reviewRating: { '@type': 'Rating', ratingValue: r.cijfer, bestRating: 10, worstRating: 1 }, name: r.titel, reviewBody: r.tekst,
+    })),
+  };
+  const script = el('script', { type: 'application/ld+json', id: 'reviews-jsonld' });
+  script.textContent = JSON.stringify(ld).replace(/<\//g, '<\\/');
+  document.head.append(script);
 }
 
 /* --------------------------------------------------------------- galerij */
@@ -276,30 +368,32 @@ function renderGallery(doc, meta) {
   if (!box) return;
   const media = visibleMedia(doc);
   const instaUrl = (m) => (m.shortcode ? `https://www.instagram.com/${m.soort === 'reel' ? 'reel' : 'p'}/${encodeURIComponent(m.shortcode)}/` : '');
-  if (media.length) {
-    clear(box).append(...media.map((m) => {
-      const img = el('img', { alt: '', loading: 'lazy', decoding: 'async' });
-      mediaUrl(m, doc, { demo: meta.source === 'demo' }).then((url) => {
-        const src = m.bron === 'repo' && m.thumb ? m.thumb : url;
-        if (src) img.src = src; else img.closest('.tile')?.remove();
-      });
-      const reel = m.soort === 'reel' && m.shortcode;
-      const href = reel ? instaUrl(m) : (m.bron === 'repo' ? m.pad : '#');
-      const a = el('a', { href, rel: reel ? 'noopener' : null, target: reel ? '_blank' : null, 'aria-label': `${m.bijschrift} – ${reel ? 'Bekijk reel op Instagram' : 'Bekijk foto'}` }, img);
-      if (m.bron === 'gist') mediaUrl(m, doc, { demo: meta.source === 'demo' }).then((url) => { if (url) a.href = url; });
-      return el('figure', { class: 'tile', dataset: { cat: m.categorie } }, [a, el('figcaption', {}, [m.bijschrift, reel ? el('span', { class: 'tag', text: 'reel' }) : null])]);
-    }));
-  }
+  clear(box).append(...media.map((m) => {
+    const img = el('img', { alt: '', loading: 'lazy', decoding: 'async' });
+    mediaUrl(m, doc, { demo: meta.source === 'demo' }).then((url) => {
+      const src = m.bron === 'repo' && m.thumb ? m.thumb : url;
+      if (src) img.src = src; else img.closest('.tile')?.remove();
+    });
+    const reel = m.soort === 'reel' && m.shortcode;
+    const href = reel ? instaUrl(m) : (m.bron === 'repo' ? m.pad : '#');
+    const a = el('a', { href, rel: reel ? 'noopener' : null, target: reel ? '_blank' : null, 'aria-label': `${m.bijschrift} – ${reel ? 'Bekijk reel op Instagram' : 'Bekijk foto'}` }, img);
+    if (m.bron === 'gist') mediaUrl(m, doc, { demo: meta.source === 'demo' }).then((url) => { if (url) a.href = url; });
+    return el('figure', { class: 'tile', dataset: { cat: m.categorie } }, [a, el('figcaption', {}, [m.bijschrift, reel ? el('span', { class: 'tag', text: 'reel' }) : null])]);
+  }));
+  const cats = ['Bruiloft', 'Verjaardag', 'Zakelijk', 'Feest', 'Setup'].filter((c) => media.some((m) => m.categorie === c));
+  const chips = $('#gallery-chips');
   const draw = (cat) => {
     for (const tile of $$('#gallery .tile')) tile.hidden = !!cat && tile.dataset.cat !== cat;
-    for (const chip of $$('#gallery-chips .chip')) {
+    for (const chip of $$('.chip', chips)) {
       chip.classList.toggle('active', chip.dataset.cat === cat);
-      const num = $$('#gallery .tile').filter((t) => !chip.dataset.cat || t.dataset.cat === chip.dataset.cat).length;
+      const num = media.filter((m) => !chip.dataset.cat || m.categorie === chip.dataset.cat).length;
       const span = $('.muted', chip);
       if (span) span.textContent = `(${num})`;
     }
   };
-  for (const chip of $$('#gallery-chips .chip')) chip.onclick = () => draw(chip.dataset.cat);
+  clear(chips).append(el('button', { type: 'button', class: 'chip', dataset: { cat: '' } }, ['Alles ', el('span', { class: 'muted' })]),
+    ...cats.map((c) => el('button', { type: 'button', class: 'chip', dataset: { cat: c } }, [`${c === 'Setup' ? 'Setup & lichtshow' : c} `, el('span', { class: 'muted' })])));
+  for (const chip of $$('.chip', chips)) chip.onclick = () => draw(chip.dataset.cat);
   draw('');
 }
 
