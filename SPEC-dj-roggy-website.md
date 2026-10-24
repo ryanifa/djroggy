@@ -1,6 +1,8 @@
 # Website-specificatie: DJ Roggy (Roggy Douglas)
 
-Versie 1.1 — 24 oktober 2026 — opgesteld voor bouw via Claude Code
+Versie 1.2 — 24 oktober 2026 — opgesteld voor bouw via Claude Code
+
+Wijzigingen t.o.v. 1.1: **§1a Contractuele randvoorwaarden** toegevoegd (samenwerkingsovereenkomst The DJ Company, art. 5.1 / 7.1 / 7.2 / 9.1) — de site gaat live in een *schone opstartversie* zonder bureau-materiaal; reviews en foto's uit DJ Company-opdrachten blijven in de data maar staan uit tot Roggy de schakelaar in beheer omzet. Reviews worden nooit meer herschreven ("het bureau" vervalt; originele tekst + bronvermelding). Google-reviews worden de primaire reviewstroom.
 
 Wijzigingen t.o.v. 1.0: architectuur gelijkgetrokken met `ryanifa/passthedutchie` (statisch + Gist + beheer.html), beheergedeelte gespecificeerd (§6a), prijzen marktconform ingevuld (§4.8), logo geleverd (§5), foto's uit Instagram geleverd (§9), aanleverlijst teruggebracht tot wat in het beheerscherm wordt onderhouden.
 
@@ -18,6 +20,22 @@ Roggy Douglas (Rotterdam, °1965) draait sinds 2021 als "DJ Roggy" via The DJ Co
 - Instagram: instagram.com/roggydouglas (550 posts, 203 volgers; veel korte gig-reels)
 - DJ-profiel The DJ Company: thedjcompany.nl/dj-huren/djs/0012p00002xvayraa2 (alle 77 reviews uitgelezen)
 - djhuren.nl: dit is een ander bedrijf (Eindhoven, 040-nummer). Roggy's reviewprofiel staat bij **The DJ Company**, niet bij djhuren.nl. Check dit even met Roggy.
+
+## 1a. Contractuele randvoorwaarden (BINDEND voor de bouw)
+
+Roggy heeft op 24-10-2023 een samenwerkingsovereenkomst met The DJ Company BV getekend (modelovereenkomst tussenkomst). Relevante bepalingen, zolang die overeenkomst loopt en mogelijk ook daarna:
+- **Art. 5.1** — klantgegevens van The DJ Company zijn vertrouwelijk; de naam niet gebruiken ten nadele van The DJ Company.
+- **Art. 7.1** — geen diensten rechtstreeks aanbieden aan klanten, gasten, relaties of locatiecontacten van The DJ Company.
+- **Art. 7.2** — beeldmateriaal van DJ Company-opdrachten niet voor eigen uitingen gebruiken.
+- **Art. 9.1** — boete € 10.000 per overtreding + € 2.500 per dag.
+
+Gevolgen voor de site:
+1. **Schone opstartversie is de standaard.** Alles met herkomst The DJ Company (reviews, foto's van DJ Company-opdrachten, locatie-namen uit die opdrachten) zit wél in `data/site.json`, maar staat standaard **uit** via één schakelaar `info.bureauMateriaal` (default `false`). Pas als Roggy — na opzegging en schriftelijke toestemming (art. 10.1) of juridisch advies — de schakelaar in beheer omzet, verschijnt dat materiaal.
+2. **Reviews worden nooit herschreven.** Geen "het bureau"-vervanging: originele tekst zoals de klant hem schreef, mét bronvermelding "via The DJ Company". Als ze getoond worden, moet de claim "ongefilterd" waar zijn.
+3. **Herkomst is een veld, geen vermoeden.** Elke review, foto en locatie heeft `herkomst: "bureau" | "eigen"`. Wat uit The DJ Company-reviews/-profiel komt is `bureau`; Bijenkorf-events, Keti Koti, Sail 2025, familie-/privéfeesten, Sporting Club de Uitweg, eigen booth/lichtshow-checks zijn `eigen`.
+4. **Kengetallen** (71 feesten, 5.600+ gasten, 320 uur, 45 locaties, sinds 2021) zijn feiten over Roggy's eigen ervaring en mogen altijd, geformuleerd als "ervaring", nooit als "reviews via …".
+5. **Geen actieve benadering** van locaties uit DJ Company-opdrachten (art. 7.1): de locatielijst op de site is informatief en valt onder de schakelaar.
+6. **Google Business Profile** is vanaf dag één de primaire reviewbron: elke directe boeking krijgt na het feest een reviewlink. De reviewspagina is dus gebouwd om te groeien, niet om een archief te tonen.
 
 ---
 
@@ -114,10 +132,10 @@ Lommerrijk (Rotterdam, 6x), Het Wapen van Zoetermeer (6x), Familierestaurant Ber
    - Afstemming vooraf: persoonlijk gesprek + wensenlijst
    - Complete set: geluid, DMX-licht, laser, rook, sfeerverlichting
    - Voor ieder wat wils: 18 tot 80, van house tot Nederlandstalig
-4. **Reviewcarrousel** (6–8 uitgelichte quotes met naam, cijfer, feesttype, locatie, datum).
+4. **Reviewcarrousel** — toont uitgelichte reviews die door `filter(doc)` komen; in de opstartversie dus eigen reviews of, als die er nog niet zijn, het ervaringsblok + Google-knop in plaats van de carrousel.
 5. **Video/foto-strip** (6 tegels uit galerij, hover → play).
 6. **Werkwijze in 4 stappen** (compact, link naar /werkwijze).
-7. **Locaties waar ik draaide** (logo-/naamwolk, met Lommerrijk, Wapen van Zoetermeer, Bergsche Plas, Landgoed te Werve, WTC Rotterdam…).
+7. **Locaties waar ik draaide** (naamwolk) — alleen locaties met `herkomst: "eigen"` zolang `bureauMateriaal` uit staat; dan toont de sectie bijvoorbeeld Bijenkorf Rotterdam, Sail Amsterdam, Sporting Club de Uitweg, en verder "45 locaties in Zuid-Holland en daarbuiten" als tekst.
 8. **Prijsindicatie**: "Vanaf € 495 all-in" (tbd met Roggy) + knop naar /prijzen.
 9. **Afsluitende CTA-sectie** met datumcheck.
 
@@ -149,15 +167,27 @@ Tijdlijn in 5 stappen:
 5. **Nazorg** — review-verzoek, foto's delen.
 
 ### 4.6 Reviews (/reviews)
-- Alle 77 reviews uit The DJ Company (zie data-bestand §8), met filter op feesttype (Bruiloft/Verjaardag/Bedrijfsfeest/Feest) en sortering (nieuwste/hoogste).
-- Toon per review: initiaal-avatar, voornaam, datum, cijfer (bv. 9,3/10 met sterren), titel, tekst, plaats · locatie, feesttype.
-- Bovenaan: gemiddelde 9,3 + verdeling (histogram 7–10).
-- Bronvermelding: "Reviews verzameld via The DJ Company, 2021–2026" (transparant; voorkomt discussie).
-- Later: eigen reviewformulier + Google Reviews-koppeling.
-- Schema.org `AggregateRating` + individuele `Review` markup.
+Twee lagen, gestuurd door `info.bureauMateriaal`:
+
+**Laag 1 — altijd zichtbaar (opstartversie)**
+- Kop: "Wat klanten zeggen" (niet "77 keer eerlijk beoordeeld" zolang de 77 verborgen zijn).
+- **Ervaringsblok**: 71 feesten · 5.600+ gasten · 320+ uur · 45 locaties · sinds 2021 — uit `kengetallen`, geformuleerd als ervaring.
+- **Google-reviews**: knop "Lees onze Google-reviews" + "Schrijf een review" (link naar het Google Business Profile, URL in `info.googleReviewUrl`; knop verbergen zolang leeg). Optioneel later: Google Places-widget via een cookieloze proxy (v2).
+- **Eigen reviews** (`herkomst: "eigen"`, `bron: "Direct"`): dezelfde kaarten als hieronder; Roggy voegt ze toe in beheer na elk direct geboekt feest. Lege staat: "De eerste reviews van directe boekingen verschijnen hier binnenkort — tot die tijd: bel gerust een referentie" met de contactknop.
+- Datumcheck-CTA onderaan.
+
+**Laag 2 — alleen als `bureauMateriaal: true`**
+- De 77 geïmporteerde reviews (`herkomst: "bureau"`) met gemiddelde 9,3, histogram 7–10, filters per type en sortering. Kop wordt dan "77 keer eerlijk beoordeeld".
+- Per kaart: initiaal-avatar, voornaam, datum, cijfer met sterren, titel, **originele tekst**, plaats · locatie, type, en kleine bronregel "via The DJ Company".
+- Bronvermelding boven de lijst: "Reviews uit 2021–2026 van feesten via The DJ Company, ongewijzigd overgenomen." Niet verbergen, niet herschrijven.
+- Kaarten zonder tekst (alleen cijfer/titel) krijgen een compacte kaart (geen lege ruimte); gebruik CSS grid met `grid-auto-rows: min-content` of een masonry-achtige kolomindeling.
+- Schema.org `AggregateRating` + `Review` alleen in deze laag.
+
+Eén `filter(doc)`-functie in `store.js` bepaalt wat de site te zien krijgt: `herkomst === "eigen" || doc.info.bureauMateriaal`. Alle renderers (home-carrousel, reviewspagina, galerij, locaties, structured data) gebruiken die ene functie, zodat er geen pad is waarlangs bureau-materiaal per ongeluk toch verschijnt.
 
 ### 4.7 Foto & video (/foto-video)
 - Masonry-galerij; reels embedden via Instagram oEmbed of zelf gehoste MP4's (voorkeur: zelf hosten, geen tracking/cookies).
+- Elke foto heeft `herkomst`; foto's met `herkomst: "bureau"` (gemaakt op DJ Company-opdrachten, art. 7.2) vallen onder de schakelaar en zijn standaard onzichtbaar. Hero en portret moeten uit `eigen` komen.
 - Categorieën: Bruiloft / Verjaardag / Zakelijk / Setup & lichtshow.
 - Instagram-feed-widget onderaan (optioneel, cookie-consent nodig).
 
@@ -286,11 +316,11 @@ Tabs:
 
 | Tab | Wat Roggy hier doet |
 |---|---|
-| **Reviews** 💬 | Lijst van alle reviews (77 geïmporteerd). Per review: naam, datum, cijfer (1–10, één decimaal), titel, tekst, plaats, locatie, type (Bruiloft/Verjaardag/Bedrijfsfeest/Feest), bron, *uitgelicht* (home), *verbergen*. Knop **"Review toevoegen"** voor nieuwe eigen reviews (bron = "Direct"). Sorteren op datum; filter op type. Bovenaan live het gemiddelde en aantal zoals de site het toont. |
+| **Reviews** 💬 | Lijst van alle reviews (77 geïmporteerd, `herkomst: bureau`). Per review: naam, datum, cijfer (1–10, één decimaal), titel, tekst, plaats, locatie, type (Bruiloft/Verjaardag/Bedrijfsfeest/Feest), bron, herkomst (alleen-lezen voor geïmporteerde), *uitgelicht* (home), *verbergen*. Knop **"Review toevoegen"** voor nieuwe eigen reviews (bron = "Direct", herkomst = eigen). Sorteren op datum; filter op type en herkomst. Bovenaan live het gemiddelde en aantal zoals de site het nú toont (dus afhankelijk van de schakelaar) en een gele balk "Bureau-reviews staan uit — 77 verborgen" zolang dat zo is. |
 | **Foto's & video** 📷 | Galerij beheren: foto uploaden (verkleind in de browser, naar media-Gist — zie `media.js`), bijschrift, categorie (Bruiloft/Verjaardag/Zakelijk/Setup), *op homepage*, volgorde (omhoog/omlaag), verbergen/verwijderen. Hero-foto en portretfoto kiezen uit de galerij. Video's: alleen een lijst met bestandsnaam/URL + poster (de MP4 zelf gaat via de repo). |
 | **Pakketten** 💶 | De 3–4 pakketten en de optietabel uit §4.8: naam, prijs, "meest gekozen"-vinkje, inhoud als regels, zichtbaar ja/nee. Reiskostenregel en zekerheden-teksten. |
 | **Agenda** 📅 | Geboekte/geblokkeerde data (datum + optioneel label), zodat de site bij de datumcheck meteen "helaas bezet" of "nog vrij — vraag aan" kan tonen. Simpele lijst, geen kalenderkoppeling (v2: ICS-import). |
-| **Info** ℹ️ | Alles uit de oude aanleverlijst: tagline, intro, tijdelijke mededeling (bv. "December bijna vol"), telefoon, WhatsApp, e-mail, KvK, btw-nummer, postadres, socials (Instagram, Facebook, TikTok), werkgebied/straal, apparatuurlijst (regels), aansprakelijkheidsverzekering ja/nee + tekst, FAQ (vraag/antwoord-lijst per feesttype), werkwijze-stappen, "Over Roggy"-tekst, kengetallen (feesten, gasten, uren, locaties) met de optie *automatisch uit reviews afleiden*. |
+| **Info** ℹ️ | Bovenaan de **schakelaar "Materiaal uit DJ Company-opdrachten tonen"** (`info.bureauMateriaal`, standaard uit) met waarschuwingstekst: "Zet dit alleen aan na opzegging van de samenwerkingsovereenkomst én schriftelijke toestemming of juridisch advies (art. 5.1, 7.1, 7.2, boete art. 9.1)." Omzetten vraagt een bevestiging. Daaronder `googleReviewUrl` (link naar Google Business Profile, review-schrijflink). Verder alles uit de oude aanleverlijst: tagline, intro, tijdelijke mededeling (bv. "December bijna vol"), telefoon, WhatsApp, e-mail, KvK, btw-nummer, postadres, socials (Instagram, Facebook, TikTok), werkgebied/straal, apparatuurlijst (regels), aansprakelijkheidsverzekering ja/nee + tekst, FAQ (vraag/antwoord-lijst per feesttype), werkwijze-stappen, "Over Roggy"-tekst, kengetallen (feesten, gasten, uren, locaties) met de optie *automatisch uit reviews afleiden*. |
 | **Instellingen** ⚙️ | Gist-gegevens, back-up downloaden/terugzetten, terug naar standaarddata, beheerlink voor op de telefoon, handleiding. |
 
 Validatie en veiligheid: alles via `textContent` (geen HTML-injectie uit de Gist), cijfer 1–10, datum ISO, telefoonnummer genormaliseerd voor `wa.me`. Token blijft in localStorage van de beheerder en gaat alleen naar `api.github.com`.
@@ -322,6 +352,7 @@ Validatie en veiligheid: alles via `textContent` (geen HTML-injectie uit de Gist
   "info": { "name": "DJ Roggy", "tagline": "", "intro": "", "announcement": "", "phone": "", "whatsapp": "", "email": "",
             "kvk": "", "btw": "", "address": "", "instagram": "roggydouglas", "facebook": "roggy.douglas", "tiktok": "",
             "regio": "Rotterdam & Zuid-Holland", "straalKm": 40, "verzekerd": true,
+            "bureauMateriaal": false, "googleReviewUrl": "",
             "apparatuur": ["…"], "overTekst": "", "werkwijze": [{"titel": "", "tekst": ""}],
             "faq": [{"type": "Bruiloft", "vraag": "", "antwoord": ""}],
             "kengetallen": {"auto": true, "feesten": 71, "gasten": 5600, "uren": 320, "locaties": 45},
@@ -330,17 +361,18 @@ Validatie en veiligheid: alles via `textContent` (geen HTML-injectie uit de Gist
   "opties": [ {"id": "extra-uur", "naam": "Extra uur draaien", "prijs": 95, "eenheid": ""} ],
   "zekerheden": ["…"],
   "agenda": [ {"datum": "2026-12-31", "label": "Bezet"} ],
-  "media": [ {"id": "m-…", "bron": "repo|gist", "pad": "assets/img/hi/djroggy-DK6YMV6CYPh-hi.jpg", "bijschrift": "", "categorie": "Setup", "home": true, "hidden": false} ],
+  "media": [ {"id": "m-…", "bron": "repo|gist", "pad": "assets/img/hi/djroggy-C1_u-7zCpba-hi.jpg", "bijschrift": "", "categorie": "Zakelijk", "herkomst": "eigen", "home": true, "hidden": false} ],
+  "locaties": [ {"naam": "Lommerrijk", "plaats": "Rotterdam", "herkomst": "bureau"}, {"naam": "de Bijenkorf", "plaats": "Rotterdam", "herkomst": "eigen"} ],
   "videos": [ {"id": "v-…", "pad": "assets/video/lommerrijk.mp4", "poster": "", "bijschrift": ""} ],
   "reviews": [ {
     "id": 4, "naam": "Kassidy", "datum": "2026-07-10", "cijfer": 10,
     "titel": "Gezelligheid, sfeer, vriendelijk, meedenkend en enthousiast",
     "tekst": "…", "plaats": "Rotterdam", "locatie": "Lommerrijk", "type": "Bruiloft",
-    "bron": "The DJ Company", "uitgelicht": true, "hidden": false
+    "bron": "The DJ Company", "herkomst": "bureau", "uitgelicht": true, "hidden": false
   } ]
 }
 ```
-`normalize()` in `store.js` vult alles aan met defaults, net als in passthedutchie, zodat de renderers nooit hoeven te guarden.
+`normalize()` in `store.js` vult alles aan met defaults, net als in passthedutchie, zodat de renderers nooit hoeven te guarden. `herkomst` default: `"eigen"` voor nieuw toegevoegde items, `"bureau"` voor alles met `bron: "The DJ Company"`. `bureauMateriaal` default `false`.
 
 Alle 77 reviews staan in bijlage `reviews-dj-roggy.json` (velden: id, naam, datum, cijfer, titel, tekst, plaats, locatie, type, bron, uitgelicht) en worden bij de eerste build in `data/site.json → reviews` gezet. Reviewtypes: Bruiloft 44 (gem. 9,4), Verjaardag 17 (gem. 9,3), Feest 10 (gem. 9,1), Zakelijk event 6 (gem. 9,3). Gemiddelde over alles: 9,35. Ruwe tekst bewaren; "The DJ Company" in reviewteksten laten staan (eerlijk) — Roggy kan in beheer per review aanpassen.
 
@@ -359,16 +391,16 @@ Alle 77 reviews staan in bijlage `reviews-dj-roggy.json` (velden: id, naam, datu
 ## 9. Meegeleverde foto's en wat nog in beheer wordt ingevuld
 
 ### Geleverd (bijlage `assets/img/`)
-- `assets/img/hi/` — 11 foto's op 1080–1440 px, rechtstreeks uit Instagram-posts:
-  - `djroggy-DOSqUVECAc4-hi.jpg` — **portret in pak** ("Ready for een trouwfeest in Lommerrijk") → portretfoto Over/hero-zijkant
-  - `djroggy-DK6YMV6CYPh-hi.jpg` — DJ-booth tegen rode glitterwand, planten ("Lekker gedraaid bij de Tuinen") → **hero-kandidaat**
-  - `djroggy-C1_u-7zCpba-hi.jpg` — booth met DISCO-neon, groen licht (personeelsfeest Bijenkorf) → bedrijfsfeest-pagina
-  - `djroggy-C_FVYAviNCG-hi.jpg` — close-up met koptelefoon, "Made in 1965"-shirt (gig Rijswijk) → Over Roggy
-  - `djroggy-DFiEuoPCcn4-hi.jpg` — achter de controller met Laura → werkwijze/intake
-  - `djroggy-CuH1tBUtBii-hi.jpg` — Keti Koti bij de Bijenkorf → zakelijk/diversiteit
-  - `djroggy-DNmxJqRCzhm-hi.jpg` — Sail 2025, portret buiten → Over
+- `assets/img/hi/` — 11 foto's op 1080–1440 px, rechtstreeks uit Instagram-posts (herkomst tussen haakjes; `bureau` = gemaakt op een DJ Company-opdracht, standaard verborgen):
+  - `djroggy-DOSqUVECAc4-hi.jpg` — **portret in pak** ("Ready for een trouwfeest in Lommerrijk") → portretfoto (eigen: thuis gemaakt vóór vertrek, geen klant/locatie in beeld — Roggy bevestigen)
+  - `djroggy-DK6YMV6CYPh-hi.jpg` — DJ-booth tegen rode glitterwand ("Lekker gedraaid bij de Tuinen") → (bureau: De Tuin van de Vier Windstreken is een DJ Company-locatie) — pas na schakelaar
+  - `djroggy-C1_u-7zCpba-hi.jpg` — booth met DISCO-neon, groen licht (personeelsfeest Bijenkorf) → (eigen) **hero opstartversie** + bedrijfsfeest-pagina
+  - `djroggy-C_FVYAviNCG-hi.jpg` — close-up met koptelefoon, "Made in 1965"-shirt (gig Rijswijk) → Over Roggy (herkomst onbekend → `bureau` tot Roggy bevestigt)
+  - `djroggy-DFiEuoPCcn4-hi.jpg` — achter de controller met Laura → werkwijze/intake (eigen)
+  - `djroggy-CuH1tBUtBii-hi.jpg` — Keti Koti bij de Bijenkorf → zakelijk (eigen)
+  - `djroggy-DNmxJqRCzhm-hi.jpg` — Sail 2025, portret buiten → Over (eigen)
   - `djroggy-DR0SE_zDNZH-hi.jpg`, `djroggy-DbbjUANOXVM-hi.jpg`, `djroggy-DVjevYijs2U-hi.jpg`, `djroggy-C9FzAlvitC5-hi.jpg` — reserve (jubileum-collage, kerstboom, privé) — alleen gebruiken als Roggy dat wil
-- `assets/img/instagram/` — 43 foto's/reel-covers op 640 px van alle DJ-gerelateerde posts (bruiloften Landgoed te Werve, Kasteel Duivenvoorde, Zoetermeer, Bergschenhoek; bedrijfsfeesten Den Haag/Breda; Sail 2025; Keti Koti; themafeesten; lichtshow-checks) met `captions.tsv` (shortcode, post/reel, bijschrift) → standaard galerij-inhoud, categorie afleiden uit bijschrift.
+- `assets/img/instagram/` — 43 foto's/reel-covers op 640 px van alle DJ-gerelateerde posts (bruiloften Landgoed te Werve, Kasteel Duivenvoorde, Zoetermeer, Bergschenhoek; bedrijfsfeesten Den Haag/Breda; Sail 2025; Keti Koti; themafeesten; lichtshow-checks) met `captions.tsv` (shortcode, post/reel, bijschrift) → standaard galerij-inhoud, categorie afleiden uit bijschrift. **Herkomst afleiden uit bijschrift**: bevat het een DJ Company-locatie uit de reviews (Lommerrijk, Landgoed te Werve, Bergsche Plas/Bergschenhoek, Kasteel Duivenvoorde, Zoetermeer, Biddinghuizen, Rijswijk, Kijkduin, Breda, Den Haag bedrijfsfeest, Natuurtalent, trouwfeest/wedding zonder nadere context) → `bureau`; Bijenkorf, Keti Koti, Sail, verjaardag familie/nichtje/neefje, Sporting Club de Uitweg, Halloween-balkon, lichtshow-/soundcheck thuis, Dominicaanse Republiek → `eigen`. Bij twijfel `bureau`; Roggy corrigeert in beheer.
 - Nog niet geleverd: **video**. De reels zelf (MP4) moet Roggy exporteren vanuit Instagram (Instellingen → Je activiteit → Gegevens downloaden) of de originele opnamen van zijn telefoon aanleveren; de reel-covers zijn er al als poster.
 
 ### Wordt in het beheerscherm onderhouden (niet vooraf nodig om te bouwen)
@@ -405,3 +437,5 @@ Lokale landingspagina's, beschikbaarheidskalender, eigen reviewformulier.
 6. Structured data valideert zonder fouten in Google Rich Results Test.
 7. Bezoekers zien altijd meteen inhoud (cache of `data/site.json`), ook als GitHub niet bereikbaar is.
 8. Roggy kan vanaf zijn telefoon in beheer een review toevoegen, een foto uploaden, een prijs wijzigen en publiceren — zonder hulp.
+9. Met `bureauMateriaal: false` (standaard) bevat geen enkele publieke pagina, OG-tag of JSON-LD een reviewtekst, reviewnaam, foto of locatienaam met `herkomst: "bureau"` — te verifiëren met een grep op de gerenderde DOM van alle pagina's.
+10. Reviewteksten op de site zijn byte-voor-byte gelijk aan `reviews-dj-roggy.json`.
