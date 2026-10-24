@@ -27,7 +27,7 @@
    "DJ-controller met laptop/iPad en back-up",
    "Draadloze microfoon voor speeches"
   ],
-  "overTekst": "Ik ben Roggy Douglas, Rotterdammer en DJ in hart en nieren. In 1981 begon het op mijn slaapkamer: platen draaien voor vrienden tot diep in de nacht. Die passie heb ik nooit losgelaten.\n\nVijfentwintig jaar werkte ik in de herenmode bij de Bijenkorf. Daar leerde ik wat ik nu elke avond gebruik: mensen aanvoelen, luisteren en zorgen dat iedereen zich welkom voelt. Sinds 2021 draai ik professioneel, eerst via The DJ Company en nu zelfstandig als DJ Roggy. Inmiddels staan er ruim 70 feesten op de teller, van bruiloften in Lommerrijk en op Landgoed te Werve tot personeelsfeesten bij het WTC Rotterdam, Keti Koti, Sail 2025 en de reünie van Hotel New York.\n\nEen DJ zorgt niet alleen voor de muziek, maar ook voor een beleving: met DMX-lichteffecten, rookmachine en laser maak ik van jullie zaal een feest. Ik draai van house tot Nederlandstalig, van salsa tot 80's, voor gasten van 18 tot 80. En ik kom altijd vooraf even met jullie praten, zodat het echt jullie feest wordt.",
+  "overTekst": "Ik ben Roggy Douglas, Rotterdammer en DJ in hart en nieren. In 1981 begon het op mijn slaapkamer: platen draaien voor vrienden tot diep in de nacht. Die passie heb ik nooit losgelaten.\n\nVijfentwintig jaar werkte ik in de herenmode bij de Bijenkorf. Daar leerde ik wat ik nu elke avond gebruik: mensen aanvoelen, luisteren en zorgen dat iedereen zich welkom voelt. Sinds 2021 draai ik professioneel, eerst via een boekingsbureau en nu zelfstandig als DJ Roggy. Inmiddels staan er ruim 70 feesten op de teller, van bruiloften in Lommerrijk en op Landgoed te Werve tot personeelsfeesten bij het WTC Rotterdam, Keti Koti, Sail 2025 en de reünie van Hotel New York.\n\nEen DJ zorgt niet alleen voor de muziek, maar ook voor een beleving: met DMX-lichteffecten, rookmachine en laser maak ik van jullie zaal een feest. Ik draai van house tot Nederlandstalig, van salsa tot 80's, voor gasten van 18 tot 80. En ik kom altijd vooraf even met jullie praten, zodat het echt jullie feest wordt.",
   "werkwijze": [
    {
     "titel": "Aanvraag",
@@ -826,7 +826,7 @@
    "plaats": "Schiedam",
    "locatie": "Záálig Eten & Drinken | Záálig Zaaltje",
    "type": "Verjaardag",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -840,7 +840,7 @@
    "plaats": "Zoetermeer",
    "locatie": "Het Wapen van Zoetermeer",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -854,7 +854,7 @@
    "plaats": "Rotterdam",
    "locatie": "Stadsbrouwerij De Pelgrim",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -864,11 +864,11 @@
    "datum": "2026-07-10",
    "cijfer": 10.0,
    "titel": "Gezelligheid, sfeer, vriendelijk, meedenkend en enthousiast",
-   "tekst": "Jullie zijn door onze trouwlocatie aangeraden. Na wat onderzoek en het lezen van andere mensen hun ervaring waren wij ervan overtuigd dat jullie bij ons passen. DJ Roggy heeft het heel goed gedaan. Net voor ons feest hebben we nog een gesprek gehad om onze wensen te kunnen bespreken. DJ Roggy heeft heel goed de sfeer op het feest gelezen en daar op ingespeeld. Iedereen had het naar zijn zin en ik heb ook meerdere complimenten van gasten ontvangen over de muziek. Ook werd het sfeerverlichting mee gebracht. Het hele feest zou nooit hetzelfde zijn geweest zonder hem. Ik zou hem en dj company aanraden aan iedereen niet alleen omdat ons feest top was, maar de communicatie hiervoor en ook omdat onze trouwlocatie erg tevreden zijn over jullie!",
+   "tekst": "Jullie zijn door onze trouwlocatie aangeraden. Na wat onderzoek en het lezen van andere mensen hun ervaring waren wij ervan overtuigd dat jullie bij ons passen. DJ Roggy heeft het heel goed gedaan. Net voor ons feest hebben we nog een gesprek gehad om onze wensen te kunnen bespreken. DJ Roggy heeft heel goed de sfeer op het feest gelezen en daar op ingespeeld. Iedereen had het naar zijn zin en ik heb ook meerdere complimenten van gasten ontvangen over de muziek. Ook werd het sfeerverlichting mee gebracht. Het hele feest zou nooit hetzelfde zijn geweest zonder hem. Ik zou hem en het bureau aanraden aan iedereen niet alleen omdat ons feest top was, maar de communicatie hiervoor en ook omdat onze trouwlocatie erg tevreden zijn over jullie!",
    "plaats": "Rotterdam",
    "locatie": "Lommerrijk",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": true,
    "hidden": false
   },
@@ -882,7 +882,7 @@
    "plaats": "Dordrecht",
    "locatie": "Wantijpaviljoen",
    "type": "Verjaardag",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -896,7 +896,7 @@
    "plaats": "Rotterdam",
    "locatie": "Lommerrijk",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -910,7 +910,7 @@
    "plaats": "Berkel en Rodenrijs",
    "locatie": "'t Manneke",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -924,7 +924,7 @@
    "plaats": "Leidschendam",
    "locatie": "Veur theater",
    "type": "Verjaardag",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -938,7 +938,7 @@
    "plaats": "Rotterdam",
    "locatie": "Lommerrijk",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -948,11 +948,11 @@
    "datum": "2026-05-23",
    "cijfer": 9.7,
    "titel": "Sfeervol, enthousiasme, feestje, veel dansen!",
-   "tekst": "Wij hebben enorm genoten van de muziek tijdens onze bruiloft door DJ Roggy. Hij voelde de sfeer super goed aan, is een hele enthousiaste DJ en speelde goed in op de muziekbehoeftes van de gasten. Contact met zowel Roggy als DJ Company was top!",
+   "tekst": "Wij hebben enorm genoten van de muziek tijdens onze bruiloft door DJ Roggy. Hij voelde de sfeer super goed aan, is een hele enthousiaste DJ en speelde goed in op de muziekbehoeftes van de gasten. Contact met zowel Roggy als het bureau was top!",
    "plaats": "Rijswijk",
    "locatie": "Landgoed te Werve",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": true,
    "hidden": false
   },
@@ -966,7 +966,7 @@
    "plaats": "Rotterdam",
    "locatie": "Mooie Boules Rotterdam",
    "type": "Verjaardag",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -976,11 +976,11 @@
    "datum": "2026-04-11",
    "cijfer": 9.0,
    "titel": "Geweldig!!",
-   "tekst": "DJ Roggy heeft het op de avond fantastisch gedaan. Voelde de sfeer goed aan en ging daar goed op in. Diverse aanwezigen hebben om zijn kaartje gevraagd. Communicatie met de DJ Company was van het begin tot het eind goed verzorgd. Kortom, zeker voor herhaling vatbaar.",
+   "tekst": "DJ Roggy heeft het op de avond fantastisch gedaan. Voelde de sfeer goed aan en ging daar goed op in. Diverse aanwezigen hebben om zijn kaartje gevraagd. Communicatie met het bureau was van het begin tot het eind goed verzorgd. Kortom, zeker voor herhaling vatbaar.",
    "plaats": "Rotterdam",
    "locatie": "Eten bij LOO",
    "type": "Verjaardag",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": true,
    "hidden": false
   },
@@ -994,7 +994,7 @@
    "plaats": "Rotterdam",
    "locatie": "Het Koetshuis",
    "type": "Feest",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1008,7 +1008,7 @@
    "plaats": "—",
    "locatie": "Privé locatie",
    "type": "Zakelijk event",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1018,11 +1018,11 @@
    "datum": "2025-10-10",
    "cijfer": 9.0,
    "titel": "Goed geregeld 👍🏻",
-   "tekst": "Via Google bij the dj company gekomen. Alles goed geregeld, goed contact met dj, leuk feest, goed gedanst 😊",
+   "tekst": "Via Google bij het bureau gekomen. Alles goed geregeld, goed contact met dj, leuk feest, goed gedanst 😊",
    "plaats": "Zevenhuizen",
    "locatie": "Flow food & adventure",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1036,7 +1036,7 @@
    "plaats": "Rotterdam",
    "locatie": "Lommerrijk",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1050,7 +1050,7 @@
    "plaats": "Rotterdam",
    "locatie": "Natuurtalent",
    "type": "Zakelijk event",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1064,7 +1064,7 @@
    "plaats": "Rotterdam",
    "locatie": "Lommerrijk",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1074,11 +1074,11 @@
    "datum": "2025-09-05",
    "cijfer": 10.0,
    "titel": "Super, Enthousiast, Meedenkend, Open, Feest",
-   "tekst": "Super ervaring met DJ Roggy. Communicatie vooraf al heel prettig ook met het hele team van de DJCompany. Fijne pagina ook om al je wensen door te geven. Dit werd ook precies zo uitgevoerd tijdens het feest. De Dj voelde goed aan hoe de sfeer was en draaide allerlei soorten muziek, voor ieder wat wils. Erg vriendelijke dj ook, danst gezellig mee van achter de muziek. Checkt tussendoor of het allemaal oké is en had een leuke afsluiter. Wij zouden de DJ Company zeker aanraden.",
+   "tekst": "Super ervaring met DJ Roggy. Communicatie vooraf al heel prettig ook met het hele team van het bureau. Fijne pagina ook om al je wensen door te geven. Dit werd ook precies zo uitgevoerd tijdens het feest. De Dj voelde goed aan hoe de sfeer was en draaide allerlei soorten muziek, voor ieder wat wils. Erg vriendelijke dj ook, danst gezellig mee van achter de muziek. Checkt tussendoor of het allemaal oké is en had een leuke afsluiter. Wij zouden het bureau zeker aanraden.",
    "plaats": "Rotterdam",
    "locatie": "Lommerrijk",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1092,7 +1092,7 @@
    "plaats": "Gemert",
    "locatie": "KOKS",
    "type": "Verjaardag",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1106,7 +1106,7 @@
    "plaats": "Rotterdam",
    "locatie": "De Tuin van de Vier Windstreken",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1120,7 +1120,7 @@
    "plaats": "Bergschenhoek",
    "locatie": "Familierestaurant Bergsche Plas",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1134,7 +1134,7 @@
    "plaats": "Zoetermeer",
    "locatie": "Privé locatie",
    "type": "Verjaardag",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": true,
    "hidden": false
   },
@@ -1144,11 +1144,11 @@
    "datum": "2025-06-27",
    "cijfer": 10.0,
    "titel": "Perfecte avond",
-   "tekst": "We kozen voor de dj company omdat de bergsche plas hun hadden aangeraden. We zijn continue goed geholpen en communicatie verliep rustig en duidelijk. Dj Roggy wist echt wel hoe hij moest draaien. Wij hadden direct een goede klik met hem en hield zich aan alle wensen van ons. Direct na de openingsdans werd er gedanst en eigenlijk heel de avond wel. Van dr kabouterdans tot de polonaise tot verschillende line dansjes. Wij en onze gasten hebben enorm genoten van de avond.",
+   "tekst": "We kozen voor het bureau omdat de bergsche plas hun hadden aangeraden. We zijn continue goed geholpen en communicatie verliep rustig en duidelijk. Dj Roggy wist echt wel hoe hij moest draaien. Wij hadden direct een goede klik met hem en hield zich aan alle wensen van ons. Direct na de openingsdans werd er gedanst en eigenlijk heel de avond wel. Van dr kabouterdans tot de polonaise tot verschillende line dansjes. Wij en onze gasten hebben enorm genoten van de avond.",
    "plaats": "Bergschenhoek",
    "locatie": "Familierestaurant Bergsche Plas",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1162,7 +1162,7 @@
    "plaats": "Rotterdam",
    "locatie": "Cuzina",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1176,7 +1176,7 @@
    "plaats": "Leidschendam",
    "locatie": "Veur theater",
    "type": "Verjaardag",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": true,
    "hidden": false
   },
@@ -1190,7 +1190,7 @@
    "plaats": "Rotterdam",
    "locatie": "De Machinist",
    "type": "Verjaardag",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1204,7 +1204,7 @@
    "plaats": "Rotterdam",
    "locatie": "World Trade Centrum Rotterdam",
    "type": "Zakelijk event",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": true,
    "hidden": false
   },
@@ -1214,11 +1214,11 @@
    "datum": "2024-09-20",
    "cijfer": 9.7,
    "titel": "Fantastisch gedraaid en perfecte avond",
-   "tekst": "Wij bleken een bijzondere vraag te hebben. De start van de avond moest een kinderdisco worden. Kennelijk werd dit niet veel gedaan waardoor zowel locatie als de dj company dit orgineel vond. Het bleek bijna het hoogtepunt van de dag te zijn. Niet alleen voor de kods maar ook voor de ouders was het een genot om de kinderen zo blij te zien feesten! We hadden een playlist gegeven waardoor de dj nu een playlost voor mini disco rijker is en de locatie nu aan iedereen gaat aanbevelen om met kinderen een mini disco te doen. Maar daar eindigde de avond niet! Daarna werd er precies gedraaod zoals we wilde. Eerst wat ouders muziek en daarna feestelijke dansmuziek. Verzoekjes mochten aangevraagd worden maar als de dj dacht dat het niet zou werken, moest hij het afslaan. Dit heeft hij werkelijk uitgevoerd. Dj Roggy heeft dus onze wensen volledig uitgevoerd! Dit in combi met de rest van onze prachtige dag kunnen wij niet anders dan een dikke 10+ geven voor onze mooie dag! Enorm bedankt dj roggy!",
+   "tekst": "Wij bleken een bijzondere vraag te hebben. De start van de avond moest een kinderdisco worden. Kennelijk werd dit niet veel gedaan waardoor zowel locatie als het bureau dit orgineel vond. Het bleek bijna het hoogtepunt van de dag te zijn. Niet alleen voor de kods maar ook voor de ouders was het een genot om de kinderen zo blij te zien feesten! We hadden een playlist gegeven waardoor de dj nu een playlost voor mini disco rijker is en de locatie nu aan iedereen gaat aanbevelen om met kinderen een mini disco te doen. Maar daar eindigde de avond niet! Daarna werd er precies gedraaod zoals we wilde. Eerst wat ouders muziek en daarna feestelijke dansmuziek. Verzoekjes mochten aangevraagd worden maar als de dj dacht dat het niet zou werken, moest hij het afslaan. Dit heeft hij werkelijk uitgevoerd. Dj Roggy heeft dus onze wensen volledig uitgevoerd! Dit in combi met de rest van onze prachtige dag kunnen wij niet anders dan een dikke 10+ geven voor onze mooie dag! Enorm bedankt dj roggy!",
    "plaats": "Maasland",
    "locatie": "Brasserie Oostgaag",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": true,
    "hidden": false
   },
@@ -1232,7 +1232,7 @@
    "plaats": "Rotterdam",
    "locatie": "Eten bij LOO",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1246,7 +1246,7 @@
    "plaats": "De Lier",
    "locatie": "NON Burgersdijk",
    "type": "Feest",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1260,7 +1260,7 @@
    "plaats": "Den Haag",
    "locatie": "Lu Gia Jen",
    "type": "Verjaardag",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1274,7 +1274,7 @@
    "plaats": "Bergschenhoek",
    "locatie": "Familierestaurant Bergsche Plas",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1288,7 +1288,7 @@
    "plaats": "Den Haag",
    "locatie": "Het Spaansche Hof",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1302,7 +1302,7 @@
    "plaats": "Den Haag",
    "locatie": "Het Spaansche Hof",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1316,7 +1316,7 @@
    "plaats": "Vlaardingen",
    "locatie": "De Vreemde Vogel",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1330,7 +1330,7 @@
    "plaats": "s-Gravenzande",
    "locatie": "Brasserie De Bosrand - 's-Gravenzande",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1344,7 +1344,7 @@
    "plaats": "Zoetermeer",
    "locatie": "Het Wapen van Zoetermeer",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": true,
    "hidden": false
   },
@@ -1358,7 +1358,7 @@
    "plaats": "Utrecht",
    "locatie": "Belgisch Biercafé Olivier Utrecht",
    "type": "Zakelijk event",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1372,7 +1372,7 @@
    "plaats": "Oostvoorne",
    "locatie": "Restaurant Paviljoen De Duinrand",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1386,7 +1386,7 @@
    "plaats": "Rotterdam",
    "locatie": "Inntel Hotels Rotterdam Centre",
    "type": "Zakelijk event",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1400,7 +1400,7 @@
    "plaats": "Beesd",
    "locatie": "Landgoed Heerlijkheid Mariënwaerdt",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1414,7 +1414,7 @@
    "plaats": "Bergschenhoek",
    "locatie": "Het Wapen van Vidaa",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1424,11 +1424,11 @@
    "datum": "2023-09-08",
    "cijfer": 9.0,
    "titel": "Top geregeld, gezellig feest!",
-   "tekst": "Het was zeer gemakkelijk en betaalbaar om een DJ te huren bij The DJ Company. We hebben heerlijk kunnen genieten van ons bruidsfeest. Goede mix van muziek genres voor alle gasten. De wensenlijst die vooraf digitaal ingevuld kan worden is echt super handig!",
+   "tekst": "Het was zeer gemakkelijk en betaalbaar om een DJ te huren bij het bureau. We hebben heerlijk kunnen genieten van ons bruidsfeest. Goede mix van muziek genres voor alle gasten. De wensenlijst die vooraf digitaal ingevuld kan worden is echt super handig!",
    "plaats": "Rotterdam",
    "locatie": "De Tuin van de Vier Windstreken",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1442,7 +1442,7 @@
    "plaats": "Bergschenhoek",
    "locatie": "Familierestaurant Bergsche Plas",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1452,11 +1452,11 @@
    "datum": "2023-07-13",
    "cijfer": 9.0,
    "titel": "Heerlijke avond, onvergetelijk feest",
-   "tekst": "Het is fijn dat The DJ Company voor ons een DJ had die zich goed kon aansluiten bij onze wensen. Voordat wij gekoppeld waren aan een DJ hadden we al prettig en vlot contact met de klantenservice. In de week voor de bruiloft heeft DJ Roggy contact met ons opgenomen om de avond/het feest door te spreken. Op het feest zelf was DJ Roggy erg toegankelijk en was hij flexibel in het draaien van de muziek en verwerkte hij onze wensen goed! Gasten gaven tijdens het feest aan dat wij een goede DJ hadden ingezet voor ons feest. Wij hebben een heerlijke avond gehad met een onvergetelijk feest!",
+   "tekst": "Het is fijn dat het bureau voor ons een DJ had die zich goed kon aansluiten bij onze wensen. Voordat wij gekoppeld waren aan een DJ hadden we al prettig en vlot contact met de klantenservice. In de week voor de bruiloft heeft DJ Roggy contact met ons opgenomen om de avond/het feest door te spreken. Op het feest zelf was DJ Roggy erg toegankelijk en was hij flexibel in het draaien van de muziek en verwerkte hij onze wensen goed! Gasten gaven tijdens het feest aan dat wij een goede DJ hadden ingezet voor ons feest. Wij hebben een heerlijke avond gehad met een onvergetelijk feest!",
    "plaats": "Zoetermeer",
    "locatie": "Het Wapen van Zoetermeer",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1470,7 +1470,7 @@
    "plaats": "Rijswijk",
    "locatie": "Landgoed te Werve",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1484,7 +1484,7 @@
    "plaats": "Rijswijk",
    "locatie": "Landgoed te Werve",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1498,7 +1498,7 @@
    "plaats": "Leiden",
    "locatie": "Hotel Van der Valk - Leiden",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1512,7 +1512,7 @@
    "plaats": "Leiden",
    "locatie": "Hotel Van der Valk - Leiden",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1526,7 +1526,7 @@
    "plaats": "Delft",
    "locatie": "Het Rieten Dak",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1540,7 +1540,7 @@
    "plaats": "Zoetermeer",
    "locatie": "Het Wapen van Zoetermeer",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1554,7 +1554,7 @@
    "plaats": "Zoetermeer",
    "locatie": "Het Wapen van Zoetermeer",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1564,11 +1564,11 @@
    "datum": "2023-06-09",
    "cijfer": 10.0,
    "titel": "Het was fantastisch goed geregeld",
-   "tekst": "Wij hebben gekozen voor the DJCompany omdat het ontzettend goed staat aangeschreven en niets is minder waar! Vooraf het feest wat details kortgesloten met DJ Roggy zodat alles goed geregeld was. Op de avond zelf werden al onze doorgegeven genres en verzoek nummers gedraaid. DJ Roggy kon de sfeer goed op de dansvloer houden en goed doormixen. Al bij al hebben wij een top feest gehad. Ik zal iedereen The DJCompany aanbevelen!",
+   "tekst": "Wij hebben gekozen voor het bureau omdat het ontzettend goed staat aangeschreven en niets is minder waar! Vooraf het feest wat details kortgesloten met DJ Roggy zodat alles goed geregeld was. Op de avond zelf werden al onze doorgegeven genres en verzoek nummers gedraaid. DJ Roggy kon de sfeer goed op de dansvloer houden en goed doormixen. Al bij al hebben wij een top feest gehad. Ik zal iedereen het bureau aanbevelen!",
    "plaats": "Zoetermeer",
    "locatie": "Het Wapen van Zoetermeer",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1582,7 +1582,7 @@
    "plaats": "Oud Ade",
    "locatie": "De Meerhoeve",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1596,7 +1596,7 @@
    "plaats": "Rockanje",
    "locatie": "Badhotel Rockanje & Brasserie Lodgers",
    "type": "Feest",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1610,7 +1610,7 @@
    "plaats": "Delft",
    "locatie": "Het Rieten Dak",
    "type": "Feest",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1624,7 +1624,7 @@
    "plaats": "Gorinchem",
    "locatie": "Partycentrum Hipper & Kolfbaan",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1638,7 +1638,7 @@
    "plaats": "De Lier",
    "locatie": "NON Burgersdijk",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1652,7 +1652,7 @@
    "plaats": "Rotterdam",
    "locatie": "Lommerrijk",
    "type": "Verjaardag",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1666,7 +1666,7 @@
    "plaats": "Renesse",
    "locatie": "Fletcher Landgoed Hotel Renesse",
    "type": "Feest",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1680,7 +1680,7 @@
    "plaats": "Hoogvliet Rotterdam",
    "locatie": "Privé locatie",
    "type": "Feest",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1694,7 +1694,7 @@
    "plaats": "Zwijndrecht",
    "locatie": "Hotel Van der Valk - Ara - Zwijndrecht",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1708,7 +1708,7 @@
    "plaats": "Vlaardingen",
    "locatie": "De Vreemde Vogel",
    "type": "Verjaardag",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1722,7 +1722,7 @@
    "plaats": "Haarlem",
    "locatie": "Paviljoen Loef",
    "type": "Verjaardag",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1732,11 +1732,11 @@
    "datum": "2022-07-05",
    "cijfer": 9.0,
    "titel": "In een woord, TOP!",
-   "tekst": "Communicatie vanuit DJ Company is top. Alles wordt van A-Z geregeld. DJ Roggy snapte perfect wat we wilden qua muziek. Gasten hebben ontzettend genoten en we hebben veel complimenten gekregen. Voor dit bedrag hoef je geen seconde na te denken.",
+   "tekst": "Communicatie vanuit het bureau is top. Alles wordt van A-Z geregeld. DJ Roggy snapte perfect wat we wilden qua muziek. Gasten hebben ontzettend genoten en we hebben veel complimenten gekregen. Voor dit bedrag hoef je geen seconde na te denken.",
    "plaats": "Rotterdam",
    "locatie": "Inntel Hotels Rotterdam Centre",
    "type": "Feest",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1750,7 +1750,7 @@
    "plaats": "Leiden",
    "locatie": "Boerhaave museum",
    "type": "Zakelijk event",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1760,11 +1760,11 @@
    "datum": "2022-06-25",
    "cijfer": 10.0,
    "titel": "in een woord helemaal geweldig",
-   "tekst": "Ik koos voor de DJ Company omdat ik helemaal ontzorgd wilde worden. En dat is gelukt van begin tot het eind. Wij hadden DJ Roggy en met het eerste contact was er al een klik. Heel fijn. Op de avond zelf verliep alles prima, wat rustige sfeer muziek in het begin, zodat mensen nog wat konden kletsen en gaande weg werd de sfeer opgebouwd, muziek ging wat harder en er is echt heerlijk gedanst door veel mensen. Gasten konden ook plaatjes aanvragen en Roggy voelde de sfeer goed aan en speelde daar op in. Met een mooie mix van muziek. Was heerlijk om te zien hoe iedereen genoot. Het was echt een feest!",
+   "tekst": "Ik koos voor het bureau omdat ik helemaal ontzorgd wilde worden. En dat is gelukt van begin tot het eind. Wij hadden DJ Roggy en met het eerste contact was er al een klik. Heel fijn. Op de avond zelf verliep alles prima, wat rustige sfeer muziek in het begin, zodat mensen nog wat konden kletsen en gaande weg werd de sfeer opgebouwd, muziek ging wat harder en er is echt heerlijk gedanst door veel mensen. Gasten konden ook plaatjes aanvragen en Roggy voelde de sfeer goed aan en speelde daar op in. Met een mooie mix van muziek. Was heerlijk om te zien hoe iedereen genoot. Het was echt een feest!",
    "plaats": "Ter Heijde",
    "locatie": "Moments Beach",
    "type": "Feest",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1774,11 +1774,11 @@
    "datum": "2022-06-03",
    "cijfer": 10.0,
    "titel": "Top avond dankzij jullie!",
-   "tekst": "Door corona het feest uit moeten stellen waardoor ook de DJ uitgesteld moest worden. Dit is door de super service bij de DJ Company probleemloos verlopen. Duidelijke informatie vooraf. Prettige communicatie met DJ Roggy zelf. Ook op lokatie waanzinnig goed gegaan. Door de sfeer te proeven en daarop aan te passen heeft er niemand stil gestaan en hebben we een top avond gehad. Bij deze ook meteen mijn dank aan Roggy! Bedankt kerel!",
+   "tekst": "Door corona het feest uit moeten stellen waardoor ook de DJ uitgesteld moest worden. Dit is door de super service bij het bureau probleemloos verlopen. Duidelijke informatie vooraf. Prettige communicatie met DJ Roggy zelf. Ook op lokatie waanzinnig goed gegaan. Door de sfeer te proeven en daarop aan te passen heeft er niemand stil gestaan en hebben we een top avond gehad. Bij deze ook meteen mijn dank aan Roggy! Bedankt kerel!",
    "plaats": "Rotterdam",
    "locatie": "De Tuin van de Vier Windstreken",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1788,11 +1788,11 @@
    "datum": "2022-06-03",
    "cijfer": 10.0,
    "titel": "Super goed geregeld!",
-   "tekst": "Door corona het feest uit moeten stellen waardoor ook de DJ uitgesteld moest worden. Dit is door de super service bij de DJ Company probleemloos verlopen. Duidelijke informatie vooraf. Prettige communicatie met DJ Roggy zelf. Ook op lokatie waanzinnig goed gegaan. Door de sfeer te proeven en daarop aan te passen heeft er niemand stil gestaan en hebben we een top avond gehad. Bij deze ook meteen mijn dank aan Roggy! Bedankt kerel!",
+   "tekst": "Door corona het feest uit moeten stellen waardoor ook de DJ uitgesteld moest worden. Dit is door de super service bij het bureau probleemloos verlopen. Duidelijke informatie vooraf. Prettige communicatie met DJ Roggy zelf. Ook op lokatie waanzinnig goed gegaan. Door de sfeer te proeven en daarop aan te passen heeft er niemand stil gestaan en hebben we een top avond gehad. Bij deze ook meteen mijn dank aan Roggy! Bedankt kerel!",
    "plaats": "Rotterdam",
    "locatie": "De Tuin van de Vier Windstreken",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1806,7 +1806,7 @@
    "plaats": "Schiedam",
    "locatie": "Zaal Beatrix",
    "type": "Bruiloft",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1820,7 +1820,7 @@
    "plaats": "Scheveningen",
    "locatie": "Boomerang Beach",
    "type": "Feest",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1834,7 +1834,7 @@
    "plaats": "Breda",
    "locatie": "Boerke Verschuren",
    "type": "Verjaardag",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1848,7 +1848,7 @@
    "plaats": "Rotterdam",
    "locatie": "Eetcafe 't Keerpunt - Rotterdam",
    "type": "Verjaardag",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1858,11 +1858,11 @@
    "datum": "2022-02-19",
    "cijfer": 8.0,
    "titel": "Goede muziek keuzen, sfeer wat top!",
-   "tekst": "Er is goed gedanst, lichtste kan wel beter. Gasten vonden het top, zal volgende keer zeker DJ Company in huren.",
+   "tekst": "Er is goed gedanst, lichtste kan wel beter. Gasten vonden het top, zal volgende keer zeker het bureau in huren.",
    "plaats": "Amstelveen",
    "locatie": "Privé locatie",
    "type": "Verjaardag",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1876,7 +1876,7 @@
    "plaats": "Spijkenisse",
    "locatie": "Privé locatie",
    "type": "Feest",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   },
@@ -1886,11 +1886,11 @@
    "datum": "2021-10-15",
    "cijfer": 10.0,
    "titel": "Hier hoopte ik op!",
-   "tekst": "Google bracht mij bij the dj company. Vanaf het eerste contact met vragen van mijn kant tot op de dag van het feest was er duidelijke communicatie. Ze doen wat ze beloven, rekening houdend met mijn wensen en vragen. Dit alles gaf mij veel vertrouwen op een goede afloop én dat is ook dubbel en dwars uitgekomen.",
+   "tekst": "Google bracht mij bij het bureau. Vanaf het eerste contact met vragen van mijn kant tot op de dag van het feest was er duidelijke communicatie. Ze doen wat ze beloven, rekening houdend met mijn wensen en vragen. Dit alles gaf mij veel vertrouwen op een goede afloop én dat is ook dubbel en dwars uitgekomen.",
    "plaats": "Leidschendam",
    "locatie": "Puurr aan de Vliet",
    "type": "Verjaardag",
-   "bron": "The DJ Company",
+   "bron": "Extern",
    "uitgelicht": false,
    "hidden": false
   }

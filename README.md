@@ -52,7 +52,7 @@ met een gele balk erboven.
 
 ## Beheren (tabs in `beheer.html`)
 
-- **Reviews** — alle reviews (77 geïmporteerd uit The DJ Company), toevoegen,
+- **Reviews** — alle reviews (77 geïmporteerd), toevoegen,
   bewerken, *uitgelicht* (homepage) en *verbergen*.
 - **Foto's & video** — galerij: uploaden (verkleind in de browser naar de
   media-Gist), bijschrift, categorie, *op homepage*, volgorde, verbergen.
