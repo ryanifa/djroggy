@@ -280,3 +280,19 @@ table.opties { width: 100%; border-collapse: collapse; max-width: 820px; }
 .card.empty { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; justify-content: space-between; }
 .card.empty p { margin: 0; color: var(--muted); max-width: 640px; }
 #reviews #ervaring, #reviews .trustbar-inline { margin: 8px 0 12px; }
+
+/* ------------------------------------------------ hero met foto naast de tekst */
+.hero-split { align-items: center; min-height: 0; background: radial-gradient(70% 80% at 85% 10%, rgba(177, 59, 255, 0.35), transparent 60%), radial-gradient(50% 60% at 10% 90%, rgba(245, 184, 46, 0.18), transparent 60%), var(--bg); }
+.hero-split::after { display: none; }
+.hero-grid { display: grid; gap: 24px; padding: 28px 0 44px; }
+.hero-split .hero-inner { padding: 0; }
+.hero-photo { position: relative; justify-self: center; width: min(100%, 360px); }
+.hero-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 10%; border-radius: var(--radius); box-shadow: var(--shadow); }
+.hero-photo.square { width: min(100%, 420px); }
+.hero-photo.square img { aspect-ratio: 1 / 1; object-position: 50% 30%; }
+.hero-photo::before { content: ''; position: absolute; inset: 14px -14px -14px 14px; border-radius: var(--radius); border: 2px solid rgba(245, 184, 46, 0.5); z-index: -1; }
+@media (min-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr 420px; align-items: center; gap: 56px; padding: 64px 0 72px; }
+  .hero-photo { order: 2; width: 100%; }
+  .hero-split .hero-inner { order: 1; }
+}
