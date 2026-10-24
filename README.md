@@ -114,20 +114,6 @@ gegenereerd uit `data/site.json`; verander je daar vaste teksten (FAQ,
 werkwijze, pakketten), dan laat het beheer/Gist ze live zien en kun je de HTML
 bij gelegenheid bijwerken.
 
-## Afspraken met het vorige bureau
-
-Het contract met het vorige boekingsbureau bevat een relatiebeding (klanten,
-gasten en locaties van opdrachten via het bureau niet rechtstreeks benaderen)
-en een verbod op het gebruik van beeldmateriaal van die opdrachten. Daarom:
-
-- De site noemt het bureau nergens; in reviewteksten staat "het bureau".
-- Locatienamen worden niet getoond (wel bewaard in het veld `locatie`), er is
-  geen locatielijst en geen referentielijst; wel een werkgebied met plaatsen.
-- Foto's en reels van feesten staan standaard op *verborgen*. Alleen eigen
-  setup-foto's en het portret zijn zichtbaar. Zet in beheer alleen foto's aan
-  waarvan zeker is dat ze niet bij een opdracht via het bureau zijn gemaakt.
-- Het formulier vraagt niet of iemand je kent "via een feest" of "via de locatie".
-
 ## Foto's uit het beheer
 
 Een geüploade foto wordt in de browser verkleind (max. 1600 px, JPEG) en als

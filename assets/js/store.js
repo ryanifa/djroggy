@@ -162,7 +162,6 @@ export function normalize(input) {
         locaties: int(kg.locaties, 0),
       },
       locaties: strList(info.locaties),
-      plaatsen: strList(info.plaatsen),
       media: { gistId: str(info.media?.gistId), owner: str(info.media?.owner) },
     },
     pakketten: arr(doc.pakketten).map((p) => ({

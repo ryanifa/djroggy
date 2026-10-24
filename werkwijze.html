@@ -12,7 +12,7 @@
   <meta property="og:locale" content="nl_NL">
   <meta property="og:title" content="Zo werkt het – van aanvraag tot laatste nummer">
   <meta property="og:description" content="Zo werkt het als je DJ Roggy boekt: aanvraag, persoonlijk gesprek, wensenlijst, het feest en nazorg. Reactie binnen 24 uur, duidelijke all-in prijs.">
-  <meta property="og:image" content="https://djroggy.nl/assets/logo/logo-stacked.png">
+  <meta property="og:image" content="https://djroggy.nl/assets/img/hi/djroggy-DFiEuoPCcn4-hi.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="assets/logo/favicon.ico" sizes="any">
   <link rel="icon" href="assets/logo/logo-mark.svg" type="image/svg+xml">
@@ -24,6 +24,7 @@
   <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="preload" as="image" href="assets/img/opt/DFiEuoPCcn4-1440.webp" imagesrcset="assets/img/opt/DFiEuoPCcn4-720.webp 720w, assets/img/opt/DFiEuoPCcn4-1440.webp 1440w" imagesizes="100vw" fetchpriority="high">
   <script type="module" src="assets/js/site.js"></script>
 </head>
 <body class="has-sticky" data-page="werkwijze">
@@ -63,8 +64,13 @@
   </header>
 
   <main id="inhoud">
-    <section class="hero hero-plain" aria-labelledby="hero-title">
-      <img class="hero-mark" src="assets/logo/logo-mark.svg" alt="" width="512" height="512" aria-hidden="true">
+    <section class="hero hero-page" aria-labelledby="hero-title">
+      <div class="hero-media">
+        <picture>
+          <source type="image/webp" srcset="assets/img/opt/DFiEuoPCcn4-720.webp 720w, assets/img/opt/DFiEuoPCcn4-1440.webp 1440w" sizes="100vw">
+          <img src="assets/img/hi/djroggy-DFiEuoPCcn4-hi.jpg" alt="DJ Roggy achter de controller met Laura" width="1440" height="754" fetchpriority="high" decoding="async" style="object-position:50% 50%">
+        </picture>
+      </div>
       <div class="wrap hero-inner">
         <div class="kicker">Zo werkt het</div>
         <h1 id="hero-title">Van aanvraag tot <em>laatste nummer</em></h1>
