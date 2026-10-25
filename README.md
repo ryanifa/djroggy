@@ -15,7 +15,7 @@ Specificatie: **`SPEC-dj-roggy-website.md`** (versie 1.1).
 
 | | |
 |---|---|
-| Hosting | GitHub Pages (deze repo, gewoon vanuit `main`) |
+| Hosting | GitHub Pages (deze repo, gewoon vanuit `main`), eigen domein **djroggy.nl** via `CNAME` |
 | Gegevens | `site.json` in een openbare Gist |
 | Lezen (bezoekers) | Zonder sleutel, rechtstreeks van de GitHub-API |
 | Schrijven (beheer) | Met een GitHub-sleutel die alleen Gists mag |
@@ -33,7 +33,16 @@ Bezoekers zien meteen inhoud (de HTML bevat de standaardinhoud, daarna de cache
 of `data/site.json`) en vervolgens, zodra de Gist binnen is, de actuele versie.
 Is GitHub even niet bereikbaar, dan blijft de site gewoon werken.
 
-## Eenmalig instellen
+## Live
+
+| | |
+|---|---|
+| Website | https://djroggy.nl/ |
+| Beheer | https://djroggy.nl/beheer.html |
+| Handleiding beheer | https://djroggy.nl/docs/handleiding.html (ook als [PDF](https://djroggy.nl/docs/handleiding.pdf)) |
+| Gegevens | Gist `a69b8260bfa32821d0057eb774d4c8c3` van `ryanifa` (staat in `assets/js/config.js`) |
+
+## Eenmalig instellen (gedaan voor djroggy.nl)
 
 1. **Maak een sleutel.** Ga naar
    [GitHub → fine-grained token](https://github.com/settings/personal-access-tokens/new)
