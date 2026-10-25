@@ -456,9 +456,11 @@ function renderOver(doc, meta) {
 
 /* -------------------------------------------------------------- contact */
 
+let contactDoc = null;
 function renderContact(doc) {
   const form = $('#aanvraag');
   if (!form) return;
+  contactDoc = doc;
   const datum = $('#f-datum');
   const hint = $('#f-datum-hint');
   datum.min = todayIso();
@@ -500,35 +502,78 @@ function setupContactForm() {
 
   const status = $('#f-status');
   const submit = $('#f-submit');
-  form.addEventListener('submit', async (ev) => {
-    ev.preventDefault();
+  const mailBtn = $('#f-mail-submit');
+  if (mailBtn) mailBtn.hidden = !configured;
+
+  /** Alle velden als leesbaar WhatsApp-bericht. */
+  const bericht = () => {
+    const v = (id) => ($(id)?.value || '').trim();
+    const opt = (label, val) => (val ? `${label}${val}` : null);
+    const regels = [
+      'Hoi Roggy, ik wil graag de beschikbaarheid checken.',
+      '',
+      `📅 Datum: ${v('#f-datum') ? formatDatum(v('#f-datum')) : '-'}`,
+      `🎉 Type feest: ${$('#f-type').selectedOptions[0]?.text || '-'}`,
+      `👤 Naam: ${v('#f-naam')}`,
+      opt('🏢 Bedrijf: ', v('#f-bedrijf')),
+      opt('📍 Locatie: ', v('#f-locatie')),
+      opt('👥 Gasten: ', v('#f-gasten')),
+      opt('⏰ Tijden: ', v('#f-tijden')),
+      opt('💶 Budget: ', v('#f-budget')),
+      opt('🧾 Factuuradres: ', v('#f-factuur')),
+      opt('📧 E-mail: ', v('#f-email')),
+      opt('📞 Telefoon: ', v('#f-tel')),
+      opt('📦 Pakket: ', v('#f-pakket')),
+      opt('🔎 Hoe ken ik je: ', v('#f-bron')),
+      opt('\n💬 ', v('#f-bericht')),
+    ];
+    return regels.filter((r) => r !== null).join('\n');
+  };
+
+  const valideer = () => {
     status.className = 'form-status';
     if (!form.checkValidity()) {
       form.reportValidity();
       status.classList.add('error');
       status.textContent = 'Vul de verplichte velden in.';
-      return;
+      return false;
     }
-    if (!configured) {
+    return true;
+  };
+
+  // Primair: via WhatsApp (het bericht opent in de app, de klant verstuurt hem daar).
+  form.addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    if (!valideer()) return;
+    const info = contactDoc?.info || {};
+    const nummer = info.whatsapp || info.phone;
+    if (!isRealPhone(nummer)) {
       status.classList.add('error');
-      status.textContent = 'Het formulier is nog niet gekoppeld (Formspree-id ontbreekt in config.js). Gebruik voorlopig WhatsApp of e-mail.';
+      status.textContent = 'Het WhatsApp-nummer is nog niet ingevuld (beheer → Info). Bel of mail voorlopig, of probeer het later nog eens.';
       return;
     }
-    submit.disabled = true;
+    status.classList.add('ok');
+    status.textContent = 'WhatsApp wordt geopend met je bericht. Druk daar op verzenden.';
+    try { sessionStorage.setItem('djr.aanvraag', '1'); } catch { /* privémodus */ }
+    location.href = whatsappLink(waNumber(nummer), bericht());
+  });
+
+  // Secundair: per e-mail via Formspree, alleen als het id is ingevuld.
+  if (mailBtn) mailBtn.addEventListener('click', async () => {
+    if (!valideer()) return;
+    submit.disabled = true; mailBtn.disabled = true;
     status.textContent = 'Versturen…';
     try {
       const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { accept: 'application/json' } });
       if (!res.ok) throw new Error(String(res.status));
       form.reset();
       syncType();
-      status.classList.add('ok');
-      status.textContent = 'Bedankt! Je aanvraag is verstuurd. Je hoort binnen 24 uur van me.';
       location.href = new URL('bedankt.html', location.href).href;
     } catch {
       status.classList.add('error');
-      status.textContent = 'Versturen lukte niet. Probeer het nog eens, of app of bel me.';
+      status.textContent = 'Versturen lukte niet. Probeer het via WhatsApp, of app of bel me.';
     } finally {
-      submit.disabled = false;
+      submit.disabled = false; mailBtn.disabled = false;
     }
   });
 }

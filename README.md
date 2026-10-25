@@ -21,7 +21,7 @@ Specificatie: **`SPEC-dj-roggy-website.md`** (versie 1.1).
 | Schrijven (beheer) | Met een GitHub-sleutel die alleen Gists mag |
 | Foto's uit beheer | in een tweede Gist (de media-Gist), die het beheer bij de eerste upload zelf aanmaakt |
 | Terugval | `data/site.json` in de repo, plus een cache in de browser |
-| Contactformulier | Formspree (id in `assets/js/config.js`) + WhatsApp- en belknop; na verzenden `bedankt.html` |
+| Contactformulier | opent als WhatsApp-bericht naar `info.whatsapp`; optioneel per e-mail via Formspree (id in `assets/js/config.js`), dan `bedankt.html` |
 | Spam en statistieken | Cloudflare Turnstile en GoatCounter, alleen actief als de sleutel/code in `config.js` staat |
 
 De GitHub-API staat zonder sleutel 60 verzoeken per uur per IP-adres toe. Is dat
