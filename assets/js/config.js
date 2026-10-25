@@ -11,6 +11,8 @@ export const CONFIG = {
   // Formspree-formulier-id voor contact.html (https://formspree.io → New form).
   // Placeholder: het formulier werkt pas als hier het echte id staat.
   formspreeId: 'FORMSPREE_ID',
-  // GoatCounter-code (cookieloos). Leeg = geen statistieken.
+  // GoatCounter-code (cookieloos, https://www.goatcounter.com). Leeg = geen statistieken.
   goatcounter: '',
+  // Cloudflare Turnstile site-key voor spambescherming op het formulier. Leeg = alleen de honeypot.
+  turnstileSiteKey: '',
 };

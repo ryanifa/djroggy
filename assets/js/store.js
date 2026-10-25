@@ -218,6 +218,7 @@ export function normalize(input) {
       pad: str(v?.pad),
       poster: str(v?.poster),
       bijschrift: str(v?.bijschrift),
+      hero: !!v?.hero,
       hidden: !!v?.hidden,
     })),
     reviews: arr(doc.reviews).map((r) => ({

@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /beheer.html
+Disallow: /bedankt.html
 
 Sitemap: https://djroggy.nl/sitemap.xml

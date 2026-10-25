@@ -762,11 +762,13 @@ function editVideo(v) {
       { key: 'pad', label: 'Bestand of URL', value: v?.pad, placeholder: 'assets/video/naam.mp4', help: 'Een MP4 in de repo (max ~3 MB) of een volledige URL.' },
       { key: 'poster', label: 'Poster (afbeelding)', value: v?.poster, placeholder: 'assets/img/instagram/djroggy-….jpg' },
       { key: 'bijschrift', label: 'Bijschrift', value: v?.bijschrift },
+      { key: 'hero', label: 'Gebruik als video-loop in de hero (homepage)', type: 'checkbox', value: v?.hero },
       { key: 'hidden', label: 'Verbergen op de website', type: 'checkbox', value: v?.hidden },
     ],
     submitText: v ? 'Opslaan' : 'Toevoegen',
     onSave: (vals) => {
       if (!vals.pad) return 'Vul het bestand of de URL in.';
+      if (vals.hero) for (const other of state.doc.videos) if (other !== v) other.hero = false;
       if (v) Object.assign(v, vals);
       else state.doc.videos.push({ id: uid('v'), ...vals });
       changed();

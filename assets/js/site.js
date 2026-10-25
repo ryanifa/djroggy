@@ -211,6 +211,15 @@ function renderHome(doc, meta) {
   if (info.kop) renderKop($('#hero-title'), info.kop);
   if (info.intro) $('#hero-intro').textContent = info.intro;
 
+  const heroVideo = doc.videos.find((v) => v.hero && !v.hidden && v.pad);
+  if (heroVideo && $('#hero-media') && !$('#hero-media video') && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const video = el('video', { autoplay: true, muted: true, loop: true, playsinline: true, preload: 'metadata', poster: heroVideo.poster || doc.hero || '', 'aria-hidden': 'true' },
+      el('source', { src: heroVideo.pad, type: heroVideo.pad.endsWith('.webm') ? 'video/webm' : 'video/mp4' }));
+    video.muted = true;
+    video.addEventListener('canplay', () => { $('#hero-media picture')?.remove(); }, { once: true });
+    video.addEventListener('error', () => video.remove(), { once: true });
+    $('#hero-media').append(video);
+  }
   const heroImg = $('#hero-media img');
   if (heroImg && doc.hero && !heroImg.getAttribute('src').endsWith(doc.hero)) {
     for (const source of $$('#hero-media source')) source.remove();
@@ -477,7 +486,11 @@ function setupContactForm() {
   if (params.get('pakket')) pakket.value = params.get('pakket');
 
   const bedrijf = $('#f-bedrijf-wrap');
-  const syncType = () => { bedrijf.hidden = type.value !== 'Bedrijfsfeest'; };
+  const zakelijk = $('#f-zakelijk');
+  const syncType = () => { const z = type.value === 'Bedrijfsfeest'; bedrijf.hidden = !z; if (zakelijk) zakelijk.hidden = !z; };
+  const next = $('#f-next');
+  if (next) next.value = new URL('bedankt.html', location.href).href;
+  setupTurnstile(form);
   type.addEventListener('change', syncType);
   syncType();
 
@@ -510,6 +523,7 @@ function setupContactForm() {
       syncType();
       status.classList.add('ok');
       status.textContent = 'Bedankt! Je aanvraag is verstuurd. Je hoort binnen 24 uur van me.';
+      location.href = new URL('bedankt.html', location.href).href;
     } catch {
       status.classList.add('error');
       status.textContent = 'Versturen lukte niet. Probeer het nog eens, of app of bel me.';
@@ -517,6 +531,24 @@ function setupContactForm() {
       submit.disabled = false;
     }
   });
+}
+
+/* ------------------------------------------- spam (Turnstile) en statistieken */
+
+/** Cloudflare Turnstile op het formulier, alleen als er een site-key in config.js staat. Anders alleen de honeypot. */
+function setupTurnstile(form) {
+  const key = CONFIG.turnstileSiteKey;
+  if (!key || /TURNSTILE/.test(key) || $('#cf-turnstile')) return;
+  const box = el('div', { id: 'cf-turnstile', class: 'cf-turnstile', dataset: { sitekey: key, theme: 'dark', language: 'nl' }, style: { margin: '0 0 18px' } });
+  $('#f-submit').before(box);
+  document.head.append(el('script', { src: 'https://challenges.cloudflare.com/turnstile/v0/api.js', async: true, defer: true }));
+}
+
+/** GoatCounter (cookieloos, geen banner nodig), alleen als er een code in config.js staat. */
+function setupAnalytics() {
+  const code = CONFIG.goatcounter;
+  if (!code || location.hostname === 'localhost') return;
+  document.head.append(el('script', { 'data-goatcounter': `https://${code}.goatcounter.com/count`, async: true, src: 'https://gc.zgo.at/count.js' }));
 }
 
 /* --------------------------------------------------------- versiecheck */
@@ -559,4 +591,5 @@ window.addEventListener('pageshow', (ev) => { if (ev.persisted) checkVersion(); 
 setupCarousel();
 setupContactForm();
 setupReadMore();
+setupAnalytics();
 loadForVisitors(render).catch((err) => console.warn('Data laden mislukt:', err));

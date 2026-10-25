@@ -21,7 +21,8 @@ Specificatie: **`SPEC-dj-roggy-website.md`** (versie 1.1).
 | Schrijven (beheer) | Met een GitHub-sleutel die alleen Gists mag |
 | Foto's uit beheer | in een tweede Gist (de media-Gist), die het beheer bij de eerste upload zelf aanmaakt |
 | Terugval | `data/site.json` in de repo, plus een cache in de browser |
-| Contactformulier | Formspree (id in `assets/js/config.js`) + WhatsApp- en belknop |
+| Contactformulier | Formspree (id in `assets/js/config.js`) + WhatsApp- en belknop; na verzenden `bedankt.html` |
+| Spam en statistieken | Cloudflare Turnstile en GoatCounter, alleen actief als de sleutel/code in `config.js` staat |
 
 De GitHub-API staat zonder sleutel 60 verzoeken per uur per IP-adres toe. Is dat
 op, dan valt de site terug op de CDN-kopie van de Gist
@@ -86,11 +87,11 @@ index.html              de homepage
 contact.html            aanvraag / beschikbaarheid (formulier, WhatsApp, bellen)
 bruiloft.html, verjaardag.html, bedrijfsfeest.html   landingspagina's per feesttype
 werkwijze.html, reviews.html, foto-video.html, prijzen.html, over.html
-privacy.html, voorwaarden.html, 404.html
+privacy.html, voorwaarden.html, bedankt.html, 404.html
 sitemap.xml, robots.txt
 beheer.html             het beheer (zes tabs, concept/publiceren, media-Gist, demo)
 data/site.json          standaarddata en terugval (alles wat in beheer te wijzigen is)
-assets/js/config.js     Gist-id, Gist-eigenaar, Formspree-id
+assets/js/config.js     Gist-id, Gist-eigenaar, Formspree-id, GoatCounter-code, Turnstile-sleutel
 assets/js/gist.js       de enige plek die met de GitHub-API praat
 assets/js/store.js      laden, cache, demo en het datamodel (normalize)
 assets/js/site.js       de website opbouwen
@@ -101,7 +102,8 @@ assets/css/             base.css (tokens, gedeeld), site.css, admin.css
 assets/logo/            logo, favicon en PWA-iconen
 assets/img/hi/          11 foto's op 1080–1440 px
 assets/img/instagram/   43 galerijfoto's op 640 px + captions.tsv
-assets/video/           zelf gehoste MP4's (niet in de Gist)
+assets/video/           zelf gehoste MP4's (niet in de Gist); met de vlag 'hero' in beheer wordt een video de hero-loop
+assets/img/og/          Open Graph-afbeelding (og-default.jpg, 1200×630)
 qr/                     QR-code naar de site
 docs/handleiding.html   handleiding beheer (ook als handleiding.pdf)
 reviews-dj-roggy.json   bron van de 77 reviews (eenmalig geïmporteerd)
