@@ -135,6 +135,7 @@ export function normalize(input) {
     info: {
       name: str(info.name, 'DJ Roggy') || 'DJ Roggy',
       tagline: str(info.tagline),
+      kop: str(info.kop),
       intro: str(info.intro),
       announcement: str(info.announcement),
       phone: str(info.phone),

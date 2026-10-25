@@ -987,7 +987,8 @@ function renderInfoTab(main) {
     el('section', { class: 'panel' }, [
       el('h3', { text: 'Algemeen' }),
       field('Naam', bound(info, 'name')),
-      field('Tagline', bound(info, 'tagline', { placeholder: 'De dansvloer vol. De hele avond.' })),
+      field('Kop op de homepage', bound(info, 'kop', { placeholder: 'DJ Roggy — *de dansvloer vol*, de hele avond' }), 'De grote titel bovenaan de homepage. Tekst tussen sterretjes (*zo*) wordt amber.'),
+      field('Tagline', bound(info, 'tagline', { placeholder: 'De dansvloer vol. De hele avond.' }), 'Staat in de footer van elke pagina.'),
       field('Intro (homepage)', bound(info, 'intro', { textarea: true })),
       field('Mededeling bovenaan', bound(info, 'announcement', { placeholder: 'bijv. December bijna vol: vraag snel aan' }), 'Leeg = geen mededeling. Handig voor tijdelijke berichten.'),
     ]),

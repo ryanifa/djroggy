@@ -200,8 +200,15 @@ function renderFaq(doc) {
 
 /* ----------------------------------------------------------------- home */
 
+/** Kop met *amber* delen: tekst tussen sterretjes wordt gekleurd. Alles via textContent. */
+function renderKop(node, text) {
+  const parts = text.split('*');
+  clear(node).append(...parts.map((part, i) => (i % 2 ? el('em', { text: part }) : part)));
+}
+
 function renderHome(doc, meta) {
   const info = doc.info;
+  if (info.kop) renderKop($('#hero-title'), info.kop);
   if (info.intro) $('#hero-intro').textContent = info.intro;
 
   const heroImg = $('#hero-media img');
