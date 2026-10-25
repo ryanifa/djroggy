@@ -147,6 +147,7 @@ export function normalize(input) {
       instagram: str(info.instagram),
       facebook: str(info.facebook),
       tiktok: str(info.tiktok),
+      linkedin: str(info.linkedin),
       regio: str(info.regio, 'Rotterdam & Zuid-Holland'),
       straalKm: int(info.straalKm, 40),
       verzekerd: !!info.verzekerd,

@@ -1004,6 +1004,7 @@ function renderInfoTab(main) {
       field('Postadres', bound(info, 'address', { textarea: true })),
       field('Instagram', bound(info, 'instagram', { placeholder: 'roggydouglas' })),
       field('Facebook', bound(info, 'facebook', { placeholder: 'roggy.douglas' })),
+      field('LinkedIn', bound(info, 'linkedin', { placeholder: 'https://www.linkedin.com/in/…' }), 'Volledige link naar je profiel. Leeg = niet tonen.'),
       field('TikTok', bound(info, 'tiktok'), 'Leeg = niet tonen.'),
     ]),
     el('section', { class: 'panel' }, [

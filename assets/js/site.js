@@ -110,10 +110,11 @@ function renderContactLinks(doc) {
 function renderSocial(doc) {
   const box = $('#footer-social');
   if (!box) return;
-  const { instagram, facebook, tiktok } = doc.info;
+  const { instagram, facebook, tiktok, linkedin } = doc.info;
   const links = [
     instagram && ['Instagram', `https://www.instagram.com/${encodeURIComponent(instagram.replace(/^@/, ''))}`],
     facebook && ['Facebook', `https://www.facebook.com/${encodeURIComponent(facebook)}`],
+    linkedin && ['LinkedIn', /^https?:\/\//.test(linkedin) ? linkedin : `https://www.linkedin.com/in/${encodeURIComponent(linkedin.replace(/^\/?in\//, ''))}/`],
     tiktok && ['TikTok', `https://www.tiktok.com/@${encodeURIComponent(tiktok.replace(/^@/, ''))}`],
   ].filter(Boolean);
   if (!links.length) return;

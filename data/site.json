@@ -15,6 +15,7 @@
   "instagram": "roggydouglas",
   "facebook": "roggy.douglas",
   "tiktok": "",
+  "linkedin": "https://www.linkedin.com/in/roggy-douglas-905a6321/",
   "regio": "Rotterdam & Zuid-Holland",
   "straalKm": 40,
   "verzekerd": false,
@@ -28,7 +29,8 @@
    "Sfeerverlichting (uplights) voor de zaal",
    "Verlichte DJ-booth",
    "DJ-controller met laptop/iPad en back-up",
-   "Draadloze microfoon voor speeches",
+   "Twee draadloze microfoons voor speeches en karaoke",
+   "Karaoke-set: tweede iPad met vrijwel alle nummers via YouTube, meezingen met tekst in beeld",
    "Beamer op verzoek, bijvoorbeeld voor foto's tijdens de openingsdans"
   ],
   "overTekst": "Ik ben Roggy Douglas, Rotterdammer en DJ in hart en nieren. In 1981 begon het op mijn slaapkamer: platen draaien voor vrienden tot diep in de nacht. Die passie heb ik nooit losgelaten.\n\nVijfentwintig jaar werkte ik in de herenmode bij de Bijenkorf. Daar leerde ik wat ik nu elke avond gebruik: mensen aanvoelen, luisteren en zorgen dat iedereen zich welkom voelt. Sinds 2021 draai ik professioneel en nu ga ik zelfstandig verder als DJ Roggy. Inmiddels staan er ruim 70 feesten op de teller: bruiloften, verjaardagen en jubilea, personeelsfeesten, Keti Koti bij de Bijenkorf, Sail 2025 en de reünie van Hotel New York.\n\nEen DJ zorgt niet alleen voor de muziek, maar ook voor een beleving: met DMX-lichteffecten, rookmachine en laser maak ik van jullie zaal een feest. Ik draai van house tot Nederlandstalig, van salsa tot 80's, voor gasten van 18 tot 80. En ik kom altijd vooraf even met jullie praten, zodat het echt jullie feest wordt.",
@@ -79,6 +81,11 @@
     "type": "Algemeen",
     "vraag": "Wat kost het en zijn er verborgen kosten?",
     "antwoord": "Alle pakketprijzen zijn all-in: opbouw, afbouw en btw zitten erbij. Reiskosten zijn gratis binnen 40 km van Rotterdam."
+   },
+   {
+    "type": "Algemeen",
+    "vraag": "Kun je ook karaoke doen?",
+    "antwoord": "Ja! Ik heb twee draadloze microfoons en een tweede iPad met vrijwel alle nummers via YouTube, met de tekst in beeld. Leuk als opwarmer of als onderdeel van het feest; we spreken vooraf af hoe lang."
    },
    {
     "type": "Algemeen",
@@ -250,6 +257,14 @@
    "prijs": 150,
    "eenheid": "",
    "tekst": "",
+   "hidden": false
+  },
+  {
+   "id": "karaoke",
+   "naam": "Karaoke (2 draadloze microfoons, meezingen via YouTube met tekst in beeld)",
+   "prijs": null,
+   "eenheid": "",
+   "tekst": "Op aanvraag",
    "hidden": false
   },
   {
