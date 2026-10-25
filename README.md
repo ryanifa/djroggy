@@ -66,8 +66,9 @@ met een gele balk erboven.
   mededeling, telefoon, WhatsApp, e-mail, KvK, btw,
   adres, socials, werkgebied, apparatuur, verzekering, FAQ, werkwijze,
   "Over Roggy", kengetallen.
-- **Instellingen** — Gist-gegevens, back-up downloaden/terugzetten, terug naar
-  standaarddata, beheerlink voor op de telefoon, handleiding.
+- **Instellingen** — Gist-gegevens, back-up downloaden/terugzetten, nieuwe
+  standaardteksten samenvoegen, terug naar standaarddata, beheerlink voor op de
+  telefoon, handleiding.
 
 Wijzigingen staan eerst als concept klaar (ook na herladen). Pas met
 **Publiceren** komen ze op de website. Heeft iemand anders intussen op een ander
@@ -146,6 +147,28 @@ uit en grep de DOM op elke reviewnaam, reviewtekst-fragment, bureau-foto en
 bureau-locatienaam; er mag niets gevonden worden. Zet daarna in demo-modus
 `bureauMateriaal` op `true` en controleer dat laag 2 op `reviews.html`
 verschijnt (77 reviews, histogram, filters, bronvermelding, JSON-LD).
+
+## Nieuwe standaardteksten na een update
+
+`data/site.json` is de standaarddata. Na een update van de site kunnen daar
+nieuwe teksten in staan (een FAQ-vraag, een optie, een apparatuurregel, een nieuw
+Info-veld). Die komen niet vanzelf in de live Gist. Twee knoppen in beheer →
+Instellingen:
+
+- **Nieuwe standaardteksten samenvoegen** — gebruik dit na een update. Voegt
+  alleen toe wat nog ontbreekt en vult lege Info-velden; wat Roggy zelf invulde of
+  verwijderde blijft zoals het is. Eerst een overzicht, dan Toepassen, dan
+  Publiceren. Bij het openen van beheer kijkt de app één keer per sessie of er
+  iets nieuws is en toont dan een gele balk.
+- **Standaardgegevens** — alleen om helemaal opnieuw te beginnen: vervangt álles,
+  dus ook tagline, kop, telefoonnummer, prijzen, eigen reviews, foto's en agenda.
+  Vraagt twee keer om bevestiging.
+
+Technisch: `mergeDefaults(doc, bundled)` in `store.js` (puur, met rapport).
+Lijstitems worden herkend aan hun `id`; lijsten zonder id (FAQ, werkwijze,
+apparatuur, zekerheden, locaties) krijgen in `normalize()` een stabiele id uit
+een slug van de tekst, zodat oude Gist-data blijft matchen. Verwijderde items
+staan in `doc.verwijderdeIds` en komen niet terug. Tests: `node tests/merge.test.js`.
 
 ## Versie en verversen
 

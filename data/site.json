@@ -23,121 +23,170 @@
   "bureauMateriaal": false,
   "googleReviewUrl": "",
   "apparatuur": [
-   "Professionele geluidsset (tops + sub), passend bij zalen tot ±150 gasten",
-   "DMX-lichtset met LED-bars en effecten",
-   "Laser en rookmachine",
-   "Sfeerverlichting (uplights) voor de zaal",
-   "Verlichte DJ-booth",
-   "DJ-controller met laptop/iPad en back-up",
-   "Twee draadloze microfoons voor speeches en karaoke",
-   "Karaoke-set: tweede iPad met vrijwel alle nummers via YouTube, meezingen met tekst in beeld",
-   "Beamer op verzoek, bijvoorbeeld voor foto's tijdens de openingsdans"
+   {
+    "id": "app-professionele-geluidsset-tops-sub-passend-bij-za",
+    "tekst": "Professionele geluidsset (tops + sub), passend bij zalen tot ±150 gasten"
+   },
+   {
+    "id": "app-dmx-lichtset-met-led-bars-en-effecten",
+    "tekst": "DMX-lichtset met LED-bars en effecten"
+   },
+   {
+    "id": "app-laser-en-rookmachine",
+    "tekst": "Laser en rookmachine"
+   },
+   {
+    "id": "app-sfeerverlichting-uplights-voor-de-zaal",
+    "tekst": "Sfeerverlichting (uplights) voor de zaal"
+   },
+   {
+    "id": "app-verlichte-dj-booth",
+    "tekst": "Verlichte DJ-booth"
+   },
+   {
+    "id": "app-dj-controller-met-laptop-ipad-en-back-up",
+    "tekst": "DJ-controller met laptop/iPad en back-up"
+   },
+   {
+    "id": "app-twee-draadloze-microfoons-voor-speeches-en-karao",
+    "tekst": "Twee draadloze microfoons voor speeches en karaoke"
+   },
+   {
+    "id": "app-karaoke-set-tweede-ipad-met-vrijwel-alle-nummers",
+    "tekst": "Karaoke-set: tweede iPad met vrijwel alle nummers via YouTube, meezingen met tekst in beeld"
+   },
+   {
+    "id": "app-beamer-op-verzoek-bijvoorbeeld-voor-foto-s-tijde",
+    "tekst": "Beamer op verzoek, bijvoorbeeld voor foto's tijdens de openingsdans"
+   }
   ],
   "overTekst": "Ik ben Roggy Douglas, Rotterdammer en DJ in hart en nieren. In 1981 begon het op mijn slaapkamer: platen draaien voor vrienden tot diep in de nacht. Die passie heb ik nooit losgelaten.\n\nVijfentwintig jaar werkte ik in de herenmode bij de Bijenkorf. Daar leerde ik wat ik nu elke avond gebruik: mensen aanvoelen, luisteren en zorgen dat iedereen zich welkom voelt. Sinds 2021 draai ik professioneel en nu ga ik zelfstandig verder als DJ Roggy. Inmiddels staan er ruim 70 feesten op de teller: bruiloften, verjaardagen en jubilea, personeelsfeesten, Keti Koti bij de Bijenkorf, Sail 2025 en de reünie van Hotel New York.\n\nEen DJ zorgt niet alleen voor de muziek, maar ook voor een beleving: met DMX-lichteffecten, rookmachine en laser maak ik van jullie zaal een feest. Ik draai van house tot Nederlandstalig, van salsa tot 80's, voor gasten van 18 tot 80. En ik kom altijd vooraf even met jullie praten, zodat het echt jullie feest wordt.",
   "werkwijze": [
    {
+    "id": "ww-aanvraag",
     "titel": "Aanvraag",
     "tekst": "Je stuurt datum, locatie en het type feest. Binnen 24 uur hoor je of ik vrij ben, met een duidelijke prijs."
    },
    {
+    "id": "ww-persoonlijk-gesprek",
     "titel": "Persoonlijk gesprek",
     "tekst": "Telefonisch of op locatie: jullie muziekwensen, do's & don'ts en het verloop van de avond."
    },
    {
+    "id": "ww-wensenlijst",
     "titel": "Wensenlijst",
     "tekst": "Via een eenvoudig formulier: openingsdans, must-plays, no-plays, verzoeknummers ja of nee en de afsluiter."
    },
    {
+    "id": "ww-het-feest",
     "titel": "Het feest",
     "tekst": "Ik ben ruim op tijd, bouw zelf op, lees de sfeer en check tussendoor of alles goed gaat. En ik dans gerust mee."
    },
    {
+    "id": "ww-nazorg",
     "titel": "Nazorg",
     "tekst": "Na het feest hoor ik graag hoe het was. Een Google-review of een paar foto's? Altijd welkom."
    }
   ],
   "faq": [
    {
+    "id": "faq-hoe-lang-draai-je",
     "type": "Algemeen",
     "vraag": "Hoe lang draai je?",
     "antwoord": "Standaard 4 tot 6 uur, afhankelijk van het pakket. Loopt het feest uit? Een extra uur kan altijd, dat spreken we vooraf of ter plekke af."
    },
    {
+    "id": "faq-neem-je-alles-mee",
     "type": "Algemeen",
     "vraag": "Neem je alles mee?",
     "antwoord": "Ja. Geluid, licht, laser, rookmachine, sfeerverlichting en een verlichte DJ-booth. Ik bouw zelf op en af; jullie hebben er geen omkijken naar."
    },
    {
+    "id": "faq-welke-muziek-draai-je",
     "type": "Algemeen",
     "vraag": "Welke muziek draai je?",
     "antwoord": "Alles wat de dansvloer vol houdt: house, pop, dancehall, Nederlandstalig, reggaeton, 70s/80s/90s, salsa. Voor gasten van 18 tot 80. Jullie wensenlijst is de basis."
    },
    {
+    "id": "faq-mogen-gasten-verzoeknummers-aanvragen",
     "type": "Algemeen",
     "vraag": "Mogen gasten verzoeknummers aanvragen?",
     "antwoord": "Graag zelfs. Ik draai ze vlot, en als jullie dat willen sla ik nummers af die de sfeer zouden breken."
    },
    {
+    "id": "faq-wat-kost-het-en-zijn-er-verborgen-kosten",
     "type": "Algemeen",
     "vraag": "Wat kost het en zijn er verborgen kosten?",
     "antwoord": "Alle pakketprijzen zijn all-in: opbouw, afbouw en btw zitten erbij. Reiskosten zijn gratis binnen 40 km van Rotterdam."
    },
    {
+    "id": "faq-kun-je-ook-karaoke-doen",
     "type": "Algemeen",
     "vraag": "Kun je ook karaoke doen?",
     "antwoord": "Ja! Ik heb twee draadloze microfoons en een tweede iPad met vrijwel alle nummers via YouTube, met de tekst in beeld. Leuk als opwarmer of als onderdeel van het feest; we spreken vooraf af hoe lang."
    },
    {
+    "id": "faq-kan-ik-annuleren",
     "type": "Algemeen",
     "vraag": "Kan ik annuleren?",
     "antwoord": "Gratis annuleren tot 30 dagen voor het feest. Daarna kijken we samen naar een oplossing, bijvoorbeeld een nieuwe datum."
    },
    {
+    "id": "faq-kom-je-vooraf-kijken-op-de-locatie",
     "type": "Bruiloft",
     "vraag": "Kom je vooraf kijken op de locatie?",
     "antwoord": "Bij het pakket Compleet standaard, bij de andere pakketten als optie. Zo weet ik precies hoe het zit met stroom, opbouw, licht en geluid."
    },
    {
+    "id": "faq-wat-als-het-feest-uitloopt",
     "type": "Bruiloft",
     "vraag": "Wat als het feest uitloopt?",
     "antwoord": "Geen probleem. Een extra uur draaien is een vaste optie, die we ter plekke kunnen afspreken als de locatie het toestaat."
    },
    {
+    "id": "faq-kun-je-ook-de-ceremonie-of-dinermuziek-doen",
     "type": "Bruiloft",
     "vraag": "Kun je ook de ceremonie- of dinermuziek doen?",
     "antwoord": "Ja. Met een aparte geluidsset verzorg ik achtergrondmuziek bij de ceremonie, de borrel of het diner, en daarna gaan we door met het feest."
    },
    {
+    "id": "faq-kunnen-onze-namen-in-de-lichtshow",
     "type": "Bruiloft",
     "vraag": "Kunnen onze namen in de lichtshow?",
     "antwoord": "Ja, met de naam- of logoprojectie zet ik jullie namen of trouwdatum op de dansvloer of de muur."
    },
    {
+    "id": "faq-is-een-kinderdisco-mogelijk",
     "type": "Bruiloft",
     "vraag": "Is een kinderdisco mogelijk?",
     "antwoord": "Zeker. Een uurtje kinderdisco aan het begin van het feest is een optie die goed werkt, voor de kids én de ouders."
    },
    {
+    "id": "faq-kun-je-ook-thuis-of-in-de-tuin-draaien",
     "type": "Verjaardag",
     "vraag": "Kun je ook thuis of in de tuin draaien?",
     "antwoord": "Ja, dat doe ik regelmatig. Een normaal stopcontact is genoeg; ik hou rekening met de buren en het geluidsniveau."
    },
    {
+    "id": "faq-draai-je-ook-voor-een-gemengd-publiek-van-jong-t",
     "type": "Verjaardag",
     "vraag": "Draai je ook voor een gemengd publiek van jong tot oud?",
     "antwoord": "Dat is mijn specialiteit: van 18 tot 80. Ik wissel genres af zodat iedereen een moment op de dansvloer heeft."
    },
    {
+    "id": "faq-krijgen-we-een-factuur-en-ben-je-ingeschreven-bi",
     "type": "Zakelijk",
     "vraag": "Krijgen we een factuur en ben je ingeschreven bij de KvK?",
     "antwoord": "Ja. Je krijgt een nette factuur met btw en KvK-nummer, en één vast aanspreekpunt: ik."
    },
    {
+    "id": "faq-kun-je-ons-logo-of-een-tekst-projecteren",
     "type": "Zakelijk",
     "vraag": "Kun je ons logo of een tekst projecteren?",
     "antwoord": "Ja, met de naam- en logoprojectie uit het pakket Compleet of als optie bij Zakelijk."
    },
    {
+    "id": "faq-hoe-snel-kun-je-reageren-op-een-aanvraag-op-kort",
     "type": "Zakelijk",
     "vraag": "Hoe snel kun je reageren op een aanvraag op korte termijn?",
     "antwoord": "Binnen 24 uur, vaak sneller. Bel of app voor een snelle check van de datum."
@@ -285,248 +334,305 @@
   }
  ],
  "zekerheden": [
-  "Geen verrassingen: all-in prijs inclusief opbouw, afbouw en btw",
-  "Gratis annuleren tot 30 dagen voor het feest",
-  "Niet tevreden? We bellen het binnen 48 uur uit en zoeken een oplossing"
+  {
+   "id": "zek-geen-verrassingen-all-in-prijs-inclusief-opbouw",
+   "tekst": "Geen verrassingen: all-in prijs inclusief opbouw, afbouw en btw"
+  },
+  {
+   "id": "zek-gratis-annuleren-tot-30-dagen-voor-het-feest",
+   "tekst": "Gratis annuleren tot 30 dagen voor het feest"
+  },
+  {
+   "id": "zek-niet-tevreden-we-bellen-het-binnen-48-uur-uit-en",
+   "tekst": "Niet tevreden? We bellen het binnen 48 uur uit en zoeken een oplossing"
+  }
  ],
  "agenda": [],
  "locaties": [
   {
+   "id": "loc-de-bijenkorf-rotterdam",
    "naam": "de Bijenkorf",
    "plaats": "Rotterdam",
    "herkomst": "eigen"
   },
   {
+   "id": "loc-sail-2025-amsterdam",
    "naam": "Sail 2025",
    "plaats": "Amsterdam",
    "herkomst": "eigen"
   },
   {
+   "id": "loc-sporting-club-de-uitweg",
    "naam": "Sporting Club de Uitweg",
    "plaats": "",
    "herkomst": "eigen"
   },
   {
+   "id": "loc-lommerrijk-rotterdam",
    "naam": "Lommerrijk",
    "plaats": "Rotterdam",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-het-wapen-van-zoetermeer-zoetermeer",
    "naam": "Het Wapen van Zoetermeer",
    "plaats": "Zoetermeer",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-de-tuin-van-de-vier-windstreken-rotterdam",
    "naam": "De Tuin van de Vier Windstreken",
    "plaats": "Rotterdam",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-familierestaurant-bergsche-plas-bergschenhoek",
    "naam": "Familierestaurant Bergsche Plas",
    "plaats": "Bergschenhoek",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-landgoed-te-werve-rijswijk",
    "naam": "Landgoed te Werve",
    "plaats": "Rijswijk",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-veur-theater-leidschendam",
    "naam": "Veur theater",
    "plaats": "Leidschendam",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-eten-bij-loo-rotterdam",
    "naam": "Eten bij LOO",
    "plaats": "Rotterdam",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-non-burgersdijk-de-lier",
    "naam": "NON Burgersdijk",
    "plaats": "De Lier",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-het-spaansche-hof-den-haag",
    "naam": "Het Spaansche Hof",
    "plaats": "Den Haag",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-de-vreemde-vogel-vlaardingen",
    "naam": "De Vreemde Vogel",
    "plaats": "Vlaardingen",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-inntel-hotels-rotterdam-centre-rotterdam",
    "naam": "Inntel Hotels Rotterdam Centre",
    "plaats": "Rotterdam",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-hotel-van-der-valk-leiden-leiden",
    "naam": "Hotel Van der Valk - Leiden",
    "plaats": "Leiden",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-het-rieten-dak-delft",
    "naam": "Het Rieten Dak",
    "plaats": "Delft",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-zaalig-eten-drinken-zaalig-zaaltje-schiedam",
    "naam": "Záálig Eten & Drinken | Záálig Zaaltje",
    "plaats": "Schiedam",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-stadsbrouwerij-de-pelgrim-rotterdam",
    "naam": "Stadsbrouwerij De Pelgrim",
    "plaats": "Rotterdam",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-wantijpaviljoen-dordrecht",
    "naam": "Wantijpaviljoen",
    "plaats": "Dordrecht",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-t-manneke-berkel-en-rodenrijs",
    "naam": "'t Manneke",
    "plaats": "Berkel en Rodenrijs",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-mooie-boules-rotterdam-rotterdam",
    "naam": "Mooie Boules Rotterdam",
    "plaats": "Rotterdam",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-het-koetshuis-rotterdam",
    "naam": "Het Koetshuis",
    "plaats": "Rotterdam",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-flow-food-adventure-zevenhuizen",
    "naam": "Flow food & adventure",
    "plaats": "Zevenhuizen",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-natuurtalent-rotterdam",
    "naam": "Natuurtalent",
    "plaats": "Rotterdam",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-koks-gemert",
    "naam": "KOKS",
    "plaats": "Gemert",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-cuzina-rotterdam",
    "naam": "Cuzina",
    "plaats": "Rotterdam",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-de-machinist-rotterdam",
    "naam": "De Machinist",
    "plaats": "Rotterdam",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-world-trade-centrum-rotterdam-rotterdam",
    "naam": "World Trade Centrum Rotterdam",
    "plaats": "Rotterdam",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-brasserie-oostgaag-maasland",
    "naam": "Brasserie Oostgaag",
    "plaats": "Maasland",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-lu-gia-jen-den-haag",
    "naam": "Lu Gia Jen",
    "plaats": "Den Haag",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-brasserie-de-bosrand-s-gravenzande-s-gravenzande",
    "naam": "Brasserie De Bosrand - 's-Gravenzande",
    "plaats": "s-Gravenzande",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-belgisch-biercafe-olivier-utrecht-utrecht",
    "naam": "Belgisch Biercafé Olivier Utrecht",
    "plaats": "Utrecht",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-restaurant-paviljoen-de-duinrand-oostvoorne",
    "naam": "Restaurant Paviljoen De Duinrand",
    "plaats": "Oostvoorne",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-landgoed-heerlijkheid-marienwaerdt-beesd",
    "naam": "Landgoed Heerlijkheid Mariënwaerdt",
    "plaats": "Beesd",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-het-wapen-van-vidaa-bergschenhoek",
    "naam": "Het Wapen van Vidaa",
    "plaats": "Bergschenhoek",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-de-meerhoeve-oud-ade",
    "naam": "De Meerhoeve",
    "plaats": "Oud Ade",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-badhotel-rockanje-brasserie-lodgers-rockanje",
    "naam": "Badhotel Rockanje & Brasserie Lodgers",
    "plaats": "Rockanje",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-partycentrum-hipper-kolfbaan-gorinchem",
    "naam": "Partycentrum Hipper & Kolfbaan",
    "plaats": "Gorinchem",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-fletcher-landgoed-hotel-renesse-renesse",
    "naam": "Fletcher Landgoed Hotel Renesse",
    "plaats": "Renesse",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-hotel-van-der-valk-ara-zwijndrecht-zwijndrecht",
    "naam": "Hotel Van der Valk - Ara - Zwijndrecht",
    "plaats": "Zwijndrecht",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-paviljoen-loef-haarlem",
    "naam": "Paviljoen Loef",
    "plaats": "Haarlem",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-boerhaave-museum-leiden",
    "naam": "Boerhaave museum",
    "plaats": "Leiden",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-moments-beach-ter-heijde",
    "naam": "Moments Beach",
    "plaats": "Ter Heijde",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-zaal-beatrix-schiedam",
    "naam": "Zaal Beatrix",
    "plaats": "Schiedam",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-boomerang-beach-scheveningen",
    "naam": "Boomerang Beach",
    "plaats": "Scheveningen",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-boerke-verschuren-breda",
    "naam": "Boerke Verschuren",
    "plaats": "Breda",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-eetcafe-t-keerpunt-rotterdam-rotterdam",
    "naam": "Eetcafe 't Keerpunt - Rotterdam",
    "plaats": "Rotterdam",
    "herkomst": "bureau"
   },
   {
+   "id": "loc-puurr-aan-de-vliet-leidschendam",
    "naam": "Puurr aan de Vliet",
    "plaats": "Leidschendam",
    "herkomst": "bureau"
@@ -2252,5 +2358,6 @@
    "hidden": false,
    "herkomst": "bureau"
   }
- ]
+ ],
+ "verwijderdeIds": []
 }

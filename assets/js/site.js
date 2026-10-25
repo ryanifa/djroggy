@@ -259,7 +259,7 @@ function renderHome(doc, meta) {
   }
   const vanaf = vanafPrijs(doc);
   if (vanaf !== null) $('#vanaf').textContent = euro(vanaf);
-  if (doc.zekerheden.length) clear($('#zekerheden')).append(...doc.zekerheden.map((z) => el('li', { text: z })));
+  if (doc.zekerheden.length) clear($('#zekerheden')).append(...doc.zekerheden.map((z) => el('li', { text: z.tekst })));
 }
 
 function setupCarousel() {
@@ -438,7 +438,7 @@ function renderPrijzen(doc) {
       el('td', { text: o.prijs === null ? o.tekst : `${euro(o.prijs)}${o.eenheid ? ` ${o.eenheid}` : ''}` }),
     ])));
   }
-  if (doc.zekerheden.length) clear($('#zekerheden')).append(...doc.zekerheden.map((z) => el('li', { text: z })));
+  if (doc.zekerheden.length) clear($('#zekerheden')).append(...doc.zekerheden.map((z) => el('li', { text: z.tekst })));
 }
 
 /* ------------------------------------------------------------------ over */
@@ -446,7 +446,7 @@ function renderPrijzen(doc) {
 function renderOver(doc, meta) {
   const info = doc.info;
   if (info.overTekst) clear($('#over-tekst')).append(...info.overTekst.split(/\n\s*\n/).map((p) => el('p', { text: p.trim() })));
-  if (info.apparatuur.length) clear($('#apparatuur')).append(...info.apparatuur.map((a) => el('li', { text: a })));
+  if (info.apparatuur.length) clear($('#apparatuur')).append(...info.apparatuur.map((a) => el('li', { text: a.tekst })));
   const img = $('#portret');
   if (img && doc.portret && !img.getAttribute('src').endsWith(doc.portret)) {
     for (const s of $$('.about-photo source')) s.remove();

@@ -11,6 +11,7 @@ import { compressImage, mediaFile, mediaUrl, rememberMedia, setDemoMedia, clearD
 import {
   normalize, bundledDoc, activeGistId, setLocalGistId, demoDoc, setDemoDoc, cacheDoc, storageGet, storageSet,
   todayIso, filter, verborgenBureau, reviewStats, formatCijfer, formatDatum, REVIEW_TYPES, MEDIA_CATEGORIES, FAQ_TYPES, BUREAU_BRON,
+  mergeDefaults,
 } from './store.js';
 
 const SESSION_KEY = 'djr.admin';
@@ -27,6 +28,7 @@ const state = {
   saving: false,
   reviewFilter: { type: '', herkomst: '' },
   mediaFilter: '',
+  mergeHint: null,     // rapport van de droge merge-run bij het openen (één keer per sessie)
 };
 
 const app = () => $('#app');
@@ -73,6 +75,13 @@ function toggle(label, checked, onchange, extra = '') {
     el('span', { class: 'switch-track', 'aria-hidden': 'true' }),
     el('span', { class: 'switch-label', text: label }),
   ]);
+}
+
+/** Een item dat de beheerder bewust verwijdert, komt bij "Samenvoegen" niet terug. */
+function registreerVerwijderd(item) {
+  if (!item?.id) return;
+  const list = state.doc.verwijderdeIds;
+  if (!list.includes(String(item.id))) list.push(String(item.id));
 }
 
 const badge = (text, cls = '') => el('span', { class: `badge ${cls}`, text });
@@ -324,6 +333,20 @@ function loadDoc(doc, updatedAt) {
     }
   }
   renderShell();
+  checkMergeHint();
+}
+
+/** Eén keer per sessie droog samenvoegen: is er iets nieuws, dan een gele balk bovenaan. */
+async function checkMergeHint() {
+  let seen = false;
+  try { seen = sessionStorage.getItem('djr.mergehint') === '1'; } catch { /* privémodus */ }
+  if (seen || state.mergeHint !== null) return;
+  try {
+    const { rapport } = mergeDefaults(state.doc, await bundledDoc());
+    state.mergeHint = rapport.toegevoegd.length + rapport.ingevuld.length ? rapport : false;
+  } catch { state.mergeHint = false; }
+  try { sessionStorage.setItem('djr.mergehint', '1'); } catch { /* privémodus */ }
+  if (state.mergeHint) renderShell();
 }
 
 /* ================================================================= setup */
@@ -388,6 +411,8 @@ function renderShell() {
   const demo = !!state.session.demo;
   clear(app()).append(...[
     demo ? el('div', { class: 'demo-strip', text: '🧪 Demo — wijzigingen blijven in deze browser' }) : null,
+    state.mergeHint ? el('button', { type: 'button', class: 'merge-strip', onclick: () => { state.tab = 'settings'; renderShell(); window.scrollTo(0, 0); } },
+      `✨ Er zijn nieuwe standaardteksten beschikbaar (${state.mergeHint.toegevoegd.length + state.mergeHint.ingevuld.length}) — bekijk ze bij Instellingen`) : null,
     el('header', { class: 'admin-top' }, [
       el('a', { class: 'admin-brand', href: './', title: 'Naar de website' }, [
         el('img', { src: 'assets/logo/logo-mark.svg', alt: '', width: 32, height: 32 }),
@@ -585,6 +610,7 @@ function editReview(r) {
     onDelete: r ? async () => {
       if (!(await confirmBox(`Review van ${r.naam} verwijderen?`, { okText: 'Verwijderen', danger: true }))) return;
       state.doc.reviews.splice(state.doc.reviews.indexOf(r), 1);
+      registreerVerwijderd(r);
       changed();
       toast('Review verwijderd');
     } : null,
@@ -727,6 +753,7 @@ function editMedia(m) {
       if (isHero(m)) state.doc.hero = '';
       if (isPortret(m)) state.doc.portret = '';
       state.doc.media.splice(state.doc.media.indexOf(m), 1);
+      registreerVerwijderd(m);
       if (state.session.demo && m.bron === 'gist') setDemoMedia(m.id, null);
       changed();
       toast('Foto verwijderd');
@@ -815,7 +842,7 @@ function renderPakkettenTab(main) {
   ]))));
   main.append(el('button', { type: 'button', class: 'add-row', text: '+ Optie toevoegen', onclick: () => editOptie(null) }));
 
-  main.append(linesPanel('Zekerheden', 'Eén zekerheid per regel. Staan onder de prijzen op de homepage en de prijzenpagina.', doc, 'zekerheden'));
+  main.append(linesPanel('Zekerheden', 'Staan onder de prijzen op de homepage en de prijzenpagina.', doc.zekerheden, 'zek'));
 }
 
 function editPakket(p) {
@@ -838,7 +865,7 @@ function editPakket(p) {
       else state.doc.pakketten.push({ id: uid('pak'), ...vals });
       changed();
     },
-    onDelete: p ? () => { state.doc.pakketten.splice(state.doc.pakketten.indexOf(p), 1); changed(); } : null,
+    onDelete: p ? () => { state.doc.pakketten.splice(state.doc.pakketten.indexOf(p), 1); registreerVerwijderd(p); changed(); } : null,
   });
 }
 
@@ -860,14 +887,27 @@ function editOptie(o) {
       else state.doc.opties.push({ id: uid('opt'), ...v });
       changed();
     },
-    onDelete: o ? () => { state.doc.opties.splice(state.doc.opties.indexOf(o), 1); changed(); } : null,
+    onDelete: o ? () => { state.doc.opties.splice(state.doc.opties.indexOf(o), 1); registreerVerwijderd(o); changed(); } : null,
   });
 }
 
-/** Paneel met een tekstvak waarin elke regel één item van een lijst is. */
-function linesPanel(title, help, obj, key) {
-  const ta = el('textarea', { rows: 4, value: obj[key].join('\n'), oninput: (e) => { obj[key] = e.target.value.split('\n').map((s) => s.trim()).filter(Boolean); changed({ rerender: false }); } });
-  return el('section', { class: 'panel' }, [el('h3', { text: title }), field('', ta, help)]);
+/** Paneel met tekstregels die elk een id hebben ({id, tekst}), zodat "Samenvoegen" ze herkent. */
+function linesPanel(title, help, list, prefix) {
+  const wrap = el('div', { class: 'pairs' });
+  const draw = () => {
+    clear(wrap);
+    list.forEach((row, i) => wrap.append(el('div', { class: 'pair stacked', style: { gridTemplateColumns: '1fr auto auto' } }, [
+      bound(row, 'tekst', { placeholder: 'Tekst' }),
+      iconBtn('Omhoog', '↑', () => { move(list, i, -1); changed({ rerender: false }); draw(); }, i === 0 ? 'off' : ''),
+      iconBtn('Verwijderen', '✕', () => { registreerVerwijderd(row); list.splice(i, 1); changed({ rerender: false }); draw(); }),
+    ])));
+    wrap.append(el('button', {
+      type: 'button', class: 'add-row small', text: '+ Regel toevoegen',
+      onclick: () => { list.push({ id: uid(prefix), tekst: '' }); changed({ rerender: false }); draw(); wrap.querySelector('.pair:last-of-type input')?.focus(); },
+    }));
+  };
+  draw();
+  return el('section', { class: 'panel' }, [el('h3', { text: title }), help ? el('p', { class: 'muted small', text: help }) : null, wrap]);
 }
 
 /* ============================================================ agenda tab */
@@ -932,13 +972,13 @@ function faqPanel(list) {
         el('select', { value: row.type, onchange: (e) => { row.type = e.target.value; changed({ rerender: false }); } }, FAQ_TYPES.map((t) => el('option', { value: t, text: t }))),
         bound(row, 'vraag', { placeholder: 'Vraag' }),
         iconBtn('Omhoog', '↑', () => { move(list, i, -1); changed({ rerender: false }); draw(); }, i === 0 ? 'off' : ''),
-        iconBtn('Verwijderen', '✕', () => { list.splice(i, 1); changed({ rerender: false }); draw(); }),
+        iconBtn('Verwijderen', '✕', () => { registreerVerwijderd(row); list.splice(i, 1); changed({ rerender: false }); draw(); }),
       ]),
       bound(row, 'antwoord', { textarea: true, placeholder: 'Antwoord' }),
     ])));
     wrap.append(el('button', {
       type: 'button', class: 'add-row small', text: '+ Vraag toevoegen',
-      onclick: () => { list.push({ type: 'Algemeen', vraag: '', antwoord: '' }); changed({ rerender: false }); draw(); wrap.querySelector('.pair:last-of-type input')?.focus(); },
+      onclick: () => { list.push({ id: uid('faq'), type: 'Algemeen', vraag: '', antwoord: '' }); changed({ rerender: false }); draw(); wrap.querySelector('.pair:last-of-type input')?.focus(); },
     }));
   };
   draw();
@@ -952,12 +992,12 @@ function werkwijzePanel(list) {
     list.forEach((row, i) => wrap.append(el('div', { class: 'pair stacked' }, [
       bound(row, 'titel', { placeholder: 'Stap, bijv. Aanvraag' }),
       iconBtn('Omhoog', '↑', () => { move(list, i, -1); changed({ rerender: false }); draw(); }, i === 0 ? 'off' : ''),
-      iconBtn('Verwijderen', '✕', () => { list.splice(i, 1); changed({ rerender: false }); draw(); }),
+      iconBtn('Verwijderen', '✕', () => { registreerVerwijderd(row); list.splice(i, 1); changed({ rerender: false }); draw(); }),
       bound(row, 'tekst', { textarea: true, placeholder: 'Wat gebeurt er in deze stap?' }),
     ])));
     wrap.append(el('button', {
       type: 'button', class: 'add-row small', text: '+ Stap toevoegen',
-      onclick: () => { list.push({ titel: '', tekst: '' }); changed({ rerender: false }); draw(); wrap.querySelector('.pair:last-of-type input')?.focus(); },
+      onclick: () => { list.push({ id: uid('ww'), titel: '', tekst: '' }); changed({ rerender: false }); draw(); wrap.querySelector('.pair:last-of-type input')?.focus(); },
     }));
   };
   draw();
@@ -1013,11 +1053,11 @@ function renderInfoTab(main) {
       field('Gratis reizen binnen (km)', bound(info, 'straalKm', { type: 'number' })),
     ]),
     el('section', { class: 'panel' }, [
-      el('h3', { text: 'Apparatuur & verzekering' }),
-      field('Apparatuur (één regel per onderdeel)', el('textarea', { rows: 6, value: info.apparatuur.join('\n'), oninput: (e) => { info.apparatuur = e.target.value.split('\n').map((s) => s.trim()).filter(Boolean); changed({ rerender: false }); } })),
+      el('h3', { text: 'Verzekering' }),
       toggle('Aansprakelijkheidsverzekering afgesloten', info.verzekerd, (v) => { info.verzekerd = v; changed({ rerender: false }); }),
       field('Tekst over de verzekering', bound(info, 'verzekerdTekst', { textarea: true }), 'Staat op de bedrijfsfeestpagina.'),
     ]),
+    linesPanel('Apparatuur', 'De lijst op "Over Roggy".', info.apparatuur, 'app'),
     el('section', { class: 'panel' }, [
       el('h3', { text: 'Over Roggy' }),
       field('Tekst (lege regel = nieuwe alinea)', bound(info, 'overTekst', { textarea: true, tall: true })),
@@ -1048,11 +1088,11 @@ function locatiesPanel() {
       el('select', { value: row.herkomst, onchange: (e) => { row.herkomst = e.target.value; changed({ rerender: false }); } }, HERKOMST_OPTIONS.map((o) => el('option', { value: o.value, text: o.value === 'bureau' ? 'Bureau' : 'Eigen' }))),
       el('div', { class: 'pair', style: { padding: 0, border: 0, gridTemplateColumns: '1fr 1fr' } }, [bound(row, 'naam', { placeholder: 'Locatie' }), bound(row, 'plaats', { placeholder: 'Plaats' })]),
       iconBtn('Omhoog', '↑', () => { move(list, i, -1); changed({ rerender: false }); draw(); }, i === 0 ? 'off' : ''),
-      iconBtn('Verwijderen', '✕', () => { list.splice(i, 1); changed({ rerender: false }); draw(); }),
+      iconBtn('Verwijderen', '✕', () => { registreerVerwijderd(row); list.splice(i, 1); changed({ rerender: false }); draw(); }),
     ])));
     wrap.append(el('button', {
       type: 'button', class: 'add-row small', text: '+ Locatie toevoegen',
-      onclick: () => { list.push({ naam: '', plaats: '', herkomst: 'eigen' }); changed({ rerender: false }); draw(); wrap.querySelector('.pair:last-of-type input')?.focus(); },
+      onclick: () => { list.push({ id: uid('loc'), naam: '', plaats: '', herkomst: 'eigen' }); changed({ rerender: false }); draw(); wrap.querySelector('.pair:last-of-type input')?.focus(); },
     }));
   };
   draw();
@@ -1124,12 +1164,21 @@ function renderSettingsTab(main) {
       el('button', {
         type: 'button', class: 'btn btn-ghost btn-sm', text: '↺ Standaardgegevens',
         onclick: async () => {
-          if (!(await confirmBox('Alle gegevens vervangen door de standaardgegevens uit de website-code (data/site.json)?', { okText: 'Vervangen', danger: true }))) return;
+          if (!(await confirmBox('Alle gegevens vervangen door de standaardgegevens uit de website-code (data/site.json)?\n\nLet op: je eigen invullingen gaan verloren: tagline, kop, telefoonnummer, prijzen, eigen reviews, foto\'s, agenda en instellingen. Wil je alleen nieuwe teksten erbij, gebruik dan "Nieuwe standaardteksten samenvoegen".', { okText: 'Ja, alles vervangen', danger: true }))) return;
+          if (!(await confirmBox('Zeker weten? Dit is niet ongedaan te maken na publiceren. Download eerst een back-up als je twijfelt.', { okText: 'Vervangen', danger: true }))) return;
           state.doc = await bundledDoc();
           changed();
           renderShell();
         },
       }),
+    ]),
+  ]));
+
+  main.append(el('section', { class: `panel${state.mergeHint ? ' attention' : ''}` }, [
+    el('h3', { text: '✨ Nieuwe standaardteksten' }),
+    el('p', { class: 'muted', text: 'Na een update van de website kunnen er nieuwe teksten in de code staan (bijvoorbeeld een FAQ-vraag of een optie). Samenvoegen voegt alleen toe wat jij nog niet hebt en vult lege velden; wat je zelf invulde of verwijderde blijft zoals het is. Daarna gewoon publiceren.' }),
+    el('div', { class: 'btn-row' }, [
+      el('button', { type: 'button', class: 'btn btn-amber btn-sm', id: 'merge-btn', text: '✨ Nieuwe standaardteksten samenvoegen', onclick: samenvoegen }),
     ]),
   ]));
 
@@ -1141,6 +1190,51 @@ function renderSettingsTab(main) {
       onclick: logout,
     }),
   ]));
+}
+
+const LIJST_LABEL = { pakketten: 'pakket', opties: 'optie', zekerheden: 'zekerheid', faq: 'FAQ', werkwijze: 'werkwijze-stap', apparatuur: 'apparatuur', media: 'foto', locaties: 'locatie', reviews: 'review' };
+const VELD_LABEL = { kop: 'kop op de homepage', tagline: 'tagline', intro: 'intro', linkedin: 'LinkedIn', instagram: 'Instagram', facebook: 'Facebook', tiktok: 'TikTok', googleReviewUrl: 'Google-reviewlink', verzekerdTekst: 'verzekeringstekst', overTekst: 'Over-tekst', regio: 'regio' };
+
+async function samenvoegen() {
+  let bundled;
+  try { bundled = await bundledDoc(); } catch (err) { return toast(`Standaardgegevens niet te laden: ${errorText(err)}`, 'error', 6000); }
+  const { doc, rapport } = mergeDefaults(state.doc, bundled);
+  if (!rapport.toegevoegd.length && !rapport.ingevuld.length) return toast('Alles is al up-to-date.', 'ok', 4000);
+  const ok = await rapportBox(rapport);
+  if (!ok) return;
+  state.doc = doc;
+  state.mergeHint = false;
+  changed();
+  renderShell();
+  toast(`${rapport.toegevoegd.length} toegevoegd, ${rapport.ingevuld.length} ingevuld. Controleer en publiceer.`, 'ok', 6000);
+}
+
+/** Toont wat Samenvoegen gaat doen; Toepassen of Annuleren. */
+function rapportBox(rapport) {
+  return new Promise((resolve) => {
+    const dialog = $('#modal');
+    const form = clear($('#modal-form'));
+    const finish = (answer) => { dialog.removeEventListener('cancel', onCancel); dialog.close(); resolve(answer); };
+    const onCancel = () => finish(false);
+    const lijst = (titel, items) => (items.length ? [el('h3', { text: titel, style: { fontSize: '15px', marginTop: '8px' } }), el('ul', { class: 'rapport' }, items.map((t) => el('li', { text: t })))] : []);
+    form.append(
+      el('header', { class: 'modal-head' }, [el('h2', { text: 'Nieuwe standaardteksten' }), el('button', { type: 'button', class: 'icon-btn', 'aria-label': 'Sluiten', text: '✕', onclick: () => finish(false) })]),
+      el('div', { class: 'modal-body', id: 'merge-rapport' }, [
+        el('p', { class: 'muted', text: 'Dit wordt toegevoegd; je eigen teksten blijven ongewijzigd.' }),
+        ...lijst(`${rapport.toegevoegd.length} toe te voegen`, rapport.toegevoegd.map((t) => `${LIJST_LABEL[t.lijst] || t.lijst}: ${t.label}`)),
+        ...lijst(`${rapport.ingevuld.length} leeg veld in te vullen`, rapport.ingevuld.map((v) => VELD_LABEL[v] || v)),
+        rapport.overgeslagen.length ? el('p', { class: 'muted small', text: `${rapport.overgeslagen.length} eerder door jou verwijderd en daarom overgeslagen.` }) : null,
+      ]),
+      el('footer', { class: 'modal-foot' }, [
+        el('span', { class: 'spacer' }),
+        el('button', { type: 'button', class: 'btn btn-ghost btn-sm', text: 'Annuleren', onclick: () => finish(false) }),
+        el('button', { type: 'button', class: 'btn btn-amber btn-sm', text: 'Toepassen', onclick: () => finish(true) }),
+      ]),
+    );
+    form.onsubmit = (e) => e.preventDefault();
+    dialog.addEventListener('cancel', onCancel);
+    if (!dialog.open) dialog.showModal();
+  });
 }
 
 async function copy(text) {
@@ -1189,6 +1283,7 @@ async function logout() {
   storageSet(DRAFT_KEY, null);
   state.session = null;
   state.doc = null;
+  state.mergeHint = null;
   renderLogin();
 }
 

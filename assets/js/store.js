@@ -118,6 +118,19 @@ const herkomst = (v, bron) => (HERKOMST.includes(v) ? v : bron === BUREAU_BRON ?
 let counter = 0;
 const ensureId = (v, prefix) => (v === 0 || v ? String(v) : `${prefix}-${Date.now().toString(36)}${(counter++).toString(36)}`);
 
+/** Stabiele id uit een tekst (zelfde algoritme als in de Python-generator): "faq-kun-je-ook-karaoke-doen". */
+export function slug(text, prefix = '') {
+  const base = String(text || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 48).replace(/-+$/, '');
+  return `${prefix}${base || 'item'}`;
+}
+/** Tekstregel met id: accepteert een platte string (migratie) of {id, tekst}. */
+const tekstItem = (v, prefix) => {
+  const tekst = typeof v === 'string' ? v : str(v?.tekst);
+  const id = typeof v === 'string' ? '' : str(v?.id);
+  return { id: id || slug(tekst, prefix), tekst };
+};
+
 /** Cijfer 1–10, één decimaal. */
 export const cijfer = (v) => {
   const n = num(v, null);
@@ -155,10 +168,11 @@ export function normalize(input) {
       // Schakelaar uit §1a: materiaal uit opdrachten via The DJ Company tonen (standaard uit).
       bureauMateriaal: !!info.bureauMateriaal,
       googleReviewUrl: str(info.googleReviewUrl),
-      apparatuur: strList(info.apparatuur),
+      apparatuur: arr(info.apparatuur).map((a) => tekstItem(a, 'app-')).filter((a) => a.tekst),
       overTekst: str(info.overTekst),
-      werkwijze: arr(info.werkwijze).map((s) => ({ titel: str(s?.titel), tekst: str(s?.tekst) })),
+      werkwijze: arr(info.werkwijze).map((s) => ({ id: str(s?.id) || slug(s?.titel, 'ww-'), titel: str(s?.titel), tekst: str(s?.tekst) })),
       faq: arr(info.faq).map((f) => ({
+        id: str(f?.id) || slug(f?.vraag, 'faq-'),
         type: oneOf(str(f?.type), FAQ_TYPES, 'Algemeen'),
         vraag: str(f?.vraag),
         antwoord: str(f?.antwoord),
@@ -189,7 +203,7 @@ export function normalize(input) {
       tekst: str(o?.tekst),
       hidden: !!o?.hidden,
     })),
-    zekerheden: strList(doc.zekerheden),
+    zekerheden: arr(doc.zekerheden).map((z) => tekstItem(z, 'zek-')).filter((z) => z.tekst),
     agenda: arr(doc.agenda)
       .map((a) => ({ datum: isoDate(a?.datum), label: str(a?.label, 'Bezet') || 'Bezet' }))
       .filter((a) => a.datum)
@@ -208,10 +222,13 @@ export function normalize(input) {
       hidden: !!m?.hidden,
     })),
     locaties: arr(doc.locaties).map((l) => ({
+      id: str(l?.id) || slug(`${str(typeof l === 'string' ? l : l?.naam)} ${str(l?.plaats)}`, 'loc-'),
       naam: str(typeof l === 'string' ? l : l?.naam),
       plaats: str(l?.plaats),
       herkomst: herkomst(l?.herkomst, ''),
     })).filter((l) => l.naam),
+    // Ids die de beheerder bewust verwijderde: mergeDefaults zet ze niet terug.
+    verwijderdeIds: [...new Set(strList(doc.verwijderdeIds))],
     hero: str(doc.hero),
     portret: str(doc.portret),
     videos: arr(doc.videos).map((v) => ({
@@ -238,6 +255,66 @@ export function normalize(input) {
       hidden: !!r?.hidden,
     })),
   };
+}
+
+/* -------------------------------------------- standaardteksten samenvoegen */
+
+/** Lijsten met id-items die mergeDefaults bijhoudt: pad in het document en hoe een item heet in het rapport. */
+export const MERGE_LISTS = [
+  { lijst: 'pakketten', pad: ['pakketten'], label: (x) => x.naam },
+  { lijst: 'opties', pad: ['opties'], label: (x) => x.naam },
+  { lijst: 'zekerheden', pad: ['zekerheden'], label: (x) => x.tekst },
+  { lijst: 'faq', pad: ['info', 'faq'], label: (x) => x.vraag },
+  { lijst: 'werkwijze', pad: ['info', 'werkwijze'], label: (x) => x.titel },
+  { lijst: 'apparatuur', pad: ['info', 'apparatuur'], label: (x) => x.tekst },
+  { lijst: 'media', pad: ['media'], label: (x) => x.bijschrift || x.pad },
+  { lijst: 'locaties', pad: ['locaties'], label: (x) => x.naam },
+  { lijst: 'reviews', pad: ['reviews'], label: (x) => x.naam },
+];
+const getPath = (obj, pad) => pad.reduce((o, k) => (o ? o[k] : undefined), obj);
+const setPath = (obj, pad, value) => { const parent = pad.slice(0, -1).reduce((o, k) => o[k], obj); parent[pad[pad.length - 1]] = value; };
+const leeg = (v) => v === '' || v === null || v === undefined;
+/** Info-velden die mergeDefaults nooit invult: de schakelaar, en contactgegevens die in de standaarddata placeholders zijn. */
+export const MERGE_SKIP_FIELDS = ['bureauMateriaal', 'phone', 'whatsapp', 'email', 'kvk', 'btw', 'address'];
+
+/**
+ * Voegt nieuwe standaardteksten uit het gebundelde data/site.json toe aan een
+ * (genormaliseerd) document zonder de invullingen van de beheerder te overschrijven.
+ * - Lijstitems: alleen ids die ontbreken worden toegevoegd (op de plek van bundled als
+ *   de buurman ervoor bestaat, anders achteraan); bestaande items blijven ongewijzigd;
+ *   ids in doc.verwijderdeIds komen niet terug.
+ * - info-velden: alleen lege velden worden gevuld; bureauMateriaal blijft altijd zoals in doc en
+ *   contactgegevens (placeholders in de standaarddata) worden nooit ingevuld.
+ * Puur: geeft een nieuw document en een rapport terug.
+ */
+export function mergeDefaults(doc, bundled) {
+  const out = JSON.parse(JSON.stringify(doc));
+  const rapport = { toegevoegd: [], ingevuld: [], overgeslagen: [] };
+  const verwijderd = new Set(out.verwijderdeIds || []);
+
+  for (const { lijst, pad, label } of MERGE_LISTS) {
+    const huidig = [...(getPath(out, pad) || [])];
+    const standaard = getPath(bundled, pad) || [];
+    const ids = () => new Set(huidig.map((x) => String(x.id)));
+    standaard.forEach((item, i) => {
+      const id = String(item.id);
+      if (ids().has(id)) return;
+      if (verwijderd.has(id)) { rapport.overgeslagen.push(id); return; }
+      const kopie = JSON.parse(JSON.stringify(item));
+      const buurman = i > 0 ? String(standaard[i - 1].id) : null;
+      const plek = buurman ? huidig.findIndex((x) => String(x.id) === buurman) : -1;
+      if (plek >= 0) huidig.splice(plek + 1, 0, kopie); else huidig.push(kopie);
+      rapport.toegevoegd.push({ lijst, id, label: label(item) });
+    });
+    setPath(out, pad, huidig);
+  }
+
+  for (const [key, value] of Object.entries(bundled.info || {})) {
+    if (MERGE_SKIP_FIELDS.includes(key) || Array.isArray(value) || (value && typeof value === 'object')) continue;
+    if (leeg(out.info[key]) && !leeg(value)) { out.info[key] = value; rapport.ingevuld.push(key); }
+  }
+  out.info.bureauMateriaal = !!doc.info.bureauMateriaal;
+  return { doc: out, rapport };
 }
 
 /* ---------------------------------------------------------- afgeleiden */
