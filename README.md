@@ -53,8 +53,8 @@ Is GitHub even niet bereikbaar, dan blijft de site gewoon werken.
 4. **Zet het Gist-id en je GitHub-naam in `assets/js/config.js`** (het tabblad
    *Instellingen* laat de exacte regels zien) en push. Vanaf dan zien álle
    bezoekers de live gegevens.
-5. **Formulier:** maak op [formspree.io](https://formspree.io) een formulier aan
-   en zet het id in `config.js` (`formspreeId`).
+5. **Formulier:** het Formspree-formulier (`xjyyewdr`) staat in `config.js`
+   (`formspreeId`); daarmee werkt de knop "Verstuur per e-mail" naast WhatsApp.
 
 Eerst rondkijken kan ook: *Demo zonder sleutel* op de inlogpagina. Wijzigingen
 blijven dan in je browser, en de website laat ze (alleen in die browser) zien

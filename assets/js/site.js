@@ -572,7 +572,7 @@ function setupContactForm() {
       location.href = new URL('bedankt.html', location.href).href;
     } catch {
       status.classList.add('error');
-      status.textContent = 'Versturen lukte niet. Probeer het via WhatsApp, of app of bel me.';
+      status.textContent = 'Versturen per e-mail lukte niet. Probeer het via WhatsApp, of bel me.';
     } finally {
       submit.disabled = false; mailBtn.disabled = false;
     }

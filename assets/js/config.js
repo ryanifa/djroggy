@@ -9,8 +9,8 @@ export const CONFIG = {
   gistOwner: 'ryanifa',
   gistFile: 'site.json',
   // Formspree-formulier-id voor contact.html (https://formspree.io → New form).
-  // Placeholder: het formulier werkt pas als hier het echte id staat.
-  formspreeId: 'FORMSPREE_ID',
+  // Leeg laten = alleen WhatsApp; met id ook de knop "Verstuur per e-mail".
+  formspreeId: 'xjyyewdr',
   // GoatCounter-code (cookieloos, https://www.goatcounter.com). Leeg = geen statistieken.
   goatcounter: '',
   // Cloudflare Turnstile site-key voor spambescherming op het formulier. Leeg = alleen de honeypot.
