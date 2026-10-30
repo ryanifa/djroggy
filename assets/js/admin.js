@@ -11,7 +11,7 @@ import { compressImage, mediaFile, mediaUrl, rememberMedia, setDemoMedia, clearD
 import {
   normalize, bundledDoc, activeGistId, setLocalGistId, demoDoc, setDemoDoc, cacheDoc, storageGet, storageSet,
   todayIso, filter, verborgenBureau, reviewStats, formatCijfer, formatDatum, REVIEW_TYPES, MEDIA_CATEGORIES, FAQ_TYPES, BUREAU_BRON,
-  mergeDefaults,
+  mergeDefaults, verborgenKeuzes,
 } from './store.js';
 
 const SESSION_KEY = 'djr.admin';
@@ -637,14 +637,16 @@ const mediaRef = (m) => (m.bron === 'gist' ? m.id : m.pad);
 function renderMediaTab(main) {
   const doc = state.doc;
   const verborgen = verborgenBureau(doc);
-  const hero = doc.media.find(isHero);
-  const portret = doc.media.find(isPortret);
+  const zicht = filter(doc);
+  const hero = doc.media.find((m) => zicht.hero && (zicht.hero === m.pad || zicht.hero === m.id));
+  const portret = doc.media.find((m) => zicht.portret && (zicht.portret === m.pad || zicht.portret === m.id));
 
   main.append(el('section', { class: 'panel' }, [
     el('h3', { text: 'Hero en portret' }),
     el('div', { class: 'picker-current' }, [hero ? mediaThumb(hero) : el('div', { class: 'thumb', text: '?' }), el('div', {}, [el('strong', { text: 'Hero (homepage)' }), el('br'), el('small', { class: 'muted', text: hero ? hero.bijschrift || hero.pad : 'Geen eigen foto gekozen; de site toont de standaardfoto.' })])]),
     el('div', { class: 'picker-current' }, [portret ? mediaThumb(portret) : el('div', { class: 'thumb', text: '?' }), el('div', {}, [el('strong', { text: 'Portret (Over Roggy)' }), el('br'), el('small', { class: 'muted', text: portret ? portret.bijschrift || portret.pad : 'Geen eigen foto gekozen; de site toont de standaardfoto.' })])]),
-    el('p', { class: 'field-help', text: 'Kies een andere foto door hem hieronder te openen en "Gebruik als hero" of "Gebruik als portret" aan te zetten. Alleen eigen foto\'s zijn toegestaan.' }),
+    el('p', { class: 'field-help', text: `Kies een andere foto door hem hieronder te openen en "Gebruik als hero" of "Gebruik als portret" aan te zetten.${doc.info.bureauMateriaal ? '' : ' Zolang de schakelaar in Info uit staat, kan dat alleen met eigen foto\'s.'}` }),
+    ...verborgenKeuzes(doc).map(({ veld, item, terugval }) => el('div', { class: 'notice', text: `De gekozen ${veld === 'hero' ? 'hero-foto' : 'portretfoto'} "${item.bijschrift || item.pad}" is bureau-materiaal en staat uit. De site toont nu ${terugval ? `"${terugval.bijschrift || terugval.pad}"` : 'de standaardfoto'}. Kies een eigen foto of zet de schakelaar in Info aan.` })),
     verborgen.media ? el('div', { class: 'notice', text: `Bureau-foto's staan uit — ${verborgen.media} verborgen (art. 7.2). Aanzetten kan onder Info.` }) : null,
   ]));
 
@@ -742,7 +744,7 @@ function editMedia(m) {
       { key: 'hidden', label: 'Verbergen op de website', type: 'checkbox', value: m.hidden },
     ],
     onSave: (v) => {
-      if ((v.hero || v.portret) && v.herkomst !== 'eigen') return 'Hero en portret moeten eigen materiaal zijn (§1a).';
+      if ((v.hero || v.portret) && v.herkomst !== 'eigen' && !state.doc.info.bureauMateriaal) return 'Hero en portret moeten eigen materiaal zijn zolang de schakelaar "Materiaal van het bureau" uit staat (§1a).';
       m.bijschrift = v.bijschrift; m.categorie = v.categorie; m.herkomst = v.herkomst; m.home = v.home; m.hidden = v.hidden;
       if (v.hero) state.doc.hero = mediaRef(m); else if (isHero(m)) state.doc.hero = '';
       if (v.portret) state.doc.portret = mediaRef(m); else if (isPortret(m)) state.doc.portret = '';

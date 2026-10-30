@@ -179,6 +179,11 @@ apparatuur, zekerheden, locaties) krijgen in `normalize()` een stabiele id uit
 een slug van de tekst, zodat oude Gist-data blijft matchen. Verwijderde items
 staan in `doc.verwijderdeIds` en komen niet terug. Tests: `node tests/merge.test.js`.
 
+Hero en portret mogen bureau-materiaal zijn zolang de schakelaar aan staat. Gaat
+hij uit, dan valt `filter()` terug op de eerste eigen foto met *op homepage* (anders
+de eerste zichtbare eigen foto) en toont beheer → Foto's een waarschuwing.
+Tests: `node tests/filter.test.js`.
+
 ## Versie en verversen
 
 `VERSION` bevat het versienummer (datum + volgnummer). Het staat in de footer

@@ -329,15 +329,40 @@ export function mergeDefaults(doc, bundled) {
 export function filter(doc) {
   const toon = (x) => x.herkomst === 'eigen' || doc.info.bureauMateriaal;
   const media = doc.media.filter(toon);
-  const ok = (pad) => !pad || media.some((m) => m.pad === pad || m.id === pad) || !doc.media.some((m) => m.pad === pad || m.id === pad);
   return {
     ...doc,
     reviews: doc.reviews.filter(toon),
     media,
     locaties: doc.locaties.filter(toon),
-    hero: ok(doc.hero) ? doc.hero : '',
-    portret: ok(doc.portret) ? doc.portret : '',
+    hero: zichtbareKeuze(doc, media, doc.hero),
+    portret: zichtbareKeuze(doc, media, doc.portret),
   };
+}
+
+const mediaRef = (m) => (m.bron === 'gist' ? m.id : m.pad);
+const vindMedia = (list, ref) => list.find((m) => m.pad === ref || m.id === ref);
+
+/**
+ * Hero/portret zoals de site hem mag tonen: de gekozen foto als die door de filter
+ * komt (of geen galerij-item is), anders de eerste eigen foto met "op homepage",
+ * anders de eerste zichtbare eigen foto, anders leeg (de HTML-standaard blijft dan staan).
+ */
+function zichtbareKeuze(doc, zichtbaar, ref) {
+  if (!ref) return '';
+  if (vindMedia(zichtbaar, ref) || !vindMedia(doc.media, ref)) return ref;
+  const terugval = zichtbaar.find((m) => m.home && !m.hidden) || zichtbaar.find((m) => !m.hidden);
+  return terugval ? mediaRef(terugval) : '';
+}
+
+/** Welke hero/portret-keuze nu verborgen is door de schakelaar (voor de waarschuwing in beheer). */
+export function verborgenKeuzes(doc) {
+  const out = [];
+  if (doc.info.bureauMateriaal) return out;
+  for (const [veld, ref] of [['hero', doc.hero], ['portret', doc.portret]]) {
+    const item = vindMedia(doc.media, ref);
+    if (item && item.herkomst === 'bureau') out.push({ veld, item, terugval: vindMedia(doc.media, zichtbareKeuze(doc, doc.media.filter((m) => m.herkomst === 'eigen'), ref)) || null });
+  }
+  return out;
 }
 
 /** Hoeveel bureau-items er verborgen zijn (voor de gele balk in beheer). */
